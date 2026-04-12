@@ -18,7 +18,7 @@ Karotterの非公式APIリファレンスです。
 | [HTTPステータスコード](#httpステータスコード) | HTTPステータスコードについて |
 | [エラーレスポンス形式](#エラーレスポンス形式) | エラーレスポンス形式について |
 | [APIドメイン](#apiドメイン) | APIドメインについて |
-| [Cookie / LocalStorage](##cookie--localstorage) | CookieとLocalStorageの内容について |
+| [Cookie / LocalStorage](#cookie--localstorage) | CookieとLocalStorageの内容について |
 | [フロントエンドルート](#フロントエンドルート) | フロントエンドルートについて |
 | [メディア](#メディア) | メディアについて |
 | [クエリパラメータ](#クエリパラメータ) | クエリパラメータについて |
