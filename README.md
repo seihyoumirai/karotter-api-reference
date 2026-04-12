@@ -1759,7 +1759,7 @@ Response 200: {"message": "記事を削除しました"}
 - 記事作成・更新は `PUT` メソッドを使用
 - コメント・いいねは一般ユーザーも可能
 - 画像関連フィールド（thumbnailUrl, coverImageUrl, ogImageUrl）はフルURLを指定
-- カテゴリー例: `technology`, `general`, `announcement` など（実際の運用による）
+- カテゴリー例: `general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
 
 ---
 
