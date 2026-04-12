@@ -1816,6 +1816,7 @@ Response 200: {"message": "記事を削除しました"}
 | `users` | ユーザー管理 | 検索、BAN/解除、フラグ変更、公式マーク付与、アカウント編集、削除 |
 | `posts` | カロート管理 | 検索、R18強制、非表示、削除 |
 | `stories` | ストーリー管理 | 検索、R18強制、非表示、削除、有効期限表示 |
+| `admin-news-articles` | ニュース記事管理 | 記事検索、削除、コメント |
 | `recommend` | おすすめ β | おすすめアルゴリズムテスト (userId指定、スコア詳細表示) |
 | `trending` | トレンド β | トレンドアルゴリズムテスト (velocity, uniqueActors, engagementRate) |
 | `survey` | アンケート | おすすめ満足度アンケート結果 (投票数、満足度スコア) |
