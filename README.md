@@ -1511,6 +1511,12 @@ POST /radio/{id}/leave
 POST /radio/{id}/end
 ```
 
+### その他
+
+```
+GET /radio/ice-servers
+```
+
 ---
 
 ## 掲示板 (Boards) エンドポイント
