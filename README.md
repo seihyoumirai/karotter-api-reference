@@ -1,15 +1,16 @@
 # Karotter API Reference
 
-Karotterの非公式APIリファレンスです。  
+Karotterの非公式APIリファレンスです。
+[にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)より引用。
 
 ---
 
 ## Base URL
 
-| 用途 | Base URL |
+| 形態 | Base URL |
 |------|----------|
-| セルフBot (自アカウント操作) | `https://api.karotter.com/api/` |
-| 開発者向け (第三者アプリ) | `https://api.karotter.com/api/developer` |
+| セルフボット | `https://api.karotter.com/api/` |
+| 開発者向け | `https://api.karotter.com/api/developer` |
 
 > `https://karotter.com/api` でもアクセス可能（Cloudflare経由）
 
@@ -21,19 +22,19 @@ Karotterの非公式APIリファレンスです。
 
 | ヘッダー | 値 | 必須 | 備考 |
 |---------|-----|------|------|
-| `X-Client-Type` | `web` | 推奨 | `web` 以外でも動作するがアカウント凍結リスクあり |
+| `X-Client-Type` | `web`, `android` | 推奨 | 多分なんでも行ける |
 | `X-Device-Id` | UUID v4 | 推奨 | セッション識別用、固定値でOK |
 | `X-CSRF-Token` | CSRFトークン | 書き込み系 | POST/PUT/DELETE で必要 |
 
 ### 認証方式
 
-**方式1: APIキー認証** (開発者向け)
+**1. APIキー認証**
 ```
 Authorization: Bearer {apiKey}
 ```
 - `/apikeys` エンドポイントで発行可能
 
-**方式2: Cookie認証** (セルフBot)
+**2. Cookie認証**
 ```
 Cookie: {ログイン時に返却されるCookie}
 ```
@@ -177,16 +178,6 @@ Cookie: {ログイン時に返却されるCookie}
 
 ### 法的ページ
 `/terms`, `/privacy`, `/cookie-policy`, `/ai-policy`, `/enforcement-policy`, `/child-safety-policy`, `/api-bot-terms`, `/creator-monetization-terms`, `/repeat-infringer-policy`, `/account-memorial-inheritance-policy`, `/business-transfer-data-succession-policy`
-
----
-
-## 注意事項
-
-- `/api/users/me` は「me」というユーザー名を検索する (現在のユーザーは `/api/auth/me`)
-- 同様に `/api/users/settings`, `/api/users/notifications` 等もユーザー名として解釈される
-- 画像アップロードのフィールド名: 投稿は `media`、DMは `attachments` (間違えると500)
-- 画像と動画の同時投稿不可 (400)
-- Cookie認証 (`karotter_at`, `karotter_rt`) が一部エンドポイントで必要。`requests.Session()` で自動処理
 
 ---
 
@@ -1475,7 +1466,7 @@ POST /radio/{id}/end
 
 ---
 
-## 掲示板 エンドポイント
+## 掲示板 (Boards) エンドポイント
 
 ---
 
@@ -1597,7 +1588,7 @@ DELETE /boards/api/threads/{ID}
 
 ---
 
-## ニュース エンドポイント
+## ニュース (News) エンドポイント
 
 ---
 
@@ -2647,3 +2638,13 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 ```
 
 グループ化された通知 (`GET /notifications/grouped-posts`) では、同じ投稿に対する複数の通知がまとめられ、`actors` 配列に全アクターが含まれる。
+
+---
+
+## 注意事項
+
+- `/api/users/me` は「me」というユーザー名を検索する (現在のユーザーは `/api/auth/me`)
+- 同様に `/api/users/settings`, `/api/users/notifications` 等もユーザー名として解釈される
+- 画像アップロードのフィールド名: 投稿は `media`、DMは `attachments` (間違えると500)
+- 画像と動画の同時投稿不可 (400)
+- Cookie認証 (`karotter_at`, `karotter_rt`) が一部エンドポイントで必要。`requests.Session()` で自動処理
