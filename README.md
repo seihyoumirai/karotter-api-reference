@@ -854,6 +854,7 @@ GET /users/{userId}/following?limit=1000
 Response 200: {"users": [...], "pagination": {"hasNext", "nextCursor"}}
 ```
 - ユーザーオブジェクト: id, username, displayName, avatarUrl, bio, followersCount, isPrivate, officialMark, is_following, follow_request_sent
+- クエリパラメータ`?q={string}`で、名前にその文字が入っているユーザーを検索
 
 ### おすすめユーザー
 
@@ -930,13 +931,6 @@ Response 200: {"message": "ユーザー名を変更しました", "user": {...},
 変更なし: {"message": "ユーザー名に変更はありません"}
 ```
 - レート制限: 14日間で最大5回
-
-### ユーザー名関連
-
-```
-GET /users/username/quota
-Response 200: {"windowDays":14,"maxChanges":5,"usedChanges":0,"remainingChanges":5}
-```
 
 ### ピン留め投稿変更
 
@@ -1044,6 +1038,20 @@ GET    /follow/mute               → ミュート一覧 {"users": [...]}
 POST   /follow/mute/{userId}      → ミュート追加
 DELETE /follow/mute/{userId}      → ミュート解除
   Error: 400 {"error": "ミュートしていません"}
+```
+
+### 通知
+
+```
+POST /follow/{id}/post-notify     → ユーザーの通知をオン
+DELETE /follow/{id}/post-notify   → ユーザーの通知をオフ
+```
+
+### リカロート表示
+
+```
+POST /follow/hide-rekarots/{id}   → ユーザーのリカロートを非表示
+DELETE /follow/hide-rekarots/{id} → ユーザーのリカロートを再表示
 ```
 
 ---
