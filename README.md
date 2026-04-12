@@ -1,6 +1,7 @@
 # Karotter API Reference
 
 Karotterの非公式APIリファレンスです。
+
 [にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)より引用。
 
 ---
@@ -896,7 +897,7 @@ Response 200:
 
 ```
 PATCH /users/status
-Body: {"status": "ONLINE"}  ← ONLINE / OFFLINE / INVISIBLE
+Body: {"status": "ONLINE"}  ← ONLINE / OFFLINE / INVISIBLE / DND
       {"statusMessage": "作業中"}  ← ステータスメッセージ（任意）
 
 Response 200: {"message": "ステータスを更新しました", "status": "ONLINE", "statusMessage": "..."}
@@ -921,6 +922,13 @@ Response 200: {"message": "ユーザー名を変更しました", "user": {...},
 変更なし: {"message": "ユーザー名に変更はありません"}
 ```
 - レート制限: 14日間で最大5回
+
+### ユーザー名関連
+
+```
+GET /users/username/quota
+Response 200: {"windowDays":14,"maxChanges":5,"usedChanges":0,"remainingChanges":5}
+```
 
 ### ピン留め投稿変更
 
@@ -2414,7 +2422,7 @@ Content-Type: application/json
 
 ```
 GET    /apikeys        → {"apiKeys": [...]}
-POST   /apikeys        → APIキー作成 Body: {"name": "キー名"}
+POST   /apikeys        → APIキー作成 Body: {"name":"...","canReadPosts":true,"canCreatePosts":true,"canReadTimeline":true,"canReadFollows":true,"canWriteFollows":true,"canReadNews":true,"canCreateNews":true,"canPublishNews":true}
 DELETE /apikeys/{id}   → {"message": "APIキーを削除しました"}
 ```
 - APIキーフィールド: id, name, canReadPosts, canCreatePosts, canReadTimeline, canReadFollows, canWriteFollows, requestsPerMinute, lastUsedAt, isActive, createdAt, maskedKey
