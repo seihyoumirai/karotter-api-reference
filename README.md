@@ -435,6 +435,7 @@ X-CSRF-Token: {csrf}
 
 Fields:
   content          : string (テキスト)
+  questionId       : string (質問箱限定)
   media            : File[] (画像/動画ファイル、同名で複数append可)
   mediaAlts        : string (JSON配列 e.g. ["alt text", ""])
   mediaSpoilerFlags: string (JSON配列 e.g. [false, false])
@@ -1067,7 +1068,7 @@ Response 200:
   ]
 }
 ```
-- `type`: `REPLY`, `MENTION`, `FOLLOW`, `FOLLOW_REQUEST`, `LIKE`, `REKAROT`, `QUOTE`, `DM`
+- `type`: `REPLY`, `MENTION`, `FOLLOW`, `FOLLOW_REQUEST`, `LIKE`, `REKAROT`, `QUOTE`, `DM`, `SYSTEM`
 
 ### 未読通知数
 
@@ -1358,6 +1359,14 @@ DELETE /social/stories/{id}/like     → ストーリーいいね取消
 ```
 GET /social/link-preview?url={url}        → OGP情報取得
 GET /social/link-preview-image?url={url}  → プレビュー画像取得 (常時500の可能性)
+```
+
+### 質問箱
+
+```
+POST /social/questions/{username}         → 質問をする
+GET /social/questions/inbox               → 質問を表示
+DELETE /social/questions/{id}             → 質問を削除
 ```
 
 ---
