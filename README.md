@@ -201,6 +201,7 @@ Cookie: {ログイン時に返却されるCookie}
 | `/news` | ニュース一覧 |
 | `/report` | 通報 |
 | `/contact` | お問い合わせ |
+| `/admin` | 管理者パネル |
 
 ### 法的ページ
 `/terms`, `/privacy`, `/cookie-policy`, `/ai-policy`, `/enforcement-policy`, `/child-safety-policy`, `/api-bot-terms`, `/creator-monetization-terms`, `/repeat-infringer-policy`, `/account-memorial-inheritance-policy`, `/business-transfer-data-succession-policy`
