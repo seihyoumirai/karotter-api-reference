@@ -906,7 +906,7 @@ Response 200:
 
 ```
 PATCH /users/status
-Body: {"status": "ONLINE"}  ← ONLINE / OFFLINE / INVISIBLE / DND
+Body: {"status": "ONLINE"}  ← ONLINE / OFFLINE / INVISIBLE / IDLE / DND
       {"statusMessage": "作業中"}  ← ステータスメッセージ（任意）
 
 Response 200: {"message": "ステータスを更新しました", "status": "ONLINE", "statusMessage": "..."}
@@ -959,7 +959,7 @@ Response 200: 全設定を返す
 - `directMessagesEnabled`: DM有効
 - `mutedKeywords`: ミュートキーワード配列
 - `dmRequestPolicy`: DMリクエストポリシー
-- `notifyLikes`, `notifyRekarots`, `notifyReplies`, `notifyMentions`, `notifyFollows`, `notifyQuotes`, `notifyReactions`, `notifyDMs`: 通知設定 (各boolean)
+- `notifyLikes`, `notifyRekarots`, `notifyReplies`, `notifyMentions`, `notifyFollows`, `notifyQuotes`, `notifyReactions`, `notifyDMs`, `notifyNewsOnLaunch`: 通知設定 (各boolean)
 - `notificationMuteNonFollowing`, `notificationMuteNonFollowers`, `notificationMuteNewAccounts`, `notificationMuteNoAvatar`: 通知ミュート設定
 - `showHiddenPosts`, `showParodyAccounts`, `showBotAccounts`, `showR18Content`: 表示設定
 - `isBotAccount`, `isParodyAccount`, `hideProfileFromMinors`: アカウント属性
@@ -1886,6 +1886,7 @@ Response:
 | `adminForceHidden` | 管理者非表示 |
 | `adminForceParody` | パロディ強制 |
 | `adminForceBot` | BOT強制 |
+| `adminForceR18` | R18強制 |
 | `showBotAccounts` | BOT表示許可 |
 | `showHiddenPosts` | 非表示閲覧許可 |
 | `showR18Content` | R18表示許可 |
