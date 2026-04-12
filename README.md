@@ -1535,6 +1535,7 @@ GET /radio/ice-servers
 
 ### 一覧 / 内容取得
 
+#### 板
 ```
 GET /boards
 Response 200:
@@ -1543,6 +1544,7 @@ Response 200:
 }
 ```
 
+#### スレッド
 ```
 GET /boards/{slug}
 Response 200:
@@ -1552,8 +1554,9 @@ Response 200:
 }
 ```
 
+#### レスポンス（コメント）
 ```
-GET /boards/siritori/threads/{ID}
+GET /boards/{slug}/threads/{ID}
 Response 200:
 {
   "board": { ... },
@@ -1562,6 +1565,7 @@ Response 200:
 }
 ```
 
+#### その他
 ```
 GET /boards/{slug}/stream
 Response 200:
