@@ -2449,8 +2449,8 @@ Content-Type: application/json
 }
 
 ```
+- `type`: `POST`, `STORY`, `DM_MESSAGE`, `USER`, `NEWS`, `NEWS_COMMENT`
 - `type` が不正: `400 {"error": "通報対象の種類が不正です"}`
-- `type`は`POST`, `NEWS`を使用可能
 - レート制限: 10 req / 900s
 
 ### お問い合わせ (Contact)
