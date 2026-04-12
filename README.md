@@ -2323,6 +2323,10 @@ GET /bookmarks
 Response 200: {"posts": [...], "pagination": {"page", "limit", "total", "pages"}}
 ```
 
+### ニュース
+
+調査中
+
 ### Developer APIで利用不可
 
 以下はセルフBot API (`/api/`) でのみ利用可能:
