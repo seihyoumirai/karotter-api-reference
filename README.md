@@ -2084,6 +2084,16 @@ GET  /control-room-x9k2/stickers
 GET  /control-room-x9k2/stickers/{id}
 ```
 
+#### ニュース記事管理
+```
+GET /control-room-x9k2/news
+GET /control-room-x9k2/news/comments
+PATCH /control-room-x9k2/news/{articleId}/review
+  Body: { action: "approve" | "reject" | "unpublish", reviewNote: "..." }
+DELETE /control-room-x9k2/news/{articleId}
+DELETE /control-room-x9k2/news/comments/{commentId}
+```
+
 #### お知らせ (3)
 
 ```
