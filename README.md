@@ -1803,7 +1803,7 @@ Response 200: {"message": "記事を削除しました"}
 |------|------|
 | フロントエンドURL | `https://karotter.com/admin` |
 | APIベースパス | `/control-room-x9k2` |
-| JSチャンク | `Admin-BX1OyPEg.js` |
+| JSチャンク | `Admin-{ランダムな文字列}.js` |
 | 認証 | `user.isAdmin === true` が必要 |
 | 非管理者アクセス | 「アクセス拒否 -- 管理者権限が必要です」表示 |
 | 全APIレスポンス | `403: 管理者権限が必要です` |
