@@ -308,6 +308,7 @@ Response 200:
 ```
 - `accessToken`: JWT (HS256), 30分有効
 - Set-Cookie: `karotter_at` (HttpOnly, Secure, SameSite=Strict, 1h), `karotter_rt` (HttpOnly, Secure, 30d), `karotter_csrf` (Secure, 30d)
+- 発行上限あり
 - レート制限: 5 req / 60s
 
 ### CSRFトークン
@@ -1633,6 +1634,16 @@ Content-Type: application/json
 {
   "emoji": "😃"
 }
+```
+
+---
+
+### お気に入り
+
+```
+POST /boards/{slug}/follow    → お気に入りに追加
+DELETE /boards/{slug}/follow  → お気に入りから削除
+GET /boards/following         → お気に入り一覧
 ```
 
 ---
