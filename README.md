@@ -5,6 +5,43 @@ Karotterの非公式APIリファレンスです。
 
 ---
 
+## 目次
+| タイトル | 説明 |
+|---------|------|
+| [Karotter API Reference](#karotter-api-reference) | Repositoryの簡単な説明 |
+| [目次](#目次) | 目次 |
+| [Base Url](#base-url) | Base URLについて |
+| [共通ヘッダー](#共通ヘッダー) | 共通ヘッダーについて |
+| [認証方式](#認証方式) | 認証方式について |
+| [レート制限](#レート制限) | レート制限について |
+| [HTTPステータスコード](#httpステータスコード) | HTTPステータスコードについて |
+| [エラーレスポンス形式](#エラーレスポンス形式) | エラーレスポンス形式について |
+| [APIドメイン](#apiドメイン) | APIドメインについて |
+| [Cookie / LocalStorage](##cookie--localstorage) | CookieとLocalStorageの内容について |
+| [フロントエンドルート](#フロントエンドルート) | フロントエンドルートについて |
+| [メディア](#メディア) | メディアについて |
+| [クエリパラメータ](#クエリパラメータ) | クエリパラメータについて |
+| [認証 (Auth) エンドポイント](#認証-auth-エンドポイント) | 認証エンドポイントについて |
+| [投稿 (Posts) エンドポイント](#投稿-posts-エンドポイント) | 投稿エンドポイントについて |
+| [ユーザー (Users) エンドポイント](#ユーザー-users-エンドポイント) | ユーザーエンドポイントについて |
+| [フォロー (Follow) エンドポイント](#フォロー-follow-エンドポイント) | フォローエンドポイントについて |
+| [通知 (Notifications) エンドポイント](#通知-notifications-エンドポイント) | 通知エンドポイントについて |
+| [ダイレクトメッセージ (DM) エンドポイント](#ダイレクトメッセージ-dm-エンドポイント) | DMエンドポイントについて |
+| [検索 (Search) エンドポイント](#検索-search-エンドポイント) | 検索エンドポイントについて |
+| [ソーシャル (Social) エンドポイント](#ソーシャル-social-エンドポイント) | ソーシャルエンドポイントについて |
+| [絵チャ (Draw-chat) エンドポイント](#絵チャ-draw-chat-エンドポイント) | 絵チャエンドポイントについて |
+| [ラジオ / スペース エンドポイント](#ラジオ--スペース-エンドポイント) | ラジオ/スペースエンドポイントについて |
+| [掲示板 (Boards) エンドポイント](#掲示板-boards-エンドポイント) | 掲示板エンドポイントについて |
+| [ニュース (News) エンドポイント](#ニュース-news-エンドポイント) | ニュースエンドポイントについて |
+| [管理パネル (Admin) エンドポイント](#管理パネル-admin-エンドポイント) | 管理パネルエンドポイントについて |
+| [Developer API エンドポイント](#developer-api-エンドポイント) | Developer API エンドポイントについて |
+| [その他のエンドポイント](#その他のエンドポイント) | その他のエンドポイントについて |
+| [Socket.IO (リアルタイム通信)](#socketio-リアルタイム通信) | Socket.IOについて |
+| [技術スタック](#技術スタック) | 技術スタックについて |
+| [注意事項](#注意事項-1) | 注意事項 |
+
+---
+
 ## Base URL
 
 | 形態 | Base URL |
@@ -107,21 +144,7 @@ Cookie: {ログイン時に返却されるCookie}
 
 ### CORS許可オリジン
 
-`karotter.com`, `karotter.jp`, `karotter.net`, `karotter.karon.jp`, `apikarotter.karon.jp`, `http://localhost:5173` (dev)
-
----
-
-## 技術スタック
-
-| 項目 | 詳細 |
-|------|------|
-| Backend | Node.js (Express) + Prisma |
-| Database | PostgreSQL |
-| Frontend | Vite + React |
-| CDN/WAF | Cloudflare |
-| リアルタイム | Socket.IO (WebSocketのみ) |
-| 認証 | JWT (HS256) + CSRF |
-| SSL | Let's Encrypt |
+`karotter.com`, `karotter.jp`, `karotter.net`, `karotter.karon.jp`, `apikarotter.karon.jp`, `http://localhost:5173`
 
 ---
 
@@ -173,6 +196,8 @@ Cookie: {ログイン時に返却されるCookie}
 | `/draw-chat/rooms/:roomId` | 絵チャルーム |
 | `/spaces` | スペース一覧 |
 | `/spaces/:spaceId` | スペース詳細 |
+| `/boards` | 掲示板一覧 |
+| `/news` | ニュース一覧 |
 | `/report` | 通報 |
 | `/contact` | お問い合わせ |
 
@@ -1738,7 +1763,7 @@ Response 200: {"message": "記事を削除しました"}
 
 ---
 
-## 管理パネル エンドポイント
+## 管理パネル (Admin) エンドポイント
 
 管理者向けの全エンドポイント (`/control-room-x9k2/*`)。
 
@@ -2330,7 +2355,7 @@ KarotterはTwitter (X) API v2と部分的に互換性のあるエンドポイン
 
 ---
 
-## 規約、通報、お問い合わせ、APIキー、埋め込みなどのその他
+## その他のエンドポイント
 
 ---
 
@@ -2638,6 +2663,20 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 ```
 
 グループ化された通知 (`GET /notifications/grouped-posts`) では、同じ投稿に対する複数の通知がまとめられ、`actors` 配列に全アクターが含まれる。
+
+---
+
+## 技術スタック
+
+| 項目 | 詳細 |
+|------|------|
+| Backend | Node.js (Express) + Prisma |
+| Database | PostgreSQL |
+| Frontend | Vite + React |
+| CDN/WAF | Cloudflare |
+| リアルタイム | Socket.IO (WebSocketのみ) |
+| 認証 | JWT (HS256) + CSRF |
+| SSL | Let's Encrypt |
 
 ---
 
