@@ -2685,6 +2685,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `REKAROT` | リカロート |
 | `QUOTE` | 引用 |
 | `DM` | ダイレクトメッセージ |
+| `SYSTEM` | システムメッセージ（質問箱） |
 
 ### 通知オブジェクト例
 
