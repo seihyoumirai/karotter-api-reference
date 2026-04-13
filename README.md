@@ -2295,10 +2295,6 @@ Response 201: {"message": "カロートしました", "post": {...}}
 ```
 - multipart/form-data での画像添付は未検証
 
-#### 投票
-
-調査中
-
 #### いいね / 取消
 ```
 POST   /posts/{id}/like    → 200 {"message": "いいねしました"}
@@ -2364,11 +2360,66 @@ Response 200: {"posts": [...], "pagination": {"page", "limit", "total", "pages"}
 
 ### ダイレクトメッセージ (DM)
 
-調査中
+#### 読み取り
 
-### ソーシャル (Social)
+```
+GET  /dm/groups
 
-調査中
+Response 200:
+{
+  "groups": [
+    {
+      "id": 487,
+      "members": [...],
+      "lastMessage": { ... },
+      "messages": [...],
+      ...
+    }
+  ],
+  "pagination": { ... }
+}
+```
+
+```
+GET /dm/groups/{groupId}/messages?page=1&limit=50
+
+Response 200:
+{
+  "messages": [
+    {
+      "id": 4125,
+      "groupId": 487,
+      "senderId": 15459,
+      "content": "テキスト",
+      "replyToId": null,
+      "attachmentUrls": ["/uploads/dm/uuid.png"],
+      "attachmentTypes": ["image/png"],
+      "attachmentAlts": [""],
+      "attachmentSpoilerFlags": [false],
+      "attachmentR18Flags": [false],
+      "isDeleted": false,
+      "createdAt": "...",
+      "sender": { ... },
+      "reactions": [...]
+    }
+  ],
+  "pagination": { ... }
+}
+```
+
+- その他は調査中
+
+### ストーリー (Story)
+
+#### 読み取り
+
+```
+GET /stories
+
+Response 200: { "stories": [ ... ] }
+```
+
+- その他は調査中
 
 ### 掲示板 (Boards)
 
@@ -2376,10 +2427,7 @@ Response 200: {"posts": [...], "pagination": {"page", "limit", "total", "pages"}
 ```
 GET /boards
 
-Response 200:
-{
-  "boards": [ ... ]
-}
+Response 200: { "boards": [ ... ] }
 ```
 
 ```
@@ -2401,10 +2449,7 @@ Response 200:
 ```
 GET /news?limit=12
 
-Response 200:
-{
-  "articles": [ ... ]
-}
+Response 200: { "articles": [ ... ] }
 ```
 
 #### 記事作成
