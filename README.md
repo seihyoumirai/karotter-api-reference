@@ -2361,8 +2361,8 @@ DELETE /users/{id}/follow
 ## フォローリクエスト
 ```
 GET /follow-requests
-POST /follow-requests/:requestId/accept
-POST /follow-requests/:requestId/reject
+POST /follow-requests/{id}/accept
+POST /follow-requests/{id}/reject
 ```
 
 ### ブックマーク (Bookmarks)
