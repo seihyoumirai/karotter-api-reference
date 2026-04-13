@@ -2,7 +2,9 @@
 
 Karotterの非公式APIリファレンスです。
 
-[にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)より引用。
+[にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)よりほぼ引用してます。
+
+上記のより更新は速いかも。
 
 ---
 
@@ -2360,6 +2362,8 @@ Response 200: {"posts": [...], "pagination": {"page", "limit", "total", "pages"}
 
 ### 通知 (Notifications)
 
+#### 読み取り
+
 ```
 GET /notifications?limit=30
 
@@ -2378,6 +2382,19 @@ Response 200:
     ...
   ]
 }
+```
+
+#### 既読
+
+```
+PATCH /notifications/read-all
+
+Response 200: {"message": "すべての通知を既読にしました"}
+```
+
+```
+DELETE /notifications/{id}        → {"message": "通知を削除しました"}
+DELETE /notifications/all         → 500 (サーバーバグ、未修正)
 ```
 
 - その他は調査中
@@ -2524,6 +2541,7 @@ Content-Type: application/json
 **その他:**
 - `/auth/*` (認証関連)
 - `/social/*` (サークル/リスト)
+- `/notifications/*` (プッシュ通知)
 - `/draw/*` (絵チャ)
 - `/radio/*` (ラジオ)
 - `/legal/*`, `/apikeys`, `/reports`, `/contact`, `/settings`
