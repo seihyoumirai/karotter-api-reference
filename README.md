@@ -2354,7 +2354,7 @@ Response 200: {"posts": [...], "pagination": {"page", "limit", "total", "pages"}
 
 ### 掲示板 (Boards)
 
-#### 一覧取得
+#### 読み取り
 ```
 GET /boards
 
@@ -2374,9 +2374,41 @@ Response 200:
 }
 ```
 
+- その他は調査中
+
 ### ニュース (News)
 
-調査中
+#### 読み取り
+
+```
+GET /news?limit=12
+
+Response 200:
+{
+  "articles": [ ... ]
+}
+```
+
+#### 記事作成
+
+```
+POST /news
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+```
+
+- その他は調査中
 
 ### Developer APIで利用不可
 
