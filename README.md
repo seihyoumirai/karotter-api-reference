@@ -2352,6 +2352,19 @@ GET /users/{id}/followers    → 200 {"users": [...]}
 GET /users/{id}/following    → 200 {"users": [...]}
 ```
 
+#### フォロー
+```
+POST /users/{id}/follow
+DELETE /users/{id}/follow
+```
+
+## フォローリクエスト
+```
+GET /follow-requests
+POST /follow-requests/:requestId/accept
+POST /follow-requests/:requestId/reject
+```
+
 ### ブックマーク (Bookmarks)
 
 ```
