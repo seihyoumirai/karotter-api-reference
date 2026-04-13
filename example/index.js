@@ -1,7 +1,7 @@
 // npm install axios node-cron fs path
 // node index.js
 
-// karotter selfbot code
+// karotter Bot code
 // 利用・コピペは禁止しています。
 // 参考程度にしてください。
 
@@ -11,13 +11,15 @@ const fs = require('fs');
 const path = require('path');
 
 let accessToken = 'eyJ...';
+let apiKey = 'kar_live_...';
 
 let baseURL = 'https://api.karotter.com/api';
+let apiURL = 'https://api.karotter.com/api/developer';
 
 const api = axios.create({
-  baseURL: `${baseURL}`,
+  baseURL: `${apiURL}`,
   headers: {
-    'Authorization': `Bearer ${accessToken}`,
+    'Authorization': `Bearer ${apiKey}`,
     'Cookie': `karotter_csrf=...;`,
     'Content-Type': 'application/json',
     'User-Agent': 'KarotterBot/1.0',
@@ -1173,8 +1175,4 @@ cron.schedule('0 */5 * * * *', () => {
 
 cron.schedule('0 * * * *', () => {
   postTimeSignal();
-});
-
-cron.schedule('*/20 * * * * *', () => {
-  checkAndReportSpam();
 });
