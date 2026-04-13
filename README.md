@@ -1543,7 +1543,7 @@ GET /radio/ice-servers
 GET /boards
 Response 200:
 {
-  "boards": { ... }
+  "boards": [ ... ]
 }
 ```
 
@@ -1552,7 +1552,7 @@ Response 200:
 GET /boards/{slug}
 Response 200:
 {
-  "boards": { ... },
+  "board": { ... },
   "threads": [ ... ]
 }
 ```
@@ -2354,7 +2354,25 @@ Response 200: {"posts": [...], "pagination": {"page", "limit", "total", "pages"}
 
 ### 掲示板 (Boards)
 
-調査中
+#### 一覧取得
+```
+GET /boards
+
+Response 200:
+{
+  "boards": [ ... ]
+}
+```
+
+```
+GET /boards/{slug}
+
+Response 200:
+{
+  "board": { ... },
+  "threads": [ ... ]
+}
+```
 
 ### ニュース (News)
 
