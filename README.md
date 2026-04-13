@@ -46,7 +46,7 @@ Karotterの非公式APIリファレンスです。
 | [通知グルーピング構造](#通知グルーピング構造) | 通知グルーピング構造について |
 | [技術スタック](#技術スタック) | 技術スタックについて |
 | [注意事項](#注意事項-1) | 注意事項 |
-| [ボットのコード例](/selfbot/index.js) | Node.jsを使用したセルフボットコードの例（@botのソースコード） |
+| [ボットのコード例](/selfbot/index.js) | Node.jsを使用した@botのソースコード |
 
 ---
 
@@ -2277,6 +2277,10 @@ Response 201: {"message": "カロートしました", "post": {...}}
 ```
 - multipart/form-data での画像添付は未検証
 
+#### 投票
+
+調査中
+
 #### いいね / 取消
 ```
 POST   /posts/{id}/like    → 200 {"message": "いいねしました"}
@@ -2295,7 +2299,7 @@ POST   /posts/{id}/rekarot    → 200 {"message": "リカロートしました"}
 DELETE /posts/{id}/rekarot    → 200 {"message": "リカロートを取り消しました"}
 ```
 
-### タイムライン (Timeline) — 1エンドポイント
+### タイムライン (Timeline)
 
 ```
 GET /timeline?limit=15&mode=latest
@@ -2305,7 +2309,7 @@ Response 200: {"posts": [...]}
 - `mode`: `latest` (最新), `trending` (トレンド), `following` (フォロー中) — 全て動作確認済み
 - セルフBot APIの `/posts/timeline` とは異なり、Developer APIでは `/timeline` がパス
 
-### 検索 (Search) — 1エンドポイント
+### 検索 (Search)
 
 ```
 GET /search?q={keyword}&type=posts
@@ -2316,7 +2320,7 @@ Response 200: {"type": "posts", "results": [...], "pagination": {...}}
 - セルフBot APIとは異なり、統合検索のみ。`/search/posts`, `/search/users`, `/search/hashtags` 等のサブパスは存在しない
 - `type=hashtags` は実際にはpostsを返す（仕様/バグ）
 
-### ユーザー (Users) — 3エンドポイント
+### ユーザー (Users)
 
 #### ユーザー情報取得
 ```
@@ -2332,7 +2336,7 @@ GET /users/{id}/followers    → 200 {"users": [...]}
 GET /users/{id}/following    → 200 {"users": [...]}
 ```
 
-### ブックマーク (Bookmarks) — 1エンドポイント
+### ブックマーク (Bookmarks)
 
 ```
 GET /bookmarks
@@ -2340,7 +2344,19 @@ GET /bookmarks
 Response 200: {"posts": [...], "pagination": {"page", "limit", "total", "pages"}}
 ```
 
-### ニュース
+### ダイレクトメッセージ (DM)
+
+調査中
+
+### ソーシャル (Social)
+
+調査中
+
+### 掲示板 (Boards)
+
+調査中
+
+### ニュース (News)
 
 調査中
 
@@ -2371,8 +2387,7 @@ Response 200: {"posts": [...], "pagination": {"page", "limit", "total", "pages"}
 **その他:**
 - `/auth/*` (認証関連)
 - `/notifications/*` (通知)
-- `/dm/*` (ダイレクトメッセージ)
-- `/social/*` (サークル/リスト/ストーリー)
+- `/social/*` (サークル/リスト)
 - `/draw/*` (絵チャ)
 - `/radio/*` (ラジオ)
 - `/legal/*`, `/apikeys`, `/reports`, `/contact`, `/settings`
