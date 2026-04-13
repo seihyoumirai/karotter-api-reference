@@ -1774,10 +1774,10 @@ Response 200: {"message": "コメントを削除しました"}
 
 ---
 
-### 記事作成 / 更新
+### 記事作成
 
 ```
-PUT /news/{Num}
+PUT /news/{slug}
 Content-Type: application/json
 
 {
@@ -1793,7 +1793,25 @@ Content-Type: application/json
 }
 ```
 
-- `{Num}` は記事ID（新規作成時は任意の数値または0を指定する場合あり）
+### 記事更新
+
+```
+PUT /news/{slug}
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+```
+
 - `action: "submit"` で公開
 - `category`は`general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
 
