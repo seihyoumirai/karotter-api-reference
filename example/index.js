@@ -9,12 +9,17 @@ const axios = require('axios');
 const cron = require('node-cron');
 const fs = require('fs');
 const path = require('path');
+const FormData = require('form-data');
 
 let accessToken = 'eyJ...';
 let apiKey = 'kar_live_...';
 
 let baseURL = 'https://api.karotter.com/api';
 let apiURL = 'https://api.karotter.com/api/developer';
+
+const GEMINI_API_KEY = 'AI...'; 
+
+const ADMIN_ID = 480;
 
 const api = axios.create({
   baseURL: `${apiURL}`,
@@ -160,7 +165,7 @@ async function handleReport(reason, postId, amount, triggerPostId) {
       await refreshToken();
       replyText = '❌ 認証エラー もう一度試してください。';
     } else if (e.response?.status === 429) {
-      replyText = '❌ レート制限に引っかかりました。';
+      replyText = '❌ レート制限に引っかかりました。少し待ってから再試行してください。';
     } else {
       replyText = `❌ 通報に失敗しました。\n${e.response?.data?.message || e.message || '不明なエラー'}`;
     }
@@ -620,7 +625,6 @@ async function handleEconomy(commandParts, senderId, triggerPostId) {
 
   else if (cmd === 'money') {
     const sub = commandParts[1] ? commandParts[1].toLowerCase() : '';
-    const ADMIN_ID = 480;
 
     if (senderId !== ADMIN_ID) {
       replyText = '❌ このコマンドは管理者専用です #bot';
@@ -763,10 +767,10 @@ async function checkNotificationsAndReply() {
           if (user) {
             try {
               if (command === 'follow') {
-                await api.post(`/follow/${user.id}`);
+                await api.post(`/users/${user.id}/follow`);
                 replyText = `✅ @${user.username} をフォローしました #bot`;
               } else if (command === 'unfollow') {
-                await api.delete(`/follow/${user.id}`);
+                await api.delete(`/users/${user.id}/follow`);
                 replyText = `🗑 @${user.username} をアンフォローしました #bot`;
               } else { replyText = '❌ エラー #bot' }
             } catch (e) {
@@ -943,7 +947,7 @@ async function checkNotificationsAndReply() {
           } else if (user1.id === user2.id) {
             replyText = '❌ 同じユーザーは診断できません（自己相性100%だけど） #bot';
           } else {
-            const compatibility = Math.floor(Math.random() * 41) + 60;
+            const compatibility = Math.floor(Math.random() * 41) + 60; // 60〜100%
             const comments = [
               '最高の相性！一緒にいると楽しいことばかり。',
               'なかなか良い感じ。少しずつ距離を縮めていこう。',
@@ -962,7 +966,7 @@ async function checkNotificationsAndReply() {
       }
       else if (command === 'random') {
         try {
-          const res = await api.get('/search/discover/latest?limit=50');
+          const res = await api.get('/search?limit=50');
           const posts = res.data.posts || [];
           if (posts.length === 0) {
             replyText = '❌ 現在投稿が見つかりませんでした #bot';
@@ -1016,7 +1020,6 @@ async function checkNotificationsAndReply() {
         }
       }
       else if (command === 'ai' && commandParts.length > 1) {
-        const GEMINI_API_KEY = '...'; 
         const query = commandParts.slice(1).join(' ').trim();
         if (!query) return;
         const question = `以下の内容に必ず180字以内で返信してください。\n${query}`;
@@ -1037,7 +1040,6 @@ async function checkNotificationsAndReply() {
         }
       }
       else if (command === 'senryu') {
-        const GEMINI_API_KEY = '...'; 
         const post = arg1 || await getReplyPost(triggerPostId);
         const content = await getPostContent(post);
         if (!content) return;
@@ -1151,7 +1153,7 @@ async function checkAndReportSpam() {
       }
     }
     if (reportedCount > 0) {
-      console.log(`✅ ${reportedCount}件 通報しました`);
+      console.log(`✅ 今回の巡回で ${reportedCount}件 通報しました`);
     } else {}
   } catch (e) {
     console.error('Spam check エラー:', e.response?.data || e.message);
