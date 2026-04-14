@@ -2383,7 +2383,12 @@ Response 200: {"user": {...}}
 ```
 
 ```
-GET /users/{username}
+GET /users/me
+
+Response 200: { id, username, displayName, avatarUrl, bio, isPrivate, isOfficial, ... }
+```
+
+```
 GET /users/by/username/{username}
 ```
 
@@ -2698,7 +2703,7 @@ POST /news/uploads
 media File[]
 ```
 
-### レスポンススキーマー
+### レスポンススキーマー (Schemas)
 
 ```
 GET /schemas/post
