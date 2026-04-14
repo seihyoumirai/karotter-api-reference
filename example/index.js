@@ -713,7 +713,7 @@ async function checkNotificationsAndReply() {
       for (const actor of actors) {
         if (!actor?.id) continue;
         try {
-          await api.post(`/follow/${actor.id}`);
+          await api.post(`/users/${actor.id}/follow`);
         } catch (e) { console.log(`Follow; ${e}`); }
       }
       await markAllAsRead();
