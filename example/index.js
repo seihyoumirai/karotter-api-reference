@@ -9,7 +9,6 @@ const axios = require('axios');
 const cron = require('node-cron');
 const fs = require('fs');
 const path = require('path');
-const FormData = require('form-data');
 
 let accessToken = 'eyJ...';
 let apiKey = 'kar_live_...';
