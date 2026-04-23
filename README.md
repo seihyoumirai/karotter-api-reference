@@ -2803,7 +2803,7 @@ Content-Type: application/json
 }
 
 ```
-- `type`: `POST`, `STORY`, `DM_MESSAGE`, `USER`, `NEWS`, `NEWS_COMMENT`
+- `type`: `POST`, `STORY`, `DM_MESSAGE`, `USER`, `NEWS`, `NEWS_COMMENT`, `RADIO_MESSAGE`
 - `type` が不正: `400 {"error": "通報対象の種類が不正です"}`
 - レート制限: 10 req / 900s
 
