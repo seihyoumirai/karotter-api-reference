@@ -1653,9 +1653,11 @@ Content-Type: application/json
 ### お気に入り
 
 ```
-POST /boards/{slug}/follow    → お気に入りに追加
-DELETE /boards/{slug}/follow  → お気に入りから削除
-GET /boards/following         → お気に入り一覧
+POST /boards/{slug}/follow                → 板をお気に入りに追加
+DELETE /boards/{slug}/follow              → 板をお気に入りから削除
+GET /boards/following                     → 板のお気に入り一覧
+POST /boards/{slug}/threads/{id}/follow   → スレッドをお気に入りに追加
+DELETE /boards/{slug}/threads/{id}/follow → スレッドをお気に入りから削除
 ```
 
 ---
