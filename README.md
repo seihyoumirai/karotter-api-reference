@@ -1367,9 +1367,10 @@ POST   /social/stories                → ストーリー投稿 (multipart/form-
 DELETE /social/stories/{id}           → ストーリー削除
 GET    /social/stories/user/{userId}  → ユーザーのストーリー
 GET    /social/stories/{id}/viewers   → 閲覧者一覧 (owner only)
-POST   /social/stories/{id}/views    → 閲覧記録 {"message": "閲覧を記録しました"}
-POST   /social/stories/{id}/like     → ストーリーいいね
-DELETE /social/stories/{id}/like     → ストーリーいいね取消
+POST   /social/stories/{id}/views     → 閲覧記録 {"message": "閲覧を記録しました"}
+POST   /social/stories/{id}/like      → ストーリーいいね
+DELETE /social/stories/{id}/like      → ストーリーいいね取消
+POST   /social/stories/{id}/comments  → ストーリーにコメントする
 ```
 - ストーリーフィールド: id, authorId, mediaUrl, mediaType, caption, isR18, hideFromMinors, visibility, expiresAt, viewsCount, likesCount, hasViewed, liked
 
