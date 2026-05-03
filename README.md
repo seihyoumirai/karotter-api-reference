@@ -2944,6 +2944,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 - **単語を含む**: `?q=text`
 - **単語に完全一致**: `?q="text"`
 - **単語を含まない**: `?q=-text`
+- **ハッシュタグ**: `?q=#text`
 
 ### アカウント
 
@@ -2952,8 +2953,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ### 日付
 
-- **開始**: `?q=since:2026-03-22`
-- **終了**: `?q=until:2026-05-01`
+- **開始**: `?q=since:yyyy-mm-dd`
+- **終了**: `?q=until:yyyy-mm-dd`
 
 ---
 
