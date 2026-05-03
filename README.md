@@ -2,7 +2,7 @@
 
 Karotterの非公式APIリファレンスです。
 
-多くの内容は[にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)及び[公式APIリファレンス](https://karotter.com/api-docs)より引用してます。
+多くの内容は[にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)及び[公式APIリファレンス](https://karotter.com/api-docs)より引用(コピー)してます。
 
 自分で調べたものもあるので間違えてるのあったら教えてください。
 
