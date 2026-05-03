@@ -2361,7 +2361,7 @@ DELETE /posts/{id}/react/{emoji}
 #### リアクション取得
 
 ```
-GET /posts/{id}/reactions
+GET /posts/{id}/react
 
 Response 200: { reactions: [{ emoji, count, reacted }] }
 ```
