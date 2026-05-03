@@ -1632,7 +1632,7 @@ content: ...
 ### リアクション
 
 ```
-POST /boards/api/threads/{ID}/reactions
+POST /boards/api/threads/{ID}/reactions  → スレッドの最初のコメントへのリアクションを行う/取り消す
 Content-Type: application/json
 
 {
@@ -1641,12 +1641,17 @@ Content-Type: application/json
 ```
 
 ```
-POST /boards/api/replies/{ID}/reactions
+POST /boards/api/replies/{ID}/reactions  → 返信へのリアクションを行う/取り消す
 Content-Type: application/json
 
 {
   "emoji": "😃"
 }
+```
+
+```
+GET /boards/{slug}/threads/{id}/reactions/{encoded-emoji}/users → スレッドの最初のコメントへの特定のリアクションをしたユーザー一覧を見る
+GET /boards/{slug}/replies/{id}/reactions/{encoded-emoji}/users → 返信への特定のリアクションをしたユーザー一覧を見る
 ```
 
 ---
@@ -2631,14 +2636,14 @@ Body: { "content": "..." }
 #### リアクション
 
 ```
-POST /boards/threads/{id}/react
+POST /boards/threads/{id}/react → スレッドの最初のコメントへのリアクションを行う/取り消す
 Content-Type: application/json
 
 Body: { "emoji": "👍️" }
 ```
 
 ```
-POST /boards/replies/{id}/react
+POST /boards/replies/{id}/react → 返信へのリアクションを行う/取り消す
 Content-Type: application/json
 
 Body: { "emoji": "👍️" }
