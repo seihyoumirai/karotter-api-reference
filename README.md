@@ -2946,6 +2946,11 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 - **単語を含まない**: `?q=-text`
 - **ハッシュタグ**: `?q=#text`
 
+### 形態
+
+- **リンクを弾く**: `?q=-filter:links`
+- **返信を弾く**: `?q=-filter:replies`
+
 ### アカウント
 
 - **特定アカウントのカロート**: `?q=from:user`
