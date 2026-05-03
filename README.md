@@ -2,7 +2,7 @@
 
 Karotterの非公式APIリファレンスです。
 
-多くの内容は[にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)及び[公式APIリファレンス](https://karotter.com/api-docs)より引用(コピー)してます。
+多くの内容は[にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)及び[公式APIリファレンス](https://karotter.com/api-docs)より引用(コピー)しています。
 
 自分で調べたものもあるので間違えてるのあったら教えてください。
 
@@ -1924,10 +1924,10 @@ Response:
 - 複数マーク同時付与可能（配列で管理）
 
 #### バグマーク
-| 値 | ラベル |
+| 値 | 説明 |
 |-----|--------|
-| `NONE` | 白: バグで生まれたマーク |
-- 配列への変更時にバグで生まれた
+| なし | 白: バグで生まれたマーク |
+- 配列への変更時にバグで生まれた。現在はない。
 
 #### フラグ操作
 
@@ -2151,9 +2151,9 @@ GET  /control-room-x9k2/stickers/{id}
 
 #### ニュース記事管理
 ```
-GET /control-room-x9k2/news
-GET /control-room-x9k2/news/comments
-PATCH /control-room-x9k2/news/{articleId}/review
+GET    /control-room-x9k2/news
+GET    /control-room-x9k2/news/comments
+PATCH  /control-room-x9k2/news/{articleId}/review
   Body: { action: "approve" | "reject" | "unpublish", reviewNote: "..." }
 DELETE /control-room-x9k2/news/{articleId}
 DELETE /control-room-x9k2/news/comments/{commentId}
