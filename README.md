@@ -2968,6 +2968,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 - **返信を弾く**: `?q=-filter:replies`
 - **引用のみ**: `?q=filter:quotes`
 - **引用を弾く**: `?q=-filter:quotes`
+- **メディアのみ**: `?q=filter:media`
+- **メディアを弾く**: `?q=-filter:media`
 
 ### エンゲージメント
 
