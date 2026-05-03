@@ -2958,6 +2958,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 ### 言語
 
 - **言語指定**: `?q=lang:lang`
+   *   lang: `ja`, `en`
 
 ### 形態
 
