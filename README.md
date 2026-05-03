@@ -2965,7 +2965,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
     "avatarUrl": "/uploads/avatars/...",
     "isBotAccount": true,
     "isParodyAccount": false,
-    "officialMark": "NONE"
+    "officialMark": []
   },
   "poll": null,
   "reactions": [{"emoji": "🥕", "userId": 15459}],
