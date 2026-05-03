@@ -2946,15 +2946,28 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 - **単語を含まない**: `?q=-text`
 - **ハッシュタグ**: `?q=#text`
 
+### 言語
+
+- **言語指定**: `?q=lang:lang`
+
 ### 形態
 
+- **リンクのみ**: `?q=filter:links`
 - **リンクを弾く**: `?q=-filter:links`
+- **返信のみ**: `?q=filter:replies`
 - **返信を弾く**: `?q=-filter:replies`
+
+### エンゲージメント
+
+- **返信数**: `?q=min_replies:num`
+- **いいね数**: `?q=min_faves:num`
+- **リカロート数**: `?q=min_rekarots:num`
 
 ### アカウント
 
 - **特定アカウントのカロート**: `?q=from:user`
 - **特定のアカウントへの返信**: `?q=to:user`
+- **特定のアカウントへのメンション**: `?q=(@user)`
 
 ### 日付
 
