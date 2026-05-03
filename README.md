@@ -2736,10 +2736,7 @@ Response: { "type": "POST", "time": "2026-04-12T12:34:56.789Z", "itemId": "post-
 | タイムライン | `GET /posts/timeline` | `GET /timeline` |
 | 検索 | 個別エンドポイント (`/search/users` 等) | 統合のみ (`/search?type=users`) |
 | ユーザー検索 | ユーザー名可 (`/users/claude`) | 数値IDのみ (`/users/15459`) |
-| 投稿削除 | 可能 | 不可 |
-| 投稿編集 | 可能 | 不可 |
 | フォロー操作 | `POST /follow/{id}` | `POST /users/{id}/follow` |
-| DM/通知 | 可能 | 不可 |
 
 ### Twitter API v2 互換エンドポイント
 
