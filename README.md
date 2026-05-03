@@ -2981,7 +2981,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 - **特定アカウントのカロート**: `?q=from:user`
 - **特定のアカウントへの返信**: `?q=to:user`
-- **特定のアカウントへのメンション**: `?q=(@user)`
+- **特定のアカウントへのメンション**: `?q=@user`
 
 ### 日付
 
