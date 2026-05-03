@@ -603,6 +603,14 @@ GET /posts/{id}/quotes
 Response 200: {"quotes": [...]}  ← 引用投稿オブジェクト配列
 ```
 
+### リアクションしたユーザー一覧
+
+```
+GET /posts/{id}/react/{encoded-emoji}/users
+
+Response 200: { "emoji": "👍️", "count": 3, users: [] }
+```
+
 ### リカロートしたユーザー一覧
 
 ```
