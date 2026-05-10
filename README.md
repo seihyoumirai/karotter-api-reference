@@ -180,6 +180,12 @@ Cookie: {ログイン時に返却されるCookie}
 | `karotter-call-settings` | 通話設定 |
 | `karotter:post-drafts:${userId}` | 下書き |
 | `push-notifications-enabled` | プッシュ通知ON/OFF |
+| `karotter:home-recommended-feed-mode` | ホームのフィードモード |
+| `karotter:home-tab` | ホームのタブ |
+| `karotter-search-history-v1:[activeId]` | 検索履歴 |
+| `karotter:post-drafts` | カロートの下書き |
+| `karotter:notifications-tab` | 通知のタブ |
+| `karotter:legacy-sw-cleanup:v1` | ？？？ |
 
 ---
 
@@ -2937,6 +2943,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `draw:error` | S→C | エラー通知 |
 | `radio:message` | C↔S | スペース内メッセージ |
 | `radio:reaction` | C↔S | スペース内リアクション |
+| `user:status` | S→C | ユーザーステータス |
 
 ---
 
