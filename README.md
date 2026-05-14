@@ -3105,10 +3105,10 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 | 名前 | 入手方法 |
 |-----|--------|
-| 黒: 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
+| 黒: 認証済みマーク | 「Karotter Pro」を購入する |
 | 赤: 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
 | 緑: 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
-| オレンジ: 認証済みマーク | 「Karotter Pro」を購入する |
+| オレンジ: 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
 
 ### バグバッジ
 
