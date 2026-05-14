@@ -1871,6 +1871,109 @@ Response 200: {"message": "記事を削除しました"}
 
 ---
 
+## サブスクリプション (Subscriptions) エンドポイント
+
+---
+
+### サブスクリプション確認
+
+```
+GET /subscriptions/me
+
+Response 200:
+{
+    "summary": {
+        "plan": "FREE",
+        "status": "INACTIVE",
+        "activeUntil": null,
+        "cancelAtPeriodEnd": false,
+        "badgeColors": [],
+        "premiumBadgeColor": "ORANGE",
+        "profileAccentColor": null,
+        "cardAccentColor": null
+    },
+    "entitlements": {
+        "plan": "FREE",
+        "postTextLimit": 200,
+        "pinnedPostLimit": 1,
+        "replyBoost": 0,
+        "canCustomizeProfile": false,
+        "canCustomizeCards": false
+    },
+    "subscriptions": [],
+    "plans": [
+        {
+            "code": "PLUS",
+            "name": "Karotter Plus",
+            "type": "plan",
+            "amount": 400,
+            "currency": "jpy",
+            "interval": "month",
+            "priceIdConfigured": false
+        },
+        {
+            "code": "PRO",
+            "name": "Karotter Pro",
+            "type": "plan",
+            "amount": 1300,
+            "currency": "jpy",
+            "interval": "month",
+            "priceIdConfigured": false
+        }
+    ],
+    "badges": [
+        {
+            "code": "BADGE_RED",
+            "name": "Karotter 赤バッジ",
+            "type": "badge",
+            "amount": 100,
+            "currency": "jpy",
+            "interval": "month",
+            "priceIdConfigured": false
+        },
+        {
+            "code": "BADGE_GREEN",
+            "name": "Karotter 緑バッジ",
+            "type": "badge",
+            "amount": 100,
+            "currency": "jpy",
+            "interval": "month",
+            "priceIdConfigured": false
+        }
+    ]
+}
+```
+
+### サブスクリプション管理
+
+```
+POST /subscriptions/portal
+```
+
+### サブスクリプション購入
+
+```
+POST /subscriptions/checkout
+Content-Type: application/json
+
+{
+  "productCode": "PLUS"
+}
+```
+
+- 現在はstripeを認証していないと不可
+
+### Pro装飾保存
+
+```
+PATCH /subscriptions/preferences
+Content-Type: application/json
+
+{"premiumBadgeColor":"ORANGE","profileAccentColor":null,"cardAccentColor":null}
+```
+
+---
+
 ## 管理パネル (Admin) エンドポイント
 
 管理者向けの全エンドポイント (`/control-room-x9k2/*`)。
