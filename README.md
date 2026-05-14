@@ -3106,18 +3106,18 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 | イベント | 方向 | 説明 |
 |---------|------|------|
-| `dm.join` | C→S | DMグループ参加 |
-| `dm.leave` | C→S | DMグループ退出 |
-| `dm.read` | C→S | 既読マーク |
-| `dm.new-message` | S→C | 新規メッセージ受信 |
-| `dm.message-deleted` | S→C | メッセージ削除 |
-| `dm.message-updated` | S→C | メッセージ更新 |
-| `dm.member-added` | S→C | メンバー追加 |
-| `dm.member-left` | S→C | メンバー退出 |
-| `dm.member-removed` | S→C | メンバー削除 |
-| `dm.request-updated` | S→C | DMリクエスト更新 |
-| `typing.start` | C→S | タイピングを開始 |
-| `typing.stop` | C→S | タイピングを停止 |
+| `dm:join` | C→S | DMグループ参加 |
+| `dm:leave` | C→S | DMグループ退出 |
+| `dm:read` | C→S | 既読マーク |
+| `dm:new-message` | S→C | 新規メッセージ受信 |
+| `dm:message-deleted` | S→C | メッセージ削除 |
+| `dm:message-updated` | S→C | メッセージ更新 |
+| `dm:member-added` | S→C | メンバー追加 |
+| `dm:member-left` | S→C | メンバー退出 |
+| `dm:member-removed` | S→C | メンバー削除 |
+| `dm:request-updated` | S→C | DMリクエスト更新 |
+| `typing:start` | C→S | タイピングを開始 |
+| `typing:stop` | C→S | タイピングを停止 |
 
 ### 通話 (Voice)
 
@@ -3144,14 +3144,14 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `radio:signal` | C→S | WebRTCシグナリング |
 | `radio:renegotiate-request` | C→S | 再ネゴシエーション |
 | `radio:participant-state` | C→S | 参加者状態 |
-| `radio.join` | S→C | スペース参加通知 |
-| `radio.leave` | S→C | スペース退出通知 |
-| `radio.user-joined` | S→C | ユーザー参加 |
-| `radio.user-left` | S→C | ユーザー退出 |
-| `radio.ended` | S→C | スペース終了 |
-| `radio.signal` | S→C | WebRTCシグナル受信 |
-| `radio.host-disconnected` | C→S | ホストが切断 |
-| `radio.host-reconnected` | C→S | ホストが再接続 |
+| `radio:join` | S→C | スペース参加通知 |
+| `radio:leave` | S→C | スペース退出通知 |
+| `radio:user-joined` | S→C | ユーザー参加 |
+| `radio:user-left` | S→C | ユーザー退出 |
+| `radio:ended` | S→C | スペース終了 |
+| `radio:signal` | S→C | WebRTCシグナル受信 |
+| `radio:host-disconnected` | C→S | ホストが切断 |
+| `radio:host-reconnected` | C→S | ホストが再接続 |
 | `radio:message` | C↔S | スペース内メッセージ |
 | `radio:reaction` | C↔S | スペース内リアクション |
 
