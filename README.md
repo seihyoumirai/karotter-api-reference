@@ -2910,7 +2910,7 @@ KarotterはTwitter (X) API v2と部分的に互換性のあるエンドポイン
 | 項目 | 詳細 |
 |------|------|
 | Base URL | `https://api.karotter.com/api/oauth` |
-| 認証 | `Authorization: Bearer {apiKey}` (`kar_client_*`, `kar_secret_*` プレフィックス) |
+| 認証 | `Authorization: Bearer {token}` (`kar_client_*`, `kar_secret_*` プレフィックス) |
 
 #### 認可画面へリダイレクト
 
