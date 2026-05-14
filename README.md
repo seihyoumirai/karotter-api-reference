@@ -3139,8 +3139,6 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ---
 
----
-
 ## 高度な検索
 
 高度な検索では、条件を絞ってカロートなどを検索できる。
