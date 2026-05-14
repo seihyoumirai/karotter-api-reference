@@ -40,10 +40,12 @@ Karotterの非公式APIリファレンスです。
 | [ラジオ / スペース エンドポイント](#ラジオ--スペース-エンドポイント) | ラジオ/スペースエンドポイントについて |
 | [掲示板 (Boards) エンドポイント](#掲示板-boards-エンドポイント) | 掲示板エンドポイントについて |
 | [ニュース (News) エンドポイント](#ニュース-news-エンドポイント) | ニュースエンドポイントについて |
+| [サブスクリプション (Subscriptions) エンドポイント](#サブスクリプション-subscriptions-エンドポイント) | サブスクリプションエンドポイントについて |
 | [管理パネル (Admin) エンドポイント](#管理パネル-admin-エンドポイント) | 管理パネルエンドポイントについて |
 | [Developer API エンドポイント](#developer-api-エンドポイント) | Developer API エンドポイントについて |
 | [その他のエンドポイント](#その他のエンドポイント) | その他のエンドポイントについて |
 | [Socket.IO (リアルタイム通信)](#socketio-リアルタイム通信) | Socket.IOについて |
+| [バッジ一覧](#バッジ一覧) | バッジについて |
 | [高度な検索](#高度な検索) | 高度な検索について |
 | [投稿レスポンス構造](#投稿レスポンス構造) | 投稿レスポンス構造について |
 | [通知グルーピング構造](#通知グルーピング構造) | 通知グルーピング構造について |
@@ -2961,6 +2963,41 @@ DELETE /apikeys/{id}   → {"message": "APIキーを削除しました"}
 - APIキーフィールド: id, name, canReadPosts, canCreatePosts, canReadTimeline, canReadFollows, canWriteFollows, requestsPerMinute, lastUsedAt, isActive, createdAt, maskedKey
 - POST時のみ `plainKey` (e.g. `kar_live_...`) が返る。以降は `maskedKey` のみ表示
 
+### OAuthアプリ
+
+```
+POST /oauth/clients  → OAuthアプリの作成
+Content-Type: application/json
+
+{"name":"七虎なるくん","description":"Karotter連携","homepageUrl":"https://www.shichitora.pro","logoUrl":"https://www.shichitora.pro/icon.JPG","redirectUris":["https://auth.shichitora.pro/karotter-connect"],"isConfidential":true}
+```
+
+```
+GET  /oauth/clients  → OAuthアプリの取得
+
+Response 200:
+{
+    "clients": [
+        {
+            "id": 3,
+            "clientId": "kar_client_...",
+            "name": "七虎なるくん",
+            "description": "Karotter連携",
+            "homepageUrl": "https://www.shichitora.pro",
+            "logoUrl": "https://www.shichitora.pro/icon.JPG",
+            "redirectUris": [
+                "https://auth.shichitora.pro/karotter-connect"
+            ],
+            "isConfidential": true,
+            "isActive": true,
+            "createdAt": "2026-05-14T08:35:34.932Z",
+            "updatedAt": "2026-05-14T08:35:34.932Z",
+            "revokedAt": null
+        }
+    ]
+}
+```
+
 ### 埋め込み (Embed)
 
 ```
@@ -3047,6 +3084,14 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `radio:message` | C↔S | スペース内メッセージ |
 | `radio:reaction` | C↔S | スペース内リアクション |
 | `user:status` | S→C | ユーザーステータス |
+
+---
+
+### バッジ一覧
+
+---
+
+準備中...
 
 ---
 
