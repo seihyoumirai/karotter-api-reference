@@ -3184,21 +3184,21 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ### 公式マークバッジ
 
-| 名前 | 入手方法 |
-|-----|--------|
-| 黄色: 認証済み団体マーク | 団体からの申請があった場合に運営が管理者APIを通じて付与する |
-| 紫: 運営マーク | Karotterの運営者・開発者に付与される |
-| 青: 本人マーク | ある程度の影響力のある者などからの申請があった場合に運営が管理者APIを通じて付与する |
-| 灰色: 政府関係者マーク | 政府関係者からの申請があった場合に運営が管理者APIを通じて付与する |
+| 画像 | 名前 | 入手方法 |
+|-----|-----|--------|
+| <img src="/badges/badge_yellow.PNG" > | 認証済み団体マーク | 団体からの申請があった場合に運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_purple.PNG" > | 運営マーク | Karotterの運営者・開発者に付与される |
+| <img src="/badges/badge_blue.PNG" > | 本人マーク | ある程度の影響力のある者などからの申請があった場合に運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_gray.PNG" > | 政府関係者マーク | 政府関係者からの申請があった場合に運営が管理者APIを通じて付与する |
 
 ### 課金要素バッジ
 
-| 名前 | 入手方法 |
-|-----|--------|
-| 黒: 認証済みマーク | 「Karotter Pro」を購入する |
-| 赤: 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
-| 緑: 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
-| オレンジ: 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
+| 画像 | 名前 | 入手方法 |
+|-----|-----|--------|
+| <img src="/badges/badge_black.PNG" > | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_red.PNG" > | 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_green.PNG" > | 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_orenge.PNG" > | 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
 
 ### バグバッジ
 
@@ -3208,10 +3208,10 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ### 属性マーク
 
-| 名前 | 入手方法 |
-|-----|--------|
-| BOT | 設定の「コンテンツ表示」から「BOTアカウントとして表示する」を有効にする |
-| パロディ | 設定の「コンテンツ表示」から「パロディアカウントとして表示する」を有効にする |
+| 画像 | 名前 | 入手方法 |
+|-----|-----|--------|
+| <img src="/badges/badge_bot.PNG" > | BOT | 設定の「コンテンツ表示」から「BOTアカウントとして表示する」を有効にする |
+| <img src="/badges/badge_parody.PNG" > | パロディ | 設定の「コンテンツ表示」から「パロディアカウントとして表示する」を有効にする |
 
 ---
 
