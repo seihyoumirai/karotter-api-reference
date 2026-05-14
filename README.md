@@ -43,6 +43,7 @@ Karotterの非公式APIリファレンスです。
 | [サブスクリプション (Subscriptions) エンドポイント](#サブスクリプション-subscriptions-エンドポイント) | サブスクリプションエンドポイントについて |
 | [管理パネル (Admin) エンドポイント](#管理パネル-admin-エンドポイント) | 管理パネルエンドポイントについて |
 | [Developer API エンドポイント](#developer-api-エンドポイント) | Developer API エンドポイントについて |
+| [OAuth API エンドポイント](#oauth-api-エンドポイント) | OAuth API エンドポイントについて |
 | [その他のエンドポイント](#その他のエンドポイント) | その他のエンドポイントについて |
 | [Socket.IO (リアルタイム通信)](#socketio-リアルタイム通信) | Socket.IOについて |
 | [バッジ一覧](#バッジ一覧) | バッジについて |
@@ -2898,7 +2899,7 @@ KarotterはTwitter (X) API v2と部分的に互換性のあるエンドポイン
 
 ---
 
-## OAuth API
+## OAuth API エンドポイント
 
 外部アプリとの連携を可能にする。
 
