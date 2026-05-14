@@ -2909,9 +2909,52 @@ KarotterはTwitter (X) API v2と部分的に互換性のあるエンドポイン
 | 項目 | 詳細 |
 |------|------|
 | Base URL | `https://api.karotter.com/api/oauth` |
-| 認証 | `Authorization: Bearer {apiKey}` (`kar_client_*` プレフィックス) |
+| 認証 | `Authorization: Bearer {apiKey}` (`kar_client_*`, `kar_secret_*` プレフィックス) |
 
-現在準備中...
+#### 認可画面へリダイレクト
+
+```
+GET /oauth/authorize
+
+パラメータ
+response_type string 必須 — code を指定
+client_id string 必須 — OAuthアプリのclient_id
+redirect_uri string 必須 — 登録済みリダイレクトURI
+scope string — profile, email, offline_access
+state string — CSRF対策用の任意文字列
+code_challenge string — PKCE code challenge
+code_challenge_method string — S256 または plain
+```
+
+#### トークン変換
+
+```
+POST /oauth/token
+
+リクエストボディ
+grant_type string 必須 — authorization_code または refresh_token
+code string — 認可コード
+redirect_uri string — 認可時と同じリダイレクトURI
+client_id string — 公開クライアントまたはPOST認証で使用
+client_secret string — 機密クライアントで使用
+code_verifier string — PKCE code verifier
+refresh_token string — refresh_token grantで使用
+
+Response 200:
+{ access_token, token_type: "Bearer", expires_in, scope, refresh_token? }
+```
+
+#### アクセストークンでユーザー情報を取得
+
+```
+GET /oauth/userinfo
+
+Request Header:
+Authorization: Bearer ACCESS_TOKEN
+
+Response 200:
+{ sub, id, username, displayName, picture, email?, email_verified? }
+```
 
 ---
 
@@ -2982,15 +3025,42 @@ DELETE /apikeys/{id}   → {"message": "APIキーを削除しました"}
 
 ### OAuthアプリ
 
+#### OAuthアプリの作成
+
 ```
-POST /oauth/clients  → OAuthアプリの作成
+POST /oauth/clients
 Content-Type: application/json
 
 {"name":"七虎なるくん","description":"Karotter連携","homepageUrl":"https://www.shichitora.pro","logoUrl":"https://www.shichitora.pro/icon.JPG","redirectUris":["https://auth.shichitora.pro/karotter-connect"],"isConfidential":true}
 ```
 
+#### OAuthアプリの削除
+
 ```
-GET  /oauth/clients  → OAuthアプリの取得
+DELETE /oauth/clients/{id}
+
+Response 200:
+{"message":"OAuthアプリを削除しました"}
+```
+
+#### OAuthアプリ認証情報の再生成
+
+```
+POST /oauth/clients/{id}/secret
+
+Response 200:
+{
+    "clientId": "kar_client_...",
+    "clientSecret": "kar_secret_...",
+    "maskedClientSecret": "kar_secret...",
+    "message": "client_secretを再生成しました。この値は再表示できません。"
+}
+```
+
+#### OAuthアプリの取得
+
+```
+GET  /oauth/clients
 
 Response 200:
 {
