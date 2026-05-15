@@ -3198,7 +3198,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | <img src="/badges/badge_black.PNG" > | 認証済みマーク | 「Karotter Pro」を購入する |
 | <img src="/badges/badge_red.PNG" > | 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
 | <img src="/badges/badge_green.PNG" > | 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
-| <img src="/badges/badge_orenge.PNG" > | 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_orange.PNG" > | 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
 
 ### バグバッジ
 
