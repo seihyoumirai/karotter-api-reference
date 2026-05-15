@@ -3242,6 +3242,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 - **単語を含む**: `?q=text`
 - **単語に完全一致**: `?q="text"`
 - **単語を含まない**: `?q=-text`
+- **いずれかの単語を含む**: `?q=text OR text`
 - **ハッシュタグ**: `?q=#text`
 
 ### 言語
