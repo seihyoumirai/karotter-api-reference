@@ -3221,7 +3221,69 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ---
 
-準備中...
+| 画像 | 文字 |
+|-----|-----|
+| <img src="/pro-emoji/ai.png" > | 愛 |
+| <img src="/pro-emoji/arara.png" > | あらら |
+| <img src="/pro-emoji/arigato.png" > | ありがとう |
+| <img src="/pro-emoji/bimi.png" > | 美味 |
+| <img src="/pro-emoji/bimyou.png" > | 微妙 |
+| <img src="/pro-emoji/daijoubu.png" > | 大丈夫？ |
+| <img src="/pro-emoji/dakara.png" > | だから |
+| <img src="/pro-emoji/dame.png" > | だめ |
+| <img src="/pro-emoji/desu.png" > | です |
+| <img src="/pro-emoji/e.png" > | え？ |
+| <img src="/pro-emoji/ee.png" > | えぇ… |
+| <img src="/pro-emoji/ganbare.png" > | がんばれ |
+| <img src="/pro-emoji/gekiatsu.png" > | 激アツ |
+| <img src="/pro-emoji/gomen.png" > | ごめんね |
+| <img src="/pro-emoji/hai.png" > | はい |
+| <img src="/pro-emoji/hiku.png" > | 引 |
+| <img src="/pro-emoji/hosii.png" > | ほしい |
+| <img src="/pro-emoji/igyo.png" > | 偉業 |
+| <img src="/pro-emoji/iie.png" > | いいえ |
+| <img src="/pro-emoji/iiyo.png" > | いいよ |
+| <img src="/pro-emoji/kanasii.png" > | 悲しい |
+| <img src="/pro-emoji/kandou.png" > | 感動 |
+| <img src="/pro-emoji/kane.png" > | 金 |
+| <img src="/pro-emoji/kansya.png" > | 感謝 |
+| <img src="/pro-emoji/karon.png" > | かろんさん |
+| <img src="/pro-emoji/karotter.png" > | Karotter |
+| <img src="/pro-emoji/kawaii.png" > | かわいい |
+| <img src="/pro-emoji/kirei.png" > | 綺麗 |
+| <img src="/pro-emoji/kore.png" > | これ |
+| <img src="/pro-emoji/kowasugiru.png" > | 怖すぎる |
+| <img src="/pro-emoji/kurusii.png" > | 苦しい |
+| <img src="/pro-emoji/kusa.png" > | 草 |
+| <img src="/pro-emoji/mazi.png" > | マジ？ |
+| <img src="/pro-emoji/mazide.png" > | マジで |
+| <img src="/pro-emoji/medetai.png" > | めでたい |
+| <img src="/pro-emoji/nani.png" > | なに？ |
+| <img src="/pro-emoji/ohayo.png" > | おはよ |
+| <img src="/pro-emoji/otsukaresama.png" > | おつかれ様 |
+| <img src="/pro-emoji/owari.png" > | 終 |
+| <img src="/pro-emoji/owatta.png" > | おわった |
+| <img src="/pro-emoji/sagidesu.png" > | 詐欺です |
+| <img src="/pro-emoji/saikoukaryoku.png" > | 最高火力 |
+| <img src="/pro-emoji/saikousugiru.png" > | 最高すぎる |
+| <img src="/pro-emoji/sayonara.png" > | さよなら |
+| <img src="/pro-emoji/sinpaidayo.png" > | 心配だよ |
+| <img src="/pro-emoji/sorena.png" > | それな |
+| <img src="/pro-emoji/sugoi.png" > | すごい |
+| <img src="/pro-emoji/suki.png" > | すき |
+| <img src="/pro-emoji/syogyomujo.png" > | 諸行無常 |
+| <img src="/pro-emoji/tasukaru.png" > | 助かる |
+| <img src="/pro-emoji/tasukete.png" > | たすけて |
+| <img src="/pro-emoji/tensai.png" > | 天才！ |
+| <img src="/pro-emoji/this.png" > | これは |
+| <img src="/pro-emoji/tigaimasu.png" > | 違います |
+| <img src="/pro-emoji/umai.png" > | うまい |
+| <img src="/pro-emoji/wakaru.png" > | わかる |
+| <img src="/pro-emoji/watashihakami.png" > | 私は神 |
+| <img src="/pro-emoji/yamete.png" > | やめて |
+| <img src="/pro-emoji/yoroshiku.png" > | よろしく |
+| <img src="/pro-emoji/yurusanai.png" > | 許さない |
+| <img src="/pro-emoji/yurushite.png" > | ゆるして |
 
 ---
 
