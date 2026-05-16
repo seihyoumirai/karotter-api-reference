@@ -13,6 +13,7 @@ Karotterの非公式APIリファレンスです。
 |---------|------|
 | [Karotter API Reference](#karotter-api-reference) | Repositoryの簡単な説明 |
 | [目次](#目次) | 目次 |
+| [詳細](#詳細) | 詳細 |
 | [Base Url](#base-url) | Base URLについて |
 | [共通ヘッダー](#共通ヘッダー) | 共通ヘッダーについて |
 | [認証方式](#認証方式) | 認証方式について |
@@ -55,6 +56,15 @@ Karotterの非公式APIリファレンスです。
 | [技術スタック](#技術スタック) | 技術スタックについて |
 | [注意事項](#注意事項-1) | 注意事項 |
 | [ボットのコード例](/example/index.js) | Node.jsを使用した@botのソースコード |
+
+---
+
+## 詳細
+
+| 形態 | 内容 |
+|-----|-----|
+| エンドポイント | 計21カテゴリー / 計312件 |
+| Socket.IO イベント | 計6カテゴリー / 計44件 |
 
 ---
 
@@ -2855,21 +2865,7 @@ GET /schemas/timeline-item
 Response: { "type": "POST", "time": "2026-04-12T12:34:56.789Z", "itemId": "post-123", "id": 123, "content": "投稿本文", "authorId": 45, "likesCount": 10, "repliesCount": 3, "rekarotsCount": 2, "createdAt": "2026-04-12T12:34:56.789Z", "author": { "id": 45, "username": "alice", "displayName": "Alice", "avatarUrl": "https://.../avatar.jpg" } }
 ```
 
-### セルフBot APIとの主な違い
-
-| 項目 | セルフBot API | Developer API |
-|------|-------------|---------------|
-| ベースパス | `/api/` | `/api/developer/` |
-| 認証 | Cookie / Bearer JWT | Bearer APIキー (`kar_live_*`) |
-| タイムライン | `GET /posts/timeline` | `GET /timeline` |
-| 検索 | 個別エンドポイント (`/search/users` 等) | 統合のみ (`/search?type=users`) |
-| ユーザー検索 | ユーザー名可 (`/users/claude`) | 数値IDのみ (`/users/15459`) |
-| フォロー操作 | `POST /follow/{id}` | `POST /users/{id}/follow` |
-
 ### Twitter API v2 互換エンドポイント
-
-KarotterはTwitter (X) API v2と部分的に互換性のあるエンドポイントを提供している。
-既存のTwitter Bot資産をそのまま、あるいは最小限の変更で移植できる。
 
 **ベースパス:** `/api/developer/2/`
 
@@ -2886,8 +2882,7 @@ KarotterはTwitter (X) API v2と部分的に互換性のあるエンドポイン
 #### 注意事項
 
 - 認証は通常のDeveloper APIと同じ (`Authorization: Bearer {apiKey}`)
-- レスポンス形式はTwitter API v2に準拠（カロッター独自のDeveloper APIとは異なる）
-- [公式発表](https://karotter.com/karon/status/69145/share) で互換性が確認されている
+- レスポンス形式はTwitter API v2に準拠（カロッター独自のDeveloper APIとは異なる
 - ユーザー名検索が可能（通常のDeveloper APIでは数値IDのみ）
 
 ### 備考
