@@ -63,7 +63,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計21カテゴリー / 計312件 |
+| エンドポイント | 計21カテゴリー / 計313件 |
 | Socket.IO イベント | 計6カテゴリー / 計44件 |
 
 ---
@@ -807,6 +807,12 @@ Content-Type: application/json
 ```
 - トグル式: 再度POSTで投票取り消し
 - 投票データは `GET /posts/{id}` の `post.poll` に含まれる
+
+#### 投票したユーザー表示
+
+```
+GET /posts/{id}/poll/options/{option_id}/voters
+```
 
 ### リカロート (Rekarot)
 
