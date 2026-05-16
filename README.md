@@ -63,7 +63,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計21カテゴリー / 計313件 |
+| エンドポイント | 計21カテゴリー / 計316件 |
 | Socket.IO イベント | 計6カテゴリー / 計44件 |
 
 ---
@@ -837,9 +837,19 @@ Authorization: Bearer {token}
 
 ```
 POST   /posts/{id}/bookmark    → {"message": "ブックマークしました"}
+  Body: {"folderIds":[id, id]}
 DELETE /posts/{id}/bookmark    → {"message": "ブックマークを解除しました"}
 ```
 - レート制限: 30 req / 60s
+
+#### ブックマークフォルダ
+
+```
+GET    /posts/me/bookmark-folders       → ブックマークフォルダの一覧
+POST   /posts/me/bookmark-folders       → ブックマークフォルダの作成
+  Body: {"name":"..."}
+DELETE /posts/me/bookmark-folders/{id}  → ブックマークフォルダの削除
+```
 
 ---
 
