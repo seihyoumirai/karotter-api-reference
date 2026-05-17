@@ -3196,6 +3196,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ### 公式マーク
 
+これらは管理者への問い合わせを行い､管理者に付与されないと入手できない。
+
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
 | <img src="/badges/badge_yellow.PNG" width="32" height="32" > | 認証済み団体マーク | 団体からの申請があった場合に運営が管理者APIを通じて付与する |
@@ -3204,6 +3206,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | <img src="/badges/badge_gray.PNG" width="32" height="32" > | 政府関係者マーク | 政府関係者からの申請があった場合に運営が管理者APIを通じて付与する |
 
 ### 課金要素バッジ
+
+これらは課金でのみ入手することができる。
 
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
@@ -3214,12 +3218,16 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ### バグバッジ
 
+これらはDMバグでのみ見ることができる。過去にバグで全員のプロフィールにも表示された。
+
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
 | <img src="/badges/badge_white.PNG" width="32" height="32" > | 不明 | 認証バッジが正しく表示できない場合に表示される |
-| <img src="/badges/badge_parody_black.PNG" width="32" height="32" > | パロディ | バロディマークが正しく表示できない場合に表示される |
+| <img src="/badges/badge_parody_black.PNG" width="32" height="32" > <img src="/badges/badge_parody_white.PNG" width="32" height="32" > | パロディ | バロディマークが正しく表示できない場合に表示される |
 
 ### 属性マーク
+
+これらは個人が､アカウントに任意で付与することができるマークである。管理者が強制表示させることが可能である。
 
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
