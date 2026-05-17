@@ -3336,7 +3336,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 - **単語に完全一致**: `?q="text"`
 - **単語を含まない**: `?q=-text`
 - **いずれかの単語を含む**: `?q=text OR text`
-- **ハッシュタグ**: `?q=#text`
+- **ハッシュタグを含む**: `?q=#text`
+- **ハッシュタグを含まない**: `?q=-#text`
 
 ### 言語
 
@@ -3356,6 +3357,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ### エンゲージメント
 
+- **返信数**: `?q=min_replies:num`
 - **返信数**: `?q=min_replies:num`
 - **いいね数**: `?q=min_faves:num`
 - **リカロート数**: `?q=min_rekarots:num`
