@@ -3223,7 +3223,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
 | <img src="/badges/badge_white.PNG" width="32" height="32" > | 不明 | 認証バッジが正しく表示できない場合に表示される |
-| <img src="/badges/badge_parody_black.PNG" width="32" height="32" > <img src="/badges/badge_parody_white.PNG" width="32" height="32" > | パロディ | バロディマークが正しく表示できない場合に表示される |
+| <img src="/badges/badge_parody_black.PNG" width="32" height="32" > | パロディ | ダークモードでバロディマークが正しく表示できない場合に表示される |
+| <img src="/badges/badge_parody_white.PNG" width="32" height="32" > | パロディ | ライトモードでバロディマークが正しく表示できない場合に表示される |
 
 ### 属性マーク
 
