@@ -3198,34 +3198,34 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
-| <img src="/badges/badge_yellow.PNG" > | 認証済み団体マーク | 団体からの申請があった場合に運営が管理者APIを通じて付与する |
-| <img src="/badges/badge_purple.PNG" > | 運営マーク | Karotterの運営者・開発者に付与される |
-| <img src="/badges/badge_blue.PNG" > | 本人マーク | ある程度の影響力のある者などからの申請があった場合に運営が管理者APIを通じて付与する |
-| <img src="/badges/badge_gray.PNG" > | 政府関係者マーク | 政府関係者からの申請があった場合に運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_yellow.PNG" width="16" height="16" > | 認証済み団体マーク | 団体からの申請があった場合に運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_purple.PNG" width="16" height="16" > | 運営マーク | Karotterの運営者・開発者に付与される |
+| <img src="/badges/badge_blue.PNG" > width="16" height="16" | 本人マーク | ある程度の影響力のある者などからの申請があった場合に運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_gray.PNG" > width="16" height="16" | 政府関係者マーク | 政府関係者からの申請があった場合に運営が管理者APIを通じて付与する |
 
 ### 課金要素バッジ
 
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
-| <img src="/badges/badge_black.PNG" > | 認証済みマーク | 「Karotter Pro」を購入する |
-| <img src="/badges/badge_red.PNG" > | 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
-| <img src="/badges/badge_green.PNG" > | 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
-| <img src="/badges/badge_orange.PNG" > | 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_black.PNG" width="16" height="16" > | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_red.PNG" width="16" height="16" > | 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_green.PNG" width="16" height="16" > | 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_orange.PNG" width="16" height="16" > | 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
 
 ### バグバッジ
 
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
-| <img src="/badges/badge_white.PNG" > | 不明 | 認証バッジの扱いが配列への変更時にバグで生まれた。現在は存在しない。 |
-| <img src="/badges/badge_parody_black.PNG" > | パロディ | 出現条件が謎なバッジ。パロディアカウントと同じ。 |
+| <img src="/badges/badge_white.PNG" width="16" height="16" > | 不明 | 認証バッジの扱いが配列への変更時にバグで生まれた。現在は存在しない。 |
+| <img src="/badges/badge_parody_black.PNG" width="16" height="16" > | パロディ | 出現条件が謎なバッジ。パロディアカウントと同じ。 |
 
 ### 属性マーク
 
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
-| <img src="/badges/badge_lock.PNG" > | 非公開アカウント | 設定の「プライバシー」から「非公開アカウント」を有効にする |
-| <img src="/badges/badge_bot.PNG" > | BOT | 設定の「コンテンツ表示」から「BOTアカウントとして表示する」を有効にする |
-| <img src="/badges/badge_parody.PNG" > | パロディ | 設定の「コンテンツ表示」から「パロディアカウントとして表示する」を有効にする |
+| <img src="/badges/badge_lock.PNG" width="16" height="16" > | 非公開アカウント | 設定の「プライバシー」から「非公開アカウント」を有効にする |
+| <img src="/badges/badge_bot.PNG" width="16" height="16" > | BOT | 設定の「コンテンツ表示」から「BOTアカウントとして表示する」を有効にする |
+| <img src="/badges/badge_parody.PNG" width="16" height="16" > | パロディ | 設定の「コンテンツ表示」から「パロディアカウントとして表示する」を有効にする |
 
 ---
 
