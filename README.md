@@ -3216,7 +3216,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
-| <img src="/badges/badge_white.PNG" > | なし | 認証バッジの扱いが配列への変更時にバグで生まれた。現在は存在しない。 |
+| <img src="/badges/badge_white.PNG" > | 不明 | 認証バッジの扱いが配列への変更時にバグで生まれた。現在は存在しない。 |
+| <img src="/badges/badge_parody_black.PNG" > | パロディ | 出現条件が謎なバッジ。パロディアカウントと同じ。 |
 
 ### 属性マーク
 
