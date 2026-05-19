@@ -64,7 +64,7 @@ Karotterの非公式APIリファレンスです。
 | 形態 | 内容 |
 |-----|-----|
 | エンドポイント | 計21カテゴリー / 計316件 |
-| Socket.IO イベント | 計6カテゴリー / 計44件 |
+| Socket.IO イベント | 計6カテゴリー / 計45件 |
 
 ---
 
@@ -3187,6 +3187,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 |---------|------|------|
 | `notification` | S→C | プッシュ通知 |
 | `user:status` | S→C | ユーザーステータス |
+| `post:created` | S→C | 新カロートを受け取る |
 
 ---
 
