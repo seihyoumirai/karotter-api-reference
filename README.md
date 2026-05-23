@@ -63,7 +63,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計21カテゴリー / 計316件 |
+| エンドポイント | 計21カテゴリー / 計319件 |
 | Socket.IO イベント | 計6カテゴリー / 計45件 |
 
 ---
@@ -85,7 +85,7 @@ Karotterの非公式APIリファレンスです。
 
 | ヘッダー | 値 | 必須 | 備考 |
 |---------|-----|------|------|
-| `X-Client-Type` | `web`, `android` | 推奨 | 多分なんでも行ける |
+| `X-Client-Type` | `web`, `android`, `ios` | 推奨 | 多分なんでも行ける |
 | `X-Device-Id` | UUID v4 | 推奨 | セッション識別用、固定値でOK |
 | `X-CSRF-Token` | CSRFトークン | 書き込み系 | POST/PUT/DELETE で必要 |
 
@@ -449,6 +449,18 @@ POST /auth/switch-session            → セッション切り替え (マルチ�
 POST /auth/session-unread-snapshots  → 未読スナップショット
   Body: {"deviceId": "uuid"}  ※ deviceId必須
   Response 200: {"snapshots": [...]}
+```
+
+### 2FA
+
+```
+GET   /auth/2fa/setup            → 2FAのセットアップ
+  Response: { "secret": "...", "qrCodeDataURL": "data:image/png;base64,..." }
+POST  /auth/2fa/enable           → 2FAの有効化
+  Body: {code: "831637"}
+  Response: { "message": "2段階認証が有効になりました", "backupCodes": [ ... ] }
+POST  /auth/2fa/disable          → 2FAの無効化
+  Body: {password: "..."}
 ```
 
 ---
@@ -3343,7 +3355,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 ### 言語
 
 - **言語指定**: `?q=lang:lang`
-   *   lang: `ja`, `en`
+   *   lang: `ja`, `en`, `ko`, `zh-CN`, `zh-TW`
 
 ### 形態
 
