@@ -63,7 +63,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計21カテゴリー / 計319件 |
+| エンドポイント | 計21カテゴリー / 計320件 |
 | Socket.IO イベント | 計6カテゴリー / 計45件 |
 
 ---
@@ -1995,13 +1995,13 @@ Response 200:
 ### サブスクリプション管理
 
 ```
-POST /subscriptions/portal
+POST   /subscriptions/portal
 ```
 
 ### サブスクリプション購入
 
 ```
-POST /subscriptions/checkout
+POST   /subscriptions/checkout
 Content-Type: application/json
 
 {
@@ -2012,10 +2012,16 @@ Content-Type: application/json
 - 現在はstripeを認証していないと不可
 - productCode: `PLUS`, `PRO`, `BADGE_RED`, `BADGE_GREEN`
 
+### サブスクリプション解約
+
+```
+DELETE /subscriptions/checkout
+```
+
 ### Pro装飾保存
 
 ```
-PATCH /subscriptions/preferences
+PATCH  /subscriptions/preferences
 Content-Type: application/json
 
 {"premiumBadgeColor":"ORANGE","profileAccentColor":null,"cardAccentColor":null}
