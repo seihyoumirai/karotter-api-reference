@@ -3361,7 +3361,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 ### 言語
 
 - **言語指定**: `?q=lang:lang`
-   *   lang: `ja`, `en`, `ko`, `zh-CN`, `zh-TW`
+   *   lang: `ja`, `en`, `ko`, `zh-CN`, `zh-TW`, `es`, `fr`, `de`, `pt-BR`, `it`, `id`, `vi`, `th`, `hi`
 
 ### 形態
 
