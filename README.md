@@ -3359,50 +3359,54 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ---
 
-クエリパラメーター`?q=`のあとに以下の形で入力されることで、条件を絞れる。
+検索欄（クエリパラメーター`?q=`のあと）に以下の形で入力されることで、条件を絞れる。
 
 ### 単語
 
-- **単語を含む**: `?q=text`
-- **単語に完全一致**: `?q="text"`
-- **単語を含まない**: `?q=-text`
-- **いずれかの単語を含む**: `?q=text OR text`
-- **ハッシュタグを含む**: `?q=#text`
-- **ハッシュタグを含まない**: `?q=-#text`
+- **単語を含む**: `text`
+- **単語のいずれかを含む**: `text1 text2`
+- **単語に完全一致**: `"text"`
+- **単語を含まない**: `-text`
+- **いずれかの単語を含む**: `text OR text`
+- **ハッシュタグを含む**: `#text`
+- **ハッシュタグを含まない**: `-#text`
+- **ルビ振りが完全一致**: `《text》`
+- **ルビ振りの完全一致を弾く**: `-《text》`
 
 ### 言語
 
-- **言語指定**: `?q=lang:code`
+- **言語指定**: `lang:code`
    *   code: `ja`, `en`, `ko`, `zh-CN`, `zh-TW`, `es`, `fr`, `de`, `pt-BR`, `it`, `id`, `vi`, `th`, `hi`
 
 ### 形態
 
-- **リンクのみ**: `?q=filter:links`
-- **リンクを弾く**: `?q=-filter:links`
-- **返信のみ**: `?q=filter:replies`
-- **返信を弾く**: `?q=-filter:replies`
-- **引用のみ**: `?q=filter:quotes`
-- **引用を弾く**: `?q=-filter:quotes`
-- **メディアのみ**: `?q=filter:media`
-- **メディアを弾く**: `?q=-filter:media`
+- **リンクのみ**: `filter:links`
+- **リンクを弾く**: `-filter:links`
+- **返信のみ**: `filter:replies`
+- **返信を弾く**: `-filter:replies`
+- **引用のみ**: `filter:quotes`
+- **引用を弾く**: `-filter:quotes`
+- **メディアのみ**: `filter:media`
+- **メディアを弾く**: `-filter:media`
 
 ### エンゲージメント
 
-- **返信数**: `?q=min_replies:num`
-- **返信数**: `?q=min_replies:num`
-- **いいね数**: `?q=min_faves:num`
-- **リカロート数**: `?q=min_rekarots:num`
+- **返信数**: `min_replies:num`
+- **返信数**: `min_replies:num`
+- **いいね数**: `min_faves:num`
+- **リカロート数**: `min_rekarots:num`
 
 ### アカウント
 
-- **特定アカウントのカロート**: `?q=from:user`
-- **特定のアカウントへの返信**: `?q=to:user`
-- **特定のアカウントへのメンション**: `?q=@user`
+- **特定アカウントのカロート**: `from:user`
+- **特定のアカウントへの返信**: `to:user`
+- **特定のアカウントへのメンション**: `@user`
+- **特定のアカウントへのメンションを含まない**: `-@user`
 
 ### 日付
 
-- **開始**: `?q=since:yyyy-mm-dd`
-- **終了**: `?q=until:yyyy-mm-dd`
+- **開始**: `since:yyyy-mm-dd`
+- **終了**: `until:yyyy-mm-dd`
 
 ---
 
