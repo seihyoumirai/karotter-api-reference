@@ -2054,7 +2054,7 @@ Content-Type: application/json
 | `users` | ユーザー管理 | 検索、BAN/解除、フラグ変更、公式マーク付与、アカウント編集、削除 |
 | `posts` | カロート管理 | 検索、R18強制、非表示、削除 |
 | `stories` | ストーリー管理 | 検索、R18強制、非表示、削除、有効期限表示 |
-| `news` | ニュース記事管理 | 記事検索、削除、コメント |
+| `news` | ニュース管理 | 記事検索、削除、コメント |
 | `recommend` | おすすめ β | おすすめアルゴリズムテスト (userId指定、スコア詳細表示) |
 | `trending` | トレンド β | トレンドアルゴリズムテスト (velocity, uniqueActors, engagementRate) |
 | `survey` | アンケート | おすすめ満足度アンケート結果 (投票数、満足度スコア) |
@@ -2118,6 +2118,8 @@ Response:
 | `showHiddenPosts` | 非表示閲覧許可 |
 | `showR18Content` | R18表示許可 |
 | `hideProfileFromMinors` | 未成年にプロフ非表示 |
+| `adminForceMinimumAge` | 最小強制年齢制限 |
+| `adminForceMaximumAge` | 最大強制年齢制限 |
 
 #### BAN
 
