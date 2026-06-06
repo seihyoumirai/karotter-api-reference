@@ -2054,16 +2054,11 @@ Content-Type: application/json
 
 ---
 
-### ホーム
-
-```
-GET   /feed/home
-```
-
 ### フィード取得
 
 ```
 GET   /feed/public
+GET   /feed/home
 
 Response 200: { "posts": [...], "pagination": {...} }
 ```
