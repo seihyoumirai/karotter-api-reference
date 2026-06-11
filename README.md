@@ -3266,6 +3266,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `notification` | S→C | プッシュ通知 |
 | `user:status` | S→C | ユーザーステータス |
 | `post:created` | S→C | 新カロートを受け取る |
+| `token` | C→S | トークン |
+| `sid` | S→C | SID |
 
 ---
 
