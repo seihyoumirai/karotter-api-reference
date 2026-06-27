@@ -80,7 +80,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計22カテゴリー / 計323件 |
+| エンドポイント | 計22カテゴリー / 計324件 |
 | Socket.IO イベント | 計6カテゴリー / 計45件 |
 
 ---
@@ -2277,7 +2277,7 @@ Response:
 
 ### 全エンドポイント一覧
 
-#### コア (3)
+#### コア
 
 ```
 GET /control-room-x9k2
@@ -2285,7 +2285,7 @@ GET /control-room-x9k2/dashboard
 GET /control-room-x9k2/overview
 ```
 
-#### ユーザー管理 (22)
+#### ユーザー管理
 
 ```
 GET    /control-room-x9k2/users
@@ -2313,7 +2313,7 @@ POST   /control-room-x9k2/users/{id}/warn
 DELETE /control-room-x9k2/users/{id}/delete
 ```
 
-#### 投稿管理 (6)
+#### 投稿管理
 
 ```
 GET    /control-room-x9k2/posts
@@ -2324,14 +2324,14 @@ PATCH  /control-room-x9k2/posts/{id}/hide
 DELETE /control-room-x9k2/posts/{id}/delete
 ```
 
-#### ストーリー管理 (2)
+#### ストーリー管理
 
 ```
 GET    /control-room-x9k2/stories
 PATCH  /control-room-x9k2/stories/{id}/flags
 ```
 
-#### 通報 / モデレーション (11)
+#### 通報 / モデレーション
 
 ```
 GET  /control-room-x9k2/reports
@@ -2350,7 +2350,7 @@ GET  /control-room-x9k2/moderation/rules
 GET  /control-room-x9k2/flagged-content
 ```
 
-#### BAN (6)
+#### BAN
 
 ```
 GET  /control-room-x9k2/bans
@@ -2361,7 +2361,7 @@ GET  /control-room-x9k2/ip-bans/{id}
 GET  /control-room-x9k2/shadowbans
 ```
 
-#### コンテンツ管理 (15)
+#### コンテンツ管理
 
 ```
 GET  /control-room-x9k2/badges
@@ -2381,6 +2381,13 @@ GET  /control-room-x9k2/stickers
 GET  /control-room-x9k2/stickers/{id}
 ```
 
+#### DM管理
+
+```
+POST /control-room-x9k2/dm/direct/delete
+  Body: { firstUserId: 1, secondUserId: 2 }
+```
+
 #### ニュース記事管理
 ```
 GET    /control-room-x9k2/news
@@ -2391,7 +2398,7 @@ DELETE /control-room-x9k2/news/{articleId}
 DELETE /control-room-x9k2/news/comments/{commentId}
 ```
 
-#### お知らせ (3)
+#### お知らせ
 
 ```
 GET  /control-room-x9k2/announcements
@@ -2399,7 +2406,7 @@ GET  /control-room-x9k2/announcements/{id}
 POST /control-room-x9k2/announcements/create
 ```
 
-#### アナリティクス (11)
+#### アナリティクス
 
 ```
 GET /control-room-x9k2/analytics
@@ -2415,7 +2422,7 @@ GET /control-room-x9k2/stats/posts
 GET /control-room-x9k2/stats/daily
 ```
 
-#### 申請 / リクエスト (3)
+#### 申請 / リクエスト
 
 ```
 GET /control-room-x9k2/verification-requests
@@ -2423,7 +2430,7 @@ GET /control-room-x9k2/bot-requests
 GET /control-room-x9k2/appeals
 ```
 
-#### システム (16)
+#### システム
 
 ```
 GET  /control-room-x9k2/settings
@@ -2448,7 +2455,7 @@ GET  /control-room-x9k2/database
 GET  /control-room-x9k2/migrations
 ```
 
-#### その他管理 (38)
+#### その他管理
 
 ```
 GET /control-room-x9k2/beta-experiment
