@@ -2147,6 +2147,7 @@ Response:
 | `RED` | 赤: 認証済みマーク |
 | `GREEN` | 緑: 認証済みマーク |
 | `ORANGE` | オレンジ: 認証済みマーク |
+| `PINK` | ピンク: 認証済みマーク |
 - 複数マーク同時付与可能（配列で管理）
 
 #### フラグ操作
@@ -3303,6 +3304,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | <img src="/badges/badge_red.PNG" width="32" height="32" > | 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
 | <img src="/badges/badge_green.PNG" width="32" height="32" > | 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
 | <img src="/badges/badge_orange.PNG" width="32" height="32" > | 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_pink.PNG" width="32" height="32" > | 認証済みマーク | 「Karotter Pro」を購入する |
 
 ### バグバッジ
 
