@@ -3457,8 +3457,10 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 - **返信を弾く**: `-filter:replies`
 - **引用のみ**: `filter:quotes`
 - **引用を弾く**: `-filter:quotes`
-- **メディアのみ**: `filter:media`
-- **メディアを弾く**: `-filter:media`
+- **画像のみ**: `filter:media`
+- **画像を弾く**: `-filter:media`
+- **動画のみ**: `-filter:videos`
+- **動画を弾く**: `-filter:videos`
 
 ### エンゲージメント
 
