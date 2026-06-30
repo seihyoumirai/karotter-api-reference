@@ -3465,7 +3465,6 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 ### エンゲージメント
 
 - **返信数**: `min_replies:num`
-- **返信数**: `min_replies:num`
 - **いいね数**: `min_faves:num`
 - **リカロート数**: `min_rekarots:num`
 
