@@ -3459,7 +3459,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 - **引用を弾く**: `-filter:quotes`
 - **画像のみ**: `filter:media`
 - **画像を弾く**: `-filter:media`
-- **動画のみ**: `-filter:videos`
+- **動画のみ**: `filter:videos`
 - **動画を弾く**: `-filter:videos`
 
 ### エンゲージメント
