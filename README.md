@@ -80,7 +80,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計22カテゴリー / 計324件 |
+| エンドポイント | 計22カテゴリー / 計325件 |
 | Socket.IO イベント | 計6カテゴリー / 計45件 |
 
 ---
@@ -879,6 +879,12 @@ GET    /posts/me/bookmark-folders       → ブックマークフォルダの一
 POST   /posts/me/bookmark-folders       → ブックマークフォルダの作成
   Body: {"name":"..."}
 DELETE /posts/me/bookmark-folders/{id}  → ブックマークフォルダの削除
+```
+
+#### 翻訳
+
+```
+POST   /posts/{id}/translate
 ```
 
 ---
