@@ -59,6 +59,7 @@ Karotterの非公式APIリファレンスです。
 | [管理パネル (Admin) エンドポイント](#管理パネル-admin-エンドポイント) | 管理パネルエンドポイントについて |
 | [Developer API エンドポイント](#developer-api-エンドポイント) | Developer API エンドポイントについて |
 | [OAuth API エンドポイント](#oauth-api-エンドポイント) | OAuth API エンドポイントについて |
+| [サーバーボット (Guild Bots) エンドポイント](#サーバーボット-guild-bots-エンドポイント) | サーバーボットエンドポイントについて |
 | [その他のエンドポイント](#その他のエンドポイント) | その他のエンドポイントについて |
 
 ### v2 エンドポイント
@@ -80,7 +81,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計22カテゴリー / 計325件 |
+| エンドポイント | 計23カテゴリー / 計334件 |
 | Socket.IO イベント | 計6カテゴリー / 計45件 |
 
 ---
@@ -91,7 +92,8 @@ Karotterの非公式APIリファレンスです。
 |------|----------|
 | 非公開 v1 | `https://api.karotter.com/api/` |
 | 非公開 v2 | `https://api.karotter.com/api/v2/` |
-| 開発者向け | `https://api.karotter.com/api/developer` |
+| ボット向け | `https://api.karotter.com/api/developer` |
+| OAuth Client | `https://api.karotter.com/api/oauth` |
 
 > `https://karotter.com/api` でもアクセス可能（Cloudflare経由）
 
@@ -3063,6 +3065,42 @@ Response 200:
 
 ---
 
+## サーバーボット (Guild Bots) エンドポイント
+
+---
+
+### インストール済みサーバー一覧の取得
+
+```
+GET   /developer/guilds
+```
+
+### サーバーのチャンネル一覧を表示
+
+```
+GEt   /deveoper/guilds/{id}/channels
+```
+
+### チャンネルにメッセージを送信
+
+```
+POST  /developer/channels/{id}/messages
+```
+
+### スラッシュコマンド登録
+
+```
+POST  /developer/applications/commands
+```
+
+### コマンドの権限設定を変更
+
+```
+PUT   /developer/applications/commands/{id}/permissions
+```
+
+---
+
 ## その他のエンドポイント
 
 ---
@@ -3136,7 +3174,7 @@ DELETE /apikeys/{id}   → {"message": "APIキーを削除しました"}
 POST /oauth/clients
 Content-Type: application/json
 
-{"name":"七虎なるくん","description":"Karotter連携","homepageUrl":"https://www.shichitora.pro","logoUrl":"https://www.shichitora.pro/icon.JPG","redirectUris":["https://auth.shichitora.pro/karotter-connect"],"isConfidential":true}
+Body: {"name":"七虎なるくん","description":"Karotter連携","homepageUrl":"https://www.shichitora.pro","logoUrl":"https://www.shichitora.pro/icon.JPG","redirectUris":["https://auth.shichitora.pro/karotter-connect"],"isConfidential":true}
 ```
 
 #### OAuthアプリの削除
@@ -3162,7 +3200,7 @@ Response 200:
 }
 ```
 
-#### OAuthアプリの取得
+#### OAuthアプリの一覧取得
 
 ```
 GET  /oauth/clients
@@ -3188,6 +3226,37 @@ Response 200:
         }
     ]
 }
+```
+
+### サーバーボット (Guild Bots)
+
+#### 一覧取得
+
+```
+GET   /guild-bots/applications
+
+Response 200: {"applications":[]}
+```
+
+#### ボットの作成
+
+```
+POST  /guild-bots/applications
+Content-Type: application/json
+
+Body: {"name":"TEST","description":"TEST","interactionsEndpointUrl":"https://auth.shichitora.pro/test","public":true}
+```
+
+#### トークンの再生成
+
+```
+POST  /guild-bots/applications/{id}/token
+```
+
+#### ボットの削除
+
+```
+DELETE /guild-bots/applications/{id}
 ```
 
 ### 埋め込み (Embed)
