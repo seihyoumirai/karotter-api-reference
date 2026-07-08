@@ -83,7 +83,7 @@ Karotterの非公式APIリファレンスです。
 | 形態 | 内容 |
 |-----|-----|
 | エンドポイント | 計24カテゴリー / 計344件 |
-| Socket.IO イベント | 計7カテゴリー / 計60件 |
+| Socket.IO イベント | 計7カテゴリー / 計59件 |
 
 ---
 
@@ -3873,7 +3873,6 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `post:created` | S→C | カロート作成通知 |
 | `post:deleted` | S→C | カロート削除通知 |
 | `user:status` | S→C | ユーザーステータス |
-| `post:created` | S→C | 新カロートを受け取る |
 | `token` | C→S | トークン |
 | `sid` | S→C | SID |
 
