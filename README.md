@@ -6,7 +6,7 @@ Karotterの非公式APIリファレンスです。
 - [にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)
 - [公式APIリファレンス](https://karotter.com/api-docs)
 
-自力で調べたものもがあるので間違えているものがあったら教えてください。
+自力で調べたものが多くあるので間違えているものがあったら教えてください。
 
 ---
 
