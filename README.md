@@ -83,7 +83,7 @@ Karotterの非公式APIリファレンスです。
 | 形態 | 内容 |
 |-----|-----|
 | エンドポイント | 計24カテゴリー / 計344件 |
-| Socket.IO イベント | 計6カテゴリー / 計45件 |
+| Socket.IO イベント | 計7カテゴリー / 計60件 |
 
 ---
 
@@ -3846,11 +3846,32 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `draw:user-left` | S→C | ユーザー退出通知 |
 | `draw:error` | S→C | エラー通知 |
 
+### サーバー
+
+| イベント | 方向 | 説明 |
+|---------|------|------|
+| `guild:join` | C→S | サーバー参加 |
+| `guild:join` | C→S | サーバー退出 |
+| `channel:join` | C→S | チャンネル参加 |
+| `channel:leave` | C→S | チャンネル退出 |
+| `guild:message-create` | S→C | メッセージ作成 |
+| `guild:message-update` | S→C | メッセージ更新 |
+| `guild:message-delete` | S→C | メッセージ削除 |
+| `guild:typing:user` | S→C | タイピング |
+| `channel:created` | S→C | チャンネル作成 |
+| `channel:updated` | S→C | チャンネル更新 |
+| `channel:deleted` | S→C | チャンネル削除 |
+| `guild:member-joined` | S→C | メンバー参加 |
+| `guild:member-removed` | S→C | メンバー退出 |
+
+
 ### その他
 
 | イベント | 方向 | 説明 |
 |---------|------|------|
 | `notification` | S→C | プッシュ通知 |
+| `post:created` | S→C | カロート作成通知 |
+| `post:deleted` | S→C | カロート削除通知 |
 | `user:status` | S→C | ユーザーステータス |
 | `post:created` | S→C | 新カロートを受け取る |
 | `token` | C→S | トークン |
