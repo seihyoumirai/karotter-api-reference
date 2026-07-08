@@ -56,6 +56,7 @@ Karotterの非公式APIリファレンスです。
 | [掲示板 (Boards) エンドポイント](#掲示板-boards-エンドポイント) | 掲示板エンドポイントについて |
 | [ニュース (News) エンドポイント](#ニュース-news-エンドポイント) | ニュースエンドポイントについて |
 | [サブスクリプション (Subscriptions) エンドポイント](#サブスクリプション-subscriptions-エンドポイント) | サブスクリプションエンドポイントについて |
+| [サーバー (Guilds) エンドポイント](#サーバー-guilds-エンドポイント) | サーバーエンドポイントについて |
 | [管理パネル (Admin) エンドポイント](#管理パネル-admin-エンドポイント) | 管理パネルエンドポイントについて |
 | [Developer API エンドポイント](#developer-api-エンドポイント) | Developer API エンドポイントについて |
 | [OAuth API エンドポイント](#oauth-api-エンドポイント) | OAuth API エンドポイントについて |
@@ -81,7 +82,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計23カテゴリー / 計334件 |
+| エンドポイント | 計24カテゴリー / 計344件 |
 | Socket.IO イベント | 計6カテゴリー / 計45件 |
 
 ---
@@ -2079,6 +2080,509 @@ POST  /feed/views
 
 Content-Type: application/json
 {"postIds":[1035417,1035416,1035446,1035445]}
+```
+
+---
+
+## サーバー (Guilds) エンドポイント
+
+---
+
+### サーバー
+
+#### サーバーの作成
+
+```
+POST  /guilds
+
+Content-Type: application/json
+Body: {"name":"..."}
+```
+
+### 基本情報取得
+
+#### サーバーの情報取得
+
+```
+GET   /guilds
+
+Response 200:
+{
+    "guilds": [
+        {
+            "id": 4,
+            "name": "test",
+            "description": null,
+            "iconUrl": null,
+            "bannerUrl": null,
+            "ownerId": 814,
+            "vanityCode": null,
+            "preferredLocale": "ja",
+            "isCommunity": false,
+            "isFrozen": false,
+            "frozenReason": null,
+            "memberCount": 1,
+            "permissions": "703687441776639",
+            "channels": [
+                {
+                    "id": 19,
+                    "guildId": 4,
+                    "parentId": null,
+                    "type": "GUILD_CATEGORY",
+                    "name": "Welcome",
+                    "topic": null,
+                    "position": 0,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": null,
+                    "userLimit": null,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.127Z",
+                    "updatedAt": "2026-07-08T06:41:08.127Z"
+                },
+                {
+                    "id": 20,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_TEXT",
+                    "name": "general",
+                    "topic": "サーバーのメインテキストチャンネル",
+                    "position": 1,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": null,
+                    "userLimit": null,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                },
+                {
+                    "id": 21,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_ANNOUNCEMENT",
+                    "name": "announcements",
+                    "topic": "お知らせ",
+                    "position": 2,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": null,
+                    "userLimit": null,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                },
+                {
+                    "id": 22,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_FORUM",
+                    "name": "forum",
+                    "topic": "話題ごとの投稿",
+                    "position": 3,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": null,
+                    "userLimit": null,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                },
+                {
+                    "id": 23,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_VOICE",
+                    "name": "Voice",
+                    "topic": null,
+                    "position": 4,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": 64000,
+                    "userLimit": 0,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                },
+                {
+                    "id": 24,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_STAGE_VOICE",
+                    "name": "Stage",
+                    "topic": null,
+                    "position": 5,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": 64000,
+                    "userLimit": 0,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                }
+            ],
+            "createdAt": "2026-07-08T06:41:08.110Z",
+            "updatedAt": "2026-07-08T06:41:08.110Z"
+        }
+    ]
+}
+```
+
+#### サーバーの参加済みメンバー一覧取得
+
+```
+GET   /guilds/{id}/members
+
+Response 200:
+{
+    "members": [
+        {
+            "id": 4,
+            "guildId": 4,
+            "userId": 814,
+            "nick": null,
+            "avatarUrl": null,
+            "isBot": false,
+            "pending": false,
+            "mute": false,
+            "deaf": false,
+            "communicationDisabledUntil": null,
+            "joinedAt": "2026-07-08T06:41:08.119Z",
+            "leftAt": null,
+            "updatedAt": "2026-07-08T06:41:08.119Z",
+            "user": {
+                "id": 814,
+                "username": "ui",
+                "displayName": "みらいのさぶ@日常",
+                "avatarUrl": "/uploads/avatars/avatar_814_1781613309023.webp",
+                "avatarFrameId": null,
+                "officialMark": [
+                    "BLUE"
+                ],
+                "isBotAccount": false,
+                "isParodyAccount": false,
+                "adminForceBot": false,
+                "adminForceParody": false,
+                "onlineStatus": "OFFLINE",
+                "statusMessage": null
+            },
+            "roles": [
+                {
+                    "id": 7,
+                    "guildMemberId": 4,
+                    "roleId": 7,
+                    "createdAt": "2026-07-08T06:41:08.121Z",
+                    "role": {
+                        "id": 7,
+                        "guildId": 4,
+                        "name": "@everyone",
+                        "color": null,
+                        "hoist": false,
+                        "iconUrl": null,
+                        "unicodeEmoji": null,
+                        "position": 0,
+                        "permissions": "311421897793",
+                        "managed": false,
+                        "mentionable": false,
+                        "isEveryone": true,
+                        "createdAt": "2026-07-08T06:41:08.113Z",
+                        "updatedAt": "2026-07-08T06:41:08.113Z"
+                    }
+                },
+                {
+                    "id": 8,
+                    "guildMemberId": 4,
+                    "roleId": 8,
+                    "createdAt": "2026-07-08T06:41:08.121Z",
+                    "role": {
+                        "id": 8,
+                        "guildId": 4,
+                        "name": "Admin",
+                        "color": "#58b4ff",
+                        "hoist": true,
+                        "iconUrl": null,
+                        "unicodeEmoji": null,
+                        "position": 1,
+                        "permissions": "703687441776639",
+                        "managed": false,
+                        "mentionable": false,
+                        "isEveryone": false,
+                        "createdAt": "2026-07-08T06:41:08.117Z",
+                        "updatedAt": "2026-07-08T06:41:08.117Z"
+                    }
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+### チャンネル
+
+#### サーバーのチャンネル取得
+
+```
+GET   /guilds/{id}/channels
+
+Response 200:
+{
+    "channels": [
+        {
+            "id": 19,
+            "guildId": 4,
+            "parentId": null,
+            "type": "GUILD_CATEGORY",
+            "name": "Welcome",
+            "topic": null,
+            "position": 0,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": null,
+            "userLimit": null,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.127Z",
+            "updatedAt": "2026-07-08T06:41:08.127Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 20,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_TEXT",
+            "name": "general",
+            "topic": "サーバーのメインテキストチャンネル",
+            "position": 1,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": null,
+            "userLimit": null,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 21,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_ANNOUNCEMENT",
+            "name": "announcements",
+            "topic": "お知らせ",
+            "position": 2,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": null,
+            "userLimit": null,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 22,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_FORUM",
+            "name": "forum",
+            "topic": "話題ごとの投稿",
+            "position": 3,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": null,
+            "userLimit": null,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 23,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_VOICE",
+            "name": "Voice",
+            "topic": null,
+            "position": 4,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": 64000,
+            "userLimit": 0,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 24,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_STAGE_VOICE",
+            "name": "Stage",
+            "topic": null,
+            "position": 5,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": 64000,
+            "userLimit": 0,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        }
+    ]
+}
+```
+
+#### チャンネルのメッセージを取得
+
+```
+GET   /channels/{id}/messages
+
+Response 200: {"messages":[],"pagination":{"page":1,"limit":80,"total":0,"pages":0}}
+```
+
+#### チャンネルの作成
+
+```
+POST  /guilds/{id}/channels
+
+Content-Type: application/json
+Body: {"name":"Voice","type":"GUILD_VOICE"}
+
+Response 201:
+{
+    "channel": {
+        "id": 25,
+        "guildId": 4,
+        "parentId": null,
+        "type": "GUILD_VOICE",
+        "name": "Voice",
+        "topic": null,
+        "position": 0,
+        "nsfw": false,
+        "rateLimitPerUser": 0,
+        "bitrate": null,
+        "userLimit": null,
+        "archived": false,
+        "createdAt": "2026-07-08T06:56:36.189Z",
+        "updatedAt": "2026-07-08T06:56:36.189Z",
+        "overwrites": []
+    }
+}
+```
+
+### 招待
+
+#### 招待を作成
+
+```
+POST  /guilds/{id}/invites
+
+Response 201:
+{
+    "invite": {
+        "id": 5,
+        "code": "-uncPu3u-ppS",
+        "guildId": 4,
+        "channelId": 20,
+        "inviterId": 814,
+        "maxAge": 86400,
+        "maxUses": 0,
+        "uses": 0,
+        "temporary": false,
+        "expiresAt": "2026-07-09T06:49:11.165Z",
+        "revokedAt": null,
+        "createdAt": "2026-07-08T06:49:11.167Z"
+    }
+}
+```
+
+#### 招待への参加
+
+```
+POST  /invites/{code}
+```
+
+### ロール
+
+#### ロール一覧取得
+
+```
+GET   /guilds/{id}/roles
+
+Response 200:
+{
+    "roles": [
+        {
+            "id": 8,
+            "guildId": 4,
+            "name": "Admin",
+            "color": "#58b4ff",
+            "hoist": true,
+            "iconUrl": null,
+            "unicodeEmoji": null,
+            "position": 1,
+            "permissions": "703687441776639",
+            "managed": false,
+            "mentionable": false,
+            "isEveryone": false,
+            "createdAt": "2026-07-08T06:41:08.117Z",
+            "updatedAt": "2026-07-08T06:41:08.117Z"
+        },
+        {
+            "id": 7,
+            "guildId": 4,
+            "name": "@everyone",
+            "color": null,
+            "hoist": false,
+            "iconUrl": null,
+            "unicodeEmoji": null,
+            "position": 0,
+            "permissions": "311421897793",
+            "managed": false,
+            "mentionable": false,
+            "isEveryone": true,
+            "createdAt": "2026-07-08T06:41:08.113Z",
+            "updatedAt": "2026-07-08T06:41:08.113Z"
+        }
+    ]
+}
+```
+
+#### ロールを作成
+
+```
+POST  /guilds/{id}/roles
+
+Content-Type: application/json
+Body: {"name":"AAA","permissions":"0"}
+
+Response 201:
+{
+    "role": {
+        "id": 9,
+        "guildId": 4,
+        "name": "AAA",
+        "color": null,
+        "hoist": false,
+        "iconUrl": null,
+        "unicodeEmoji": null,
+        "position": 2,
+        "permissions": "0",
+        "managed": false,
+        "mentionable": false,
+        "isEveryone": false,
+        "createdAt": "2026-07-08T06:52:30.683Z",
+        "updatedAt": "2026-07-08T06:52:30.683Z"
+    }
+}
 ```
 
 ---
