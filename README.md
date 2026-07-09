@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計349件 |
+| エンドポイント | 計24カテゴリー / 計351件 |
 | Socket.IO イベント | 計7カテゴリー / 計59件 |
 
 ---
@@ -2484,6 +2484,21 @@ Response 201:
         "overwrites": []
     }
 }
+```
+
+#### チャンネルの削除
+
+```
+DELETE /channels/{id}
+```
+
+#### チャンネルの更新
+
+```
+PATCH /channels/{id}
+
+Content-Type: application/json
+Body: { "name": '...' }
 ```
 
 ### メッセージ
