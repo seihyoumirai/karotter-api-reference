@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計348件 |
+| エンドポイント | 計24カテゴリー / 計349件 |
 | Socket.IO イベント | 計7カテゴリー / 計59件 |
 
 ---
@@ -2494,6 +2494,15 @@ Response 201:
 GET   /channels/{id}/messages
 
 Response 200: {"messages":[],"pagination":{"page":1,"limit":80,"total":0,"pages":0}}
+```
+
+#### メッセージを送信
+
+```
+POST  /channels/{id}/messages
+
+Content-Type: application/json
+Body: { "content": '...' }
 ```
 
 ### 招待
