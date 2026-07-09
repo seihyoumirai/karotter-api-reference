@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計346件 |
+| エンドポイント | 計24カテゴリー / 計348件 |
 | Socket.IO イベント | 計7カテゴリー / 計59件 |
 
 ---
@@ -2107,6 +2107,15 @@ Body: {"name":"..."}
 DELETE /guilds/{id}
 ```
 
+#### サーバーの更新
+
+```
+PATCH /guilds/{id}
+
+Content-Type: application/json
+Body: { "name": '...' }
+```
+
 ### 基本情報取得
 
 #### サーバーの情報取得
@@ -2325,7 +2334,6 @@ Response 200:
 }
 ```
 
-
 ### チャンネル
 
 #### サーバーのチャンネル取得
@@ -2448,14 +2456,6 @@ Response 200:
 }
 ```
 
-#### チャンネルのメッセージを取得
-
-```
-GET   /channels/{id}/messages
-
-Response 200: {"messages":[],"pagination":{"page":1,"limit":80,"total":0,"pages":0}}
-```
-
 #### チャンネルの作成
 
 ```
@@ -2484,6 +2484,16 @@ Response 201:
         "overwrites": []
     }
 }
+```
+
+### メッセージ
+
+#### チャンネルのメッセージを取得
+
+```
+GET   /channels/{id}/messages
+
+Response 200: {"messages":[],"pagination":{"page":1,"limit":80,"total":0,"pages":0}}
 ```
 
 ### 招待
@@ -2597,6 +2607,15 @@ Response 201:
 
 ```
 DELETE /guilds/{guildId}/roles/{roleId}
+```
+
+#### ロールの更新
+
+```
+PATCH /guilds/{guildId}/roles/{roleId}
+
+Content-Type: application/json
+Body: { "name": '...' }
 ```
 
 ---
