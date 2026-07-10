@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計351件 |
+| エンドポイント | 計24カテゴリー / 計353件 |
 | Socket.IO イベント | 計7カテゴリー / 計59件 |
 
 ---
@@ -484,6 +484,16 @@ POST  /auth/2fa/enable           → 2FAの有効化
   Response: { "message": "2段階認証が有効になりました", "backupCodes": [ ... ] }
 POST  /auth/2fa/disable          → 2FAの無効化
   Body: {password: "..."}
+```
+
+### 規約クイズ
+
+```
+GET   /auth/legal-quiz
+  Response: { "token": "...", "expiresInSeconds": 900, "requiredCorrectAnswers": 10, "questions": [ ... ] }
+POST  /auth/legal-quiz/grade
+  Body: { "legalQuizToken": "..." }
+  Response: { "passed": true, "correctCount": 10, "requiredCorrectAnswers": 10, "questions": [ ....] }
 ```
 
 ---
