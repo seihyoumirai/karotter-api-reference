@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計353件 |
+| エンドポイント | 計24カテゴリー / 計354件 |
 | Socket.IO イベント | 計7カテゴリー / 計59件 |
 
 ---
@@ -1615,22 +1615,23 @@ PATCH  /radio/{id}/participants/{userId}/role            → ロール変更
 PATCH  /radio/{id}/participants/{userId}/mute            → ミュート
 POST   /radio/{id}/participants/{userId}/invite-speaker  → スピーカー招待
 DELETE /radio/{id}/participants/{userId}/invite-speaker  → スピーカー招待取消
-POST   /radio/{id}/accept-speaker-invite                → スピーカー招待承諾
-POST   /radio/{id}/request-speaker                      → スピーカーリクエスト
+POST   /radio/{id}/accept-speaker-invite                 → スピーカー招待承諾
+POST   /radio/{id}/request-speaker                       → スピーカーリクエスト
 ```
 
 ### ラジオ参加 / 退出 / 終了
 
 ```
-POST /radio/{id}/join
-POST /radio/{id}/leave
-POST /radio/{id}/end
+POST  /radio/{id}/join
+POST  /radio/{id}/leave
+POST  /radio/{id}/end
 ```
 
 ### その他
 
 ```
-GET /radio/ice-servers
+GET   //radio/${id}/realtime-token
+GET   /radio/ice-servers
 ```
 
 ---
