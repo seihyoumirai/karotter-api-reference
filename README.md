@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計354件 |
+| エンドポイント | 計24カテゴリー / 計356件 |
 | Socket.IO イベント | 計7カテゴリー / 計59件 |
 
 ---
@@ -2651,6 +2651,18 @@ PATCH /guilds/{guildId}/roles/{roleId}
 
 Content-Type: application/json
 Body: { "name": '...' }
+```
+
+#### ロールの付与
+
+```
+PUT   /guilds/{guildId}/members/{userId}/roles/{roleId}
+```
+
+#### ロールの剥奪
+
+```
+DELETE /guilds/{guildId}/members/{userId}/roles/{roleId}
 ```
 
 ---
