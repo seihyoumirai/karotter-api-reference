@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計357件 |
+| エンドポイント | 計24カテゴリー / 計358件 |
 | Socket.IO イベント | 計7カテゴリー / 計59件 |
 
 ---
@@ -2346,6 +2346,18 @@ Response 200:
 ```
 
 ### モデレーション
+
+#### ニックネーム設定
+
+```
+PATCh /guilds/{guildId}/members/{userId}
+
+Content-Type: application/json
+Body: { "nick": "..." }
+
+// ニックネームを消す場合
+// Body: { "nick": null }
+```
 
 #### キック
 
