@@ -85,7 +85,7 @@ Karotterの非公式APIリファレンスです。
 | 形態 | 内容 |
 |-----|-----|
 | エンドポイント | 計24カテゴリー / 計359件 |
-| Socket.IO イベント | 計7カテゴリー / 計59件 |
+| Socket.IO イベント | 計7カテゴリー / 計62件 |
 
 ---
 
@@ -2359,7 +2359,7 @@ Body: { "nick": "..." }
 // Body: { "nick": null }
 ```
 
-#### キック
+#### キック (サーバー脱退兼用)
 
 ```
 DELETE /guilds/{guildId}/members/{userId}
@@ -3969,8 +3969,12 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `channel:created` | S→C | チャンネル作成 |
 | `channel:updated` | S→C | チャンネル更新 |
 | `channel:deleted` | S→C | チャンネル削除 |
+| `guild:forum-post-create` | S→C | フォーラム投稿作成 |
+| `guild:forum-post-update` | S→C | フォーラム投稿更新 |
+| `guild:forum-post-delete` | S→C | フォーラム投稿削除 |
 | `guild:member-joined` | S→C | メンバー参加 |
 | `guild:member-removed` | S→C | メンバー退出 |
+
 
 
 ### その他
