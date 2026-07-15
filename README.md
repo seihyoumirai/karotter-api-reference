@@ -84,8 +84,8 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計362件 |
-| Socket.IO イベント | 計7カテゴリー / 計62件 |
+| エンドポイント | 計24カテゴリー / 計364件 |
+| Socket.IO イベント | 計7カテゴリー / 計63件 |
 
 ---
 
@@ -2633,6 +2633,14 @@ GET     /guilds/${id}/messages/search
 
 ### 招待
 
+#### 招待一覧
+
+```
+GET    /guilds/{id}/invites
+
+Response 200: { "invites": [ ... ] }
+```
+
 #### 招待を作成
 
 ```
@@ -4046,6 +4054,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `guild:forum-post-delete` | S→C | フォーラム投稿削除 |
 | `guild:member-joined` | S→C | メンバー参加 |
 | `guild:member-removed` | S→C | メンバー退出 |
+| `guild:invites-updated` | S→C | 招待情報更新 |
 
 
 
