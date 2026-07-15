@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計368件 |
+| エンドポイント | 計24カテゴリー / 計369件 |
 | Socket.IO イベント | 計7カテゴリー / 計63件 |
 
 ---
@@ -2561,10 +2561,23 @@ DELETE /channels/{id}
 #### チャンネルの更新
 
 ```
-PUT    /channels/${channelId}/permissions/{type}/${perm}
+PATCH  /channels/{id}
+
+Content-Type: application/json
+Body: { "name": '...' }
 ```
 
 #### 権限を更新
+
+```
+PUT    /channels/${channelId}/permissions/{type}/${perm}
+```
+
+#### 順番の変更
+
+```
+PUT    /guilds/{guildId}/channels/reorder
+```
 
 ### フォーラム
 
