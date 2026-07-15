@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計359件 |
+| エンドポイント | 計24カテゴリー / 計362件 |
 | Socket.IO イベント | 計7カテゴリー / 計62件 |
 
 ---
@@ -2106,7 +2106,7 @@ Content-Type: application/json
 #### サーバーの作成
 
 ```
-POST  /guilds
+POST   /guilds
 
 Content-Type: application/json
 Body: {"name":"..."}
@@ -2121,7 +2121,7 @@ DELETE /guilds/{id}
 #### サーバーの更新
 
 ```
-PATCH /guilds/{id}
+PATCH  /guilds/{id}
 
 Content-Type: application/json
 Body: {"name":"...","description":"...","iconUrl":"...","bannerUrl":"...","isCommunity":true}
@@ -2132,7 +2132,7 @@ Body: {"name":"...","description":"...","iconUrl":"...","bannerUrl":"...","isCom
 #### サーバーの情報取得
 
 ```
-GET   /guilds
+GET    /guilds
 
 Response 200:
 {
@@ -2259,7 +2259,7 @@ Response 200:
 #### サーバーの参加済みメンバー一覧取得
 
 ```
-GET   /guilds/{id}/members
+GET    /guilds/{id}/members
 
 Response 200:
 {
@@ -2350,7 +2350,7 @@ Response 200:
 #### ニックネーム設定
 
 ```
-PATCh /guilds/{guildId}/members/{userId}
+PATCH  /guilds/{guildId}/members/{userId}
 
 Content-Type: application/json
 Body: { "nick": "..." }
@@ -2378,7 +2378,7 @@ Response 200: { "auditLogs": [ ... ] }
 #### サーバーのチャンネル取得
 
 ```
-GET   /guilds/{id}/channels
+GET    /guilds/{id}/channels
 
 Response 200:
 {
@@ -2498,7 +2498,7 @@ Response 200:
 #### チャンネルの作成
 
 ```
-POST  /guilds/{id}/channels
+POST   /guilds/{id}/channels
 
 Content-Type: application/json
 Body: {"name":"Voice","type":"GUILD_VOICE"}
@@ -2534,10 +2534,76 @@ DELETE /channels/{id}
 #### チャンネルの更新
 
 ```
-PATCH /channels/{id}
+PATCH  /channels/{id}
 
 Content-Type: application/json
 Body: { "name": '...' }
+```
+
+### フォーラム
+
+#### 投稿一覧取得
+
+```
+GET    /channels/{id}/forum-posts?limit=50
+
+Response 200:
+{
+    "posts": [
+        {
+            "id": 103,
+            "guildId": 3,
+            "channelId": 16,
+            "authorId": 814,
+            "botApplicationId": null,
+            "replyToId": null,
+            "type": "DEFAULT",
+            "content": "荒らさないこと",
+            "forumTitle": "Rules",
+            "attachmentUrls": [],
+            "attachmentTypes": [],
+            "attachmentAlts": [],
+            "attachmentSpoilerFlags": [],
+            "attachmentR18Flags": [],
+            "pinned": false,
+            "tts": false,
+            "mentionEveryone": false,
+            "isDeleted": false,
+            "editedAt": null,
+            "createdAt": "2026-07-15T04:45:02.179Z",
+            "updatedAt": "2026-07-15T04:45:02.179Z",
+            "author": {
+                "id": 814,
+                "username": "ui",
+                "displayName": "みらいのさぶ@日常",
+                "avatarUrl": "/uploads/avatars/avatar_814_1781613309023.webp",
+                "avatarFrameId": null,
+                "officialMark": [],
+                "isBotAccount": false,
+                "isParodyAccount": false,
+                "adminForceBot": false,
+                "adminForceParody": false,
+                "onlineStatus": "OFFLINE",
+                "statusMessage": null
+            },
+            "reactions": [],
+            "replyTo": null
+        }
+    ],
+    "pagination": {
+        "page": 1,
+        "limit": 50,
+        "total": 1,
+        "pages": 1
+    }
+}
+```
+
+#### フォーラム投稿作成
+
+```
+POST   /channels/${id}/forum-posts
+Content-Type: application/json; charset=utf-8
 ```
 
 ### メッセージ
@@ -2545,7 +2611,7 @@ Body: { "name": '...' }
 #### チャンネルのメッセージを取得
 
 ```
-GET   /channels/{id}/messages
+GET    /channels/{id}/messages
 
 Response 200: {"messages":[],"pagination":{"page":1,"limit":80,"total":0,"pages":0}}
 ```
@@ -2553,10 +2619,16 @@ Response 200: {"messages":[],"pagination":{"page":1,"limit":80,"total":0,"pages"
 #### メッセージを送信
 
 ```
-POST  /channels/{id}/messages
+POST   /channels/{id}/messages
 
 Content-Type: application/json
 Body: { "content": '...' }
+```
+
+#### メッセージを検索
+
+```
+GET     /guilds/${id}/messages/search
 ```
 
 ### 招待
@@ -2564,7 +2636,7 @@ Body: { "content": '...' }
 #### 招待を作成
 
 ```
-POST  /guilds/{id}/invites
+POST   /guilds/{id}/invites
 
 Response 201:
 {
@@ -2588,7 +2660,7 @@ Response 201:
 #### 招待への参加
 
 ```
-POST  /invites/{code}
+POST   /invites/{code}
 ```
 
 ### ロール
@@ -2596,7 +2668,7 @@ POST  /invites/{code}
 #### ロール一覧取得
 
 ```
-GET   /guilds/{id}/roles
+GET    /guilds/{id}/roles
 
 Response 200:
 {
@@ -2640,7 +2712,7 @@ Response 200:
 #### ロールを作成
 
 ```
-POST  /guilds/{id}/roles
+POST   /guilds/{id}/roles
 
 Content-Type: application/json
 Body: {"name":"AAA","permissions":"0"}
@@ -2675,7 +2747,7 @@ DELETE /guilds/{guildId}/roles/{roleId}
 #### ロールの更新
 
 ```
-PATCH /guilds/{guildId}/roles/{roleId}
+PATCH  /guilds/{guildId}/roles/{roleId}
 
 Content-Type: application/json
 Body: { "name": '...' }
@@ -2684,7 +2756,7 @@ Body: { "name": '...' }
 #### ロールの付与
 
 ```
-PUT   /guilds/{guildId}/members/{userId}/roles/{roleId}
+PUT    /guilds/{guildId}/members/{userId}/roles/{roleId}
 ```
 
 #### ロールの剥奪
