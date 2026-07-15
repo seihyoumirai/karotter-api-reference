@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計358件 |
+| エンドポイント | 計24カテゴリー / 計359件 |
 | Socket.IO イベント | 計7カテゴリー / 計59件 |
 
 ---
@@ -2124,7 +2124,7 @@ DELETE /guilds/{id}
 PATCH /guilds/{id}
 
 Content-Type: application/json
-Body: { "name": '...' }
+Body: {"name":"...","description":"...","iconUrl":"...","bannerUrl":"...","isCommunity":true}
 ```
 
 ### 基本情報取得
@@ -2363,6 +2363,14 @@ Body: { "nick": "..." }
 
 ```
 DELETE /guilds/{guildId}/members/{userId}
+```
+
+#### 監査ログ
+
+```
+GWT    /guilds/{id}/audit-logs?limit=100
+
+Response 200: { "auditLogs": [ ... ] }
 ```
 
 ### チャンネル
