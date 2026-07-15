@@ -84,7 +84,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計364件 |
+| エンドポイント | 計24カテゴリー / 計368件 |
 | Socket.IO イベント | 計7カテゴリー / 計63件 |
 
 ---
@@ -2127,6 +2127,12 @@ Content-Type: application/json
 Body: {"name":"...","description":"...","iconUrl":"...","bannerUrl":"...","isCommunity":true}
 ```
 
+#### 所有権の譲渡
+
+```
+POST   /guilds/{guildId}/members/{userId}/transfer-ownership
+```
+
 ### 基本情報取得
 
 #### サーバーの情報取得
@@ -2359,10 +2365,31 @@ Body: { "nick": "..." }
 // Body: { "nick": null }
 ```
 
+#### タイムアウト
+
+```
+PATCH  /guilds/{guildId}/members/{userId}
+
+Content-Type: application/json
+Body: { "communicationDisabledUntil": ... }
+
+// タイムアウトを解除する場合
+// Body: { "communicationDisabledUntil": null }
+```
+
 #### キック (サーバー脱退兼用)
 
 ```
 DELETE /guilds/{guildId}/members/{userId}
+```
+
+#### BAN
+
+```
+POST   /guilds/{guildId}/bans/{userId}
+
+Content-Type: application/json
+Body: { "reason": "..." }
 ```
 
 #### 監査ログ
@@ -2534,11 +2561,10 @@ DELETE /channels/{id}
 #### チャンネルの更新
 
 ```
-PATCH  /channels/{id}
-
-Content-Type: application/json
-Body: { "name": '...' }
+PUT    /channels/${channelId}/permissions/{type}/${perm}
 ```
+
+#### 権限を更新
 
 ### フォーラム
 
@@ -2663,6 +2689,12 @@ Response 201:
         "createdAt": "2026-07-08T06:49:11.167Z"
     }
 }
+```
+
+#### 招待の削除
+
+```
+DELETE /guilds/{id}/invites/{code}
 ```
 
 #### 招待への参加
