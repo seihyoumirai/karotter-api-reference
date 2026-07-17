@@ -4129,24 +4129,28 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 これらは管理者への問い合わせを行い､管理者に付与されないと入手できない。
 
-| 画像 | 名前 | 入手方法 |
-|-----|-----|--------|
-| <img src="/badges/badge_yellow.PNG" width="32" height="32" > | 認証済み団体マーク | 団体からの申請があった場合に運営が管理者APIを通じて付与する |
-| <img src="/badges/badge_purple.PNG" width="32" height="32" > | 運営マーク | Karotterの運営者・開発者に付与される |
-| <img src="/badges/badge_blue.PNG" width="32" height="32" > | 本人マーク | ある程度の影響力のある者などからの申請があった場合に運営が管理者APIを通じて付与する |
-| <img src="/badges/badge_gray.PNG" width="32" height="32" > | 政府関係者マーク | 政府関係者からの申請があった場合に運営が管理者APIを通じて付与する |
+| 画像 | ID | 名前 | 入手方法 |
+|-----|-----|-----|--------|
+| <img src="/badges/badge_yellow.PNG" width="32" height="32" > | `YELLOW` | 認証済み団体マーク | 団体からの申請があった場合に運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_purple.PNG" width="32" height="32" > | `PURPLE` | 運営マーク | Karotterの運営者・開発者に付与される |
+| <img src="/badges/badge_blue.PNG" width="32" height="32" > | `BLUE` | 本人マーク | ある程度の影響力のある者などに運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_gray.PNG" width="32" height="32" > | `GRAY` | 政府関係者マーク | 政府関係者からの申請があった場合に運営が管理者APIを通じて付与する |
 
 ### 課金要素バッジ
 
 これらは課金でのみ入手することができる。
 
-| 画像 | 名前 | 入手方法 |
-|-----|-----|--------|
-| <img src="/badges/badge_black.PNG" width="32" height="32" > | 認証済みマーク | 「Karotter Pro」を購入する |
-| <img src="/badges/badge_red.PNG" width="32" height="32" > | 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
-| <img src="/badges/badge_green.PNG" width="32" height="32" > | 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
-| <img src="/badges/badge_orange.PNG" width="32" height="32" > | 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
-| <img src="/badges/badge_pink.PNG" width="32" height="32" > | 認証済みマーク | 「Karotter Pro」を購入する |
+| 画像 | ID | 名前 | 入手方法 |
+|-----|-----|-----|--------|
+| <img src="/badges/badge_black.PNG" width="32" height="32" > | `BLACK` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_red.PNG" width="32" height="32" > | `RED` | 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_green.PNG" width="32" height="32" > | `GREEN` | 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_orange.PNG" width="32" height="32" > | `ORANGE` | 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_pink.PNG" width="32" height="32" > | `PINK` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_coral.PNG" width="32" height="32" > | `CORAL` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_magenta.PNG" width="32" height="32" > | `MAGENTA` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_lime.PNG" width="32" height="32" > | `LIME` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_brown.PNG" width="32" height="32" > | `BROWN` | 認証済みマーク | 「Karotter Pro」を購入する |
 
 ### バグバッジ
 
@@ -4170,85 +4174,76 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ---
 
-#### バッジの取得ガイド
-
-1. [お問い合わせページ](https://karotter.com/contact)を開く。
-2. 「一般のお問い合わせ」を選択します。
-3. 件名には、「本人バッジの付与に関するお問い合わせ」や「団体バッジの申請」などの簡易的な内容を書く。
-4. お問い合わせ内容になぜ認証バッジをつけてもらうべきかの理由を書く。
-   - 内容の例）```私は、○○というチームに所属しており、偽物のアカウントと識別・抑制するために本人バッジの付与をお願いいたします。```など。
-   - アドバイス）有名な活動者や認知度が高い会社のお偉いさんなどの場合は通りやすい。生半可だと通りにくい。
-5. 承認されれば付与される。メール等は来ない。
-
----
-
 ## Pro絵文字
 
 ---
 
-| 画像 | 文字 |
-|-----|-----|
-| <img src="/pro-emoji/ai.png" > | 愛 |
-| <img src="/pro-emoji/arara.png" > | あらら |
-| <img src="/pro-emoji/arigato.png" > | ありがとう |
-| <img src="/pro-emoji/bimi.png" > | 美味 |
-| <img src="/pro-emoji/bimyou.png" > | 微妙 |
-| <img src="/pro-emoji/daijoubu.png" > | 大丈夫？ |
-| <img src="/pro-emoji/dakara.png" > | だから |
-| <img src="/pro-emoji/dame.png" > | だめ |
-| <img src="/pro-emoji/desu.png" > | です |
-| <img src="/pro-emoji/e.png" > | え？ |
-| <img src="/pro-emoji/ee.png" > | えぇ… |
-| <img src="/pro-emoji/ganbare.png" > | がんばれ |
-| <img src="/pro-emoji/gekiatsu.png" > | 激アツ |
-| <img src="/pro-emoji/gomen.png" > | ごめんね |
-| <img src="/pro-emoji/hai.png" > | はい |
-| <img src="/pro-emoji/hiku.png" > | 引 |
-| <img src="/pro-emoji/hosii.png" > | ほしい |
-| <img src="/pro-emoji/igyo.png" > | 偉業 |
-| <img src="/pro-emoji/iie.png" > | いいえ |
-| <img src="/pro-emoji/iiyo.png" > | いいよ |
-| <img src="/pro-emoji/kanasii.png" > | 悲しい |
-| <img src="/pro-emoji/kandou.png" > | 感動 |
-| <img src="/pro-emoji/kane.png" > | 金 |
-| <img src="/pro-emoji/kansya.png" > | 感謝 |
-| <img src="/pro-emoji/karon.png" > | かろんさん |
-| <img src="/pro-emoji/karotter.png" > | Karotter |
-| <img src="/pro-emoji/kawaii.png" > | かわいい |
-| <img src="/pro-emoji/kirei.png" > | 綺麗 |
-| <img src="/pro-emoji/kore.png" > | これ |
-| <img src="/pro-emoji/kowasugiru.png" > | 怖すぎる |
-| <img src="/pro-emoji/kurusii.png" > | 苦しい |
-| <img src="/pro-emoji/kusa.png" > | 草 |
-| <img src="/pro-emoji/mazi.png" > | マジ？ |
-| <img src="/pro-emoji/mazide.png" > | マジで |
-| <img src="/pro-emoji/medetai.png" > | めでたい |
-| <img src="/pro-emoji/nani.png" > | なに？ |
-| <img src="/pro-emoji/ohayo.png" > | おはよ |
-| <img src="/pro-emoji/otsukaresama.png" > | おつかれ様 |
-| <img src="/pro-emoji/owari.png" > | 終 |
-| <img src="/pro-emoji/owatta.png" > | おわった |
-| <img src="/pro-emoji/sagidesu.png" > | 詐欺です |
-| <img src="/pro-emoji/saikoukaryoku.png" > | 最高火力 |
-| <img src="/pro-emoji/saikousugiru.png" > | 最高すぎる |
-| <img src="/pro-emoji/sayonara.png" > | さよなら |
-| <img src="/pro-emoji/sinpaidayo.png" > | 心配だよ |
-| <img src="/pro-emoji/sorena.png" > | それな |
-| <img src="/pro-emoji/sugoi.png" > | すごい |
-| <img src="/pro-emoji/suki.png" > | すき |
-| <img src="/pro-emoji/syogyomujo.png" > | 諸行無常 |
-| <img src="/pro-emoji/tasukaru.png" > | 助かる |
-| <img src="/pro-emoji/tasukete.png" > | たすけて |
-| <img src="/pro-emoji/tensai.png" > | 天才！ |
-| <img src="/pro-emoji/this.png" > | これは |
-| <img src="/pro-emoji/tigaimasu.png" > | 違います |
-| <img src="/pro-emoji/umai.png" > | うまい |
-| <img src="/pro-emoji/wakaru.png" > | わかる |
-| <img src="/pro-emoji/watashihakami.png" > | 私は神 |
-| <img src="/pro-emoji/yamete.png" > | やめて |
-| <img src="/pro-emoji/yoroshiku.png" > | よろしく |
-| <img src="/pro-emoji/yurusanai.png" > | 許さない |
-| <img src="/pro-emoji/yurushite.png" > | ゆるして |
+| 画像 | ID | 文字 |
+|-----|-----|-----|
+| <img src="/pro-emoji/ai.png" > | `pro:` | 愛 |
+| <img src="/pro-emoji/arara.png" > | `pro:` | あらら |
+| <img src="/pro-emoji/arigato.png" > | `pro:` | ありがとう |
+| <img src="/pro-emoji/bananala.png" > | `pro:` | ばななぁ |
+| <img src="/pro-emoji/bimi.png" > | `pro:` | 美味 |
+| <img src="/pro-emoji/bimyou.png" > | `pro:` | 微妙 |
+| <img src="/pro-emoji/critical.png" > | `pro:` | クリティカル |
+| <img src="/pro-emoji/daijoubu.png" > | `pro:` | 大丈夫？ |
+| <img src="/pro-emoji/daisuki.png" > | `pro:` | だいすき |
+| <img src="/pro-emoji/dakara.png" > | `pro:` | だから |
+| <img src="/pro-emoji/dame.png" > | `pro:` | だめ |
+| <img src="/pro-emoji/desu.png" > | `pro:` | です |
+| <img src="/pro-emoji/e.png" > | `pro:` | え？ |
+| <img src="/pro-emoji/ee.png" > | `pro:` | えぇ… |
+| <img src="/pro-emoji/ganbare.png" > | `pro:` | がんばれ |
+| <img src="/pro-emoji/gekiatsu.png" > | `pro:` | 激アツ |
+| <img src="/pro-emoji/gomen.png" > | `pro:` | ごめんね |
+| <img src="/pro-emoji/hai.png" > | `pro:` | はい |
+| <img src="/pro-emoji/hiku.png" > | `pro:` | 引 |
+| <img src="/pro-emoji/hosii.png" > | `pro:` | ほしい |
+| <img src="/pro-emoji/igyo.png" > | `pro:` | 偉業 |
+| <img src="/pro-emoji/iie.png" > | `pro:` | いいえ |
+| <img src="/pro-emoji/iiyo.png" > | `pro:` | いいよ |
+| <img src="/pro-emoji/kanasii.png" > | `pro:` | 悲しい |
+| <img src="/pro-emoji/kandou.png" > | `pro:` | 感動 |
+| <img src="/pro-emoji/kane.png" > | `pro:` | 金 |
+| <img src="/pro-emoji/kansya.png" > | `pro:` | 感謝 |
+| <img src="/pro-emoji/karon.png" > | `pro:` | 疑問（かろん） |
+| <img src="/pro-emoji/karotter.png" > | `pro:` | Karotter |
+| <img src="/pro-emoji/kawaii.png" > | `pro:` | かわいい |
+| <img src="/pro-emoji/kirei.png" > | `pro:` | 綺麗 |
+| <img src="/pro-emoji/kore.png" > | `pro:` | これ |
+| <img src="/pro-emoji/kowasugiru.png" > | `pro:` | 怖すぎる |
+| <img src="/pro-emoji/kurusii.png" > | `pro:` | 苦しい |
+| <img src="/pro-emoji/kusa.png" > | `pro:` | 草 |
+| <img src="/pro-emoji/mazi.png" > | `pro:` | マジ？ |
+| <img src="/pro-emoji/mazide.png" > | `pro:` | マジで |
+| <img src="/pro-emoji/medetai.png" > | `pro:` | めでたい |
+| <img src="/pro-emoji/nani.png" > | `pro:` | なに？ |
+| <img src="/pro-emoji/ohayo.png" > | `pro:` | おはよ |
+| <img src="/pro-emoji/otsukaresama.png" > | `pro:` | おつかれ様 |
+| <img src="/pro-emoji/owari.png" > | `pro:` | 終 |
+| <img src="/pro-emoji/owatta.png" > | `pro:` | おわった |
+| <img src="/pro-emoji/sagidesu.png" > | `pro:` | 詐欺です |
+| <img src="/pro-emoji/saikoukaryoku.png" > | `pro:` | 最高火力 |
+| <img src="/pro-emoji/saikousugiru.png" > | `pro:` | 最高すぎる |
+| <img src="/pro-emoji/sayonara.png" > | `pro:` | さよなら |
+| <img src="/pro-emoji/sinpaidayo.png" > | `pro:` | 心配だよ |
+| <img src="/pro-emoji/sorena.png" > | `pro:` | それな |
+| <img src="/pro-emoji/sugoi.png" > | `pro:` | すごい |
+| <img src="/pro-emoji/suki.png" > | `pro:` | すき |
+| <img src="/pro-emoji/syogyomujo.png" > | `pro:` | 諸行無常 |
+| <img src="/pro-emoji/tasukaru.png" > | `pro:` | 助かる |
+| <img src="/pro-emoji/tasukete.png" > | `pro:` | たすけて |
+| <img src="/pro-emoji/tensai.png" > | `pro:` | 天才！ |
+| <img src="/pro-emoji/this.png" > | `pro:` | これは |
+| <img src="/pro-emoji/tigaimasu.png" > | `pro:` | 違います |
+| <img src="/pro-emoji/umai.png" > | `pro:` | うまい |
+| <img src="/pro-emoji/wakaru.png" > | `pro:` | わかる |
+| <img src="/pro-emoji/watashihakami.png" > | `pro:` | 私は神 |
+| <img src="/pro-emoji/yamete.png" > | `pro:` | やめて |
+| <img src="/pro-emoji/yoroshiku.png" > | `pro:` | よろしく |
+| <img src="/pro-emoji/yurusanai.png" > | `pro:` | 許さない |
+| <img src="/pro-emoji/yurushite.png" > | `pro:` | ゆるして |
 
 ---
 
