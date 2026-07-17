@@ -85,7 +85,7 @@ Karotterの非公式APIリファレンスです。
 | 形態 | 内容 |
 |-----|-----|
 | エンドポイント | 計24カテゴリー / 計369件 |
-| Socket.IO イベント | 計7カテゴリー / 計63件 |
+| Socket.IO イベント | 計7カテゴリー / 計68件 |
 
 ---
 
@@ -4064,6 +4064,11 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `radio:host-reconnected` | C→S | ホストが再接続 |
 | `radio:message` | C↔S | スペース内メッセージ |
 | `radio:reaction` | C↔S | スペース内リアクション |
+| `radio:sync-request` | C↔S | Sync Request |
+| `radio:participant-state` | C↔S | Participant State |
+| `radio:sync` | S→C | Sync |
+| `radio:presence-ping` | C→S | Ping |
+| `radio:presence-pong` | S→C | Pong |
 
 ### 絵チャ
 
