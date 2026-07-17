@@ -1,0 +1,4527 @@
+# Karotter API Reference
+
+Karotterの非公式APIリファレンスです。
+
+## 参考
+- [にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)
+- [公式APIリファレンス](https://karotter.com/api-docs)
+
+自力で調べたものが多くあるので間違えているものがあったら教えてください。
+
+---
+
+## 目次
+
+| タイトル | 説明 |
+|---------|------|
+| [Karotter API Reference](#karotter-api-reference) | Repositoryの簡単な説明 |
+| [目次](#目次) | 目次 |
+| [詳細](#詳細) | 詳細 |
+
+### 技術的な情報
+| タイトル | 説明 |
+|---------|------|
+| [Base Url](#base-url) | Base URLについて |
+| [共通ヘッダー](#共通ヘッダー) | 共通ヘッダーについて |
+| [認証方式](#認証方式) | 認証方式について |
+| [レート制限](#レート制限) | レート制限について |
+| [HTTPステータスコード](#httpステータスコード) | HTTPステータスコードについて |
+| [エラーレスポンス形式](#エラーレスポンス形式) | エラーレスポンス形式について |
+| [APIドメイン](#apiドメイン) | APIドメインについて |
+| [Cookie / LocalStorage](#cookie--localstorage) | CookieとLocalStorageの内容について |
+| [フロントエンドルート](#フロントエンドルート) | フロントエンドルートについて |
+| [メディア](#メディア) | メディアについて |
+| [クエリパラメータ](#クエリパラメータ) | クエリパラメータについて |
+| [Socket.IO (リアルタイム通信)](#socketio-リアルタイム通信) | Socket.IOについて |
+| [投稿レスポンス構造](#投稿レスポンス構造) | 投稿レスポンス構造について |
+| [通知グルーピング構造](#通知グルーピング構造) | 通知グルーピング構造について |
+| [技術スタック](#技術スタック) | 技術スタックについて |
+| [注意事項](#注意事項-1) | 注意事項 |
+
+### v1 エンドポイント
+| タイトル | 説明 |
+|---------|------|
+| [認証 (Auth) エンドポイント](#認証-auth-エンドポイント) | 認証エンドポイントについて |
+| [投稿 (Posts) エンドポイント](#投稿-posts-エンドポイント) | 投稿エンドポイントについて |
+| [ユーザー (Users) エンドポイント](#ユーザー-users-エンドポイント) | ユーザーエンドポイントについて |
+| [フォロー (Follow) エンドポイント](#フォロー-follow-エンドポイント) | フォローエンドポイントについて |
+| [通知 (Notifications) エンドポイント](#通知-notifications-エンドポイント) | 通知エンドポイントについて |
+| [ダイレクトメッセージ (DM) エンドポイント](#ダイレクトメッセージ-dm-エンドポイント) | DMエンドポイントについて |
+| [検索 (Search) エンドポイント](#検索-search-エンドポイント) | 検索エンドポイントについて |
+| [サークル (Circle) エンドポイント](#サークル) | サークルエンドポイントについて |
+| [リスト (List) エンドポイント](#リスト) | リストエンドポイントについて |
+| [ストーリー (Story) エンドポイント](#ストーリー) | ストーリーエンドポイントについて |
+| [リンクプレビュー (Link Preview) エンドポイント](#リンクプレビュー) | リンクプレビューエンドポイントについて |
+| [質問箱 (Question Box) エンドポイント](#質問箱) | 質問箱エンドポイントについて |
+| [絵チャ (Draw-chat) エンドポイント](#絵チャ-draw-chat-エンドポイント) | 絵チャエンドポイントについて |
+| [ラジオ / スペース エンドポイント](#ラジオ--スペース-エンドポイント) | ラジオ/スペースエンドポイントについて |
+| [掲示板 (Boards) エンドポイント](#掲示板-boards-エンドポイント) | 掲示板エンドポイントについて |
+| [ニュース (News) エンドポイント](#ニュース-news-エンドポイント) | ニュースエンドポイントについて |
+| [サブスクリプション (Subscriptions) エンドポイント](#サブスクリプション-subscriptions-エンドポイント) | サブスクリプションエンドポイントについて |
+| [サーバー (Guilds) エンドポイント](#サーバー-guilds-エンドポイント) | サーバーエンドポイントについて |
+| [管理パネル (Admin) エンドポイント](#管理パネル-admin-エンドポイント) | 管理パネルエンドポイントについて |
+| [Developer API エンドポイント](#developer-api-エンドポイント) | Developer API エンドポイントについて |
+| [OAuth API エンドポイント](#oauth-api-エンドポイント) | OAuth API エンドポイントについて |
+| [サーバーボット (Guild Bots) エンドポイント](#サーバーボット-guild-bots-エンドポイント) | サーバーボットエンドポイントについて |
+| [その他のエンドポイント](#その他のエンドポイント) | その他のエンドポイントについて |
+
+### v2 エンドポイント
+| タイトル | 説明 |
+|---------|------|
+| [フィード (Feed) エンドポイント](#フィード-feed-エンドポイント) | フィードエンドポイントについて |
+
+### その他
+| タイトル | 説明 |
+|---------|------|
+| [バッジ一覧](#バッジ一覧) | バッジについて |
+| [Pro絵文字](#pro絵文字) | Pro絵文字について |
+| [サブスクリプションプラン一覧](#サブスクリプションプラン一覧) | サブスクリプションプランについて |
+| [高度な検索](#高度な検索) | 高度な検索について |
+
+---
+
+## 詳細
+
+| 形態 | 内容 |
+|-----|-----|
+| エンドポイント | 計24カテゴリー / 計369件 |
+| Socket.IO イベント | 計7カテゴリー / 計68件 |
+
+---
+
+## Base URL
+
+| 形態 | Base URL |
+|------|----------|
+| 非公開 v1 | `https://api.karotter.com/api/` |
+| 非公開 v2 | `https://api.karotter.com/api/v2/` |
+| ボット向け | `https://api.karotter.com/api/developer` |
+| OAuth Client | `https://api.karotter.com/api/oauth` |
+
+> `https://karotter.com/api` でもアクセス可能（Cloudflare経由）
+
+---
+
+## 共通ヘッダー
+
+全リクエストに以下のヘッダーを付与する。
+
+| ヘッダー | 値 | 必須 | 備考 |
+|---------|-----|------|------|
+| `X-Client-Type` | `web`, `android`, `ios` | 推奨 | 多分なんでも行ける |
+| `X-Device-Id` | UUID v4 | 推奨 | セッション識別用、固定値でOK |
+| `X-CSRF-Token` | CSRFトークン | 書き込み系 | POST/PUT/DELETE で必要 |
+
+### 認証方式
+
+**1. APIキー認証**
+```
+Authorization: Bearer {apiKey}
+```
+- `/apikeys` エンドポイントで発行可能
+
+**2. Cookie認証**
+```
+Cookie: {ログイン時に返却されるCookie}
+```
+- ログインレスポンスの `Set-Cookie` をそのまま使用
+
+---
+
+## レート制限
+
+レスポンスヘッダー: `ratelimit-policy`, `ratelimit-limit`, `ratelimit-remaining`, `ratelimit-reset`
+
+| エンドポイント | 制限 |
+|--------------|------|
+| POST /auth/login | 5 req / 60s |
+| POST /follow/{id} | 5 req / 60s |
+| POST /contact | 5 req / 3600s |
+| POST /reports | 10 req / 900s |
+| PATCH /users/profile | 15 req / 60s |
+| POST /posts/{id}/like, /react, /bookmark, /rekarot | 30 req / 60s |
+| POST /posts | 50 req / 3600s |
+| その他全般 | 100 req / 60s |
+
+---
+
+## HTTPステータスコード
+
+| コード | 意味 |
+|-------|------|
+| 200 | 成功 |
+| 201 | 作成成功 (投稿、メッセージ等) |
+| 400 | バリデーションエラー |
+| 401 | 未認証 / トークン無効 |
+| 403 | 権限なし |
+| 404 | リソースが見つからない |
+| 409 | 競合 (重複操作等) |
+| 429 | レート制限超過 |
+| 500 | サーバー内部エラー |
+
+---
+
+## エラーレスポンス形式
+
+```json
+// バリデーション・ビジネスエラー
+{"error": "メッセージ", "status": 400}
+
+// 認証エラー
+{"error": "無効なトークンです"}
+
+// 権限エラー
+{"error": "このカロートを削除する権限がありません", "status": 403}
+
+// 管理者権限
+{"error": "認証が必要です", "status": 403}
+```
+
+---
+
+## APIドメイン
+
+| ドメイン | 状態 | HSTS |
+|---------|------|------|
+| `api.karotter.com` | Active (プライマリ) | max-age=0 (無効) |
+| `api.karotter.jp` | Active (ミラー) | max-age=31536000 |
+| `apikarotter.karon.jp` | Active (ミラー) | max-age=15552000 |
+| `api.karotter.net` | DNS解決不可 | - |
+
+- 3ドメインは同一バックエンド。トークンはクロスドメインで有効
+- Socket.IO も全ドメインで利用可能
+
+### CORS許可オリジン
+
+`karotter.com`, `karotter.jp`, `karotter.net`, `karotter.karon.jp`, `apikarotter.karon.jp`, `http://localhost:5173`
+
+---
+
+## Cookie / LocalStorage
+
+### Cookie
+| 名前 | 説明 |
+|------|------|
+| `karotter_at` | アクセストークン |
+| `karotter_rt` | リフレッシュトークン |
+| `karotter_csrf` | CSRFトークン |
+
+### LocalStorage
+| キー | 説明 |
+|------|------|
+| `karotter:accounts` | マルチアカウント一覧 |
+| `karotter:active-account-id` | アクティブアカウントID |
+| `deviceId` | デバイス識別子 |
+| `theme` | テーマ (light/dark) |
+| `locale` | 言語 (ja/en) |
+| `appearance-settings-v1` | 外観設定 (fontScale, uiScale等) |
+| `karotter-call-settings` | 通話設定 |
+| `karotter:post-drafts:${userId}` | 下書き |
+| `push-notifications-enabled` | プッシュ通知ON/OFF |
+| `karotter:home-recommended-feed-mode` | ホームのフィードモード |
+| `karotter:home-tab` | ホームのタブ |
+| `karotter-search-history-v1:[activeId]` | 検索履歴 |
+| `karotter:post-drafts` | カロートの下書き |
+| `karotter:notifications-tab` | 通知のタブ |
+| `karotter:legacy-sw-cleanup:v1` | ？？？ |
+
+---
+
+## フロントエンドルート
+
+### メイン
+| パス | ページ |
+|------|--------|
+| `/` | ホーム/タイムライン |
+| `/login` | ログイン |
+| `/register` | 登録 |
+| `/search` | 検索 |
+| `/notifications` | 通知 |
+| `/notifications/grouped-posts` | グループ化通知 |
+| `/follow-requests` | フォローリクエスト |
+| `/bookmarks` | ブックマーク |
+| `/settings` | 設定 |
+| `/profile/:username` | ユーザープロフィール |
+| `/posts/:id` | 投稿詳細 |
+| `/:username/status/:id` | 投稿パーマリンク |
+| `/dm` | DMグループ一覧 |
+| `/dm/:groupId` | DMチャット |
+| `/social` | サークル/リスト |
+| `/draw-chat` | 絵チャロビー |
+| `/draw-chat/rooms/:roomId` | 絵チャルーム |
+| `/spaces` | スペース一覧 |
+| `/spaces/:spaceId` | スペース詳細 |
+| `/boards` | 掲示板一覧 |
+| `/news` | ニュース一覧 |
+| `/report` | 通報 |
+| `/contact` | お問い合わせ |
+| `/admin` | 管理者パネル |
+
+### 法的ページ
+`/terms`, `/privacy`, `/cookie-policy`, `/ai-policy`, `/enforcement-policy`, `/child-safety-policy`, `/api-bot-terms`, `/creator-monetization-terms`, `/repeat-infringer-policy`, `/account-memorial-inheritance-policy`, `/business-transfer-data-succession-policy`
+
+---
+
+## メディア
+
+### メディアURLの構造
+```
+画像: /uploads/posts/{uuid}.{ext}
+DM添付: /uploads/dm/{uuid}.{ext}
+アバター: /uploads/avatars/avatar_{userId}_{timestamp}.webp
+ヘッダー: /uploads/headers/header_{userId}_{timestamp}.webp
+
+フルURL: https://karotter.com{path}
+```
+
+### メディアフィールド (投稿)
+```json
+{
+  "mediaUrls": ["/uploads/posts/uuid.png"],
+  "mediaTypes": ["image"],
+  "mediaAlts": [""],
+  "mediaSpoilerFlags": [false],
+  "mediaR18Flags": [false]
+}
+```
+- `mediaTypes`: `"image"` / `"video"`
+
+### メディアフィールド (DM)
+```json
+{
+  "attachmentUrls": ["/uploads/dm/uuid.png"],
+  "attachmentTypes": ["image/png"],
+  "attachmentAlts": [""],
+  "attachmentSpoilerFlags": [false],
+  "attachmentR18Flags": [false]
+}
+```
+- フィールド名が投稿とは異なる (`media*` vs `attachment*`)
+- `attachmentTypes` は MIME type (`image/png` 等)
+
+---
+
+## クエリパラメータ
+
+多くのエンドポイントで以下のパラメータが使用可能。
+
+### ページネーション
+
+**Offset方式** (従来):
+```
+?page=1&limit=15
+```
+
+**Cursor方式** (推奨、無限スクロール用):
+```
+?limit=12&cursor={lastId}
+```
+1. 初回は `cursor` なしでリクエスト → 最新N件を取得
+2. レスポンスの最後の投稿IDを `cursor` に指定 → それ以前のデータを取得
+3. データの重複なく過去を遡れる
+
+---
+
+## 認証 (Auth) エンドポイント
+
+---
+
+### ログイン
+
+```
+POST /auth/login
+Content-Type: application/json
+
+{
+  "identifier": "username",
+  "password": "password",
+  "gender": "OTHER"
+}
+
+Response 200:
+{
+  "message": "ログインに成功しました",
+  "accessToken": "eyJ...",
+  "sessionId": "uuid",
+  "deviceId": "uuid",
+  "user": {
+    "id": 15459,
+    "username": "claude",
+    "displayName": "claude",
+    "email": "",
+    "avatarUrl": "/uploads/avatars/...",
+    "emailVerified": false
+  }
+}
+```
+- `accessToken`: JWT (HS256), 30分有効
+- Set-Cookie: `karotter_at` (HttpOnly, Secure, SameSite=Strict, 1h), `karotter_rt` (HttpOnly, Secure, 30d), `karotter_csrf` (Secure, 30d)
+- 発行上限あり
+- レート制限: 5 req / 60s
+
+### CSRFトークン
+
+```
+GET    /auth/csrf-token     → トークン取得
+DELETE /auth/csrf-token     → トークン無効化
+
+Response 200:
+{
+  "csrfToken": "f7eb0b1a-..."
+}
+```
+- 書き込み系リクエスト (POST/PUT/DELETE) に `X-CSRF-Token: {csrfToken}` が必要
+
+### トークンリフレッシュ
+
+```
+POST /auth/refresh-token
+Cookie: karotter_rt={refreshToken}
+```
+
+### ログアウト
+
+```
+POST /auth/logout
+
+Response 200: {"message": "ログアウトしました"}
+```
+- 3つのCookieをクリア (karotter_at, karotter_rt, karotter_csrf)
+
+### 自分の情報取得
+
+```
+GET /auth/me
+
+Response 200:
+{
+  "id": 15459,
+  "username": "claude",
+  "displayName": "claude",
+  "avatarUrl": "/uploads/avatars/...",
+  "bio": "...",
+  "followersCount": 167,
+  "followingCount": 172,
+  "postsCount": 1131,
+  ...
+}
+```
+
+### アカウント登録
+
+```
+POST /auth/register
+Content-Type: application/json
+
+{
+  "username": "...",
+  "email": "...",
+  "password": "...",
+  "gender": "OTHER"
+}
+```
+- パスワード: 8文字以上
+
+### パスワードリセット
+
+```
+POST /auth/forgot-password
+  Body: {"email": "user@example.com"}
+  Response 200: {"message": "パスワードリセットメールを送信しました"}
+  ※ 存在しないメールでも200を返す（ユーザー列挙防止）
+
+POST /auth/reset-password
+  Body: {"token": "reset-token", "password": "newPassword"}
+  Error: 400 {"error": "無効なトークン形式です"}
+```
+
+### メール認証
+
+```
+POST /auth/verify-email
+  Body: {"token": "verify-token"}
+  Error: 400 {"error": "無効または期限切れのトークンです。設定画面から確認メールを再送信してください。"}
+
+POST /auth/me/email/resend
+  Error: 400 {"error": "先にメールアドレスを登録してください"}
+
+POST /auth/resend-verification
+  Body: {"email": "user@example.com"}
+  Error: 400 {"error": "有効なメールアドレスを入力してください"}
+
+POST /auth/me/email
+  Body: {"email": "new@example.com"}
+  Response 200: {"message": "確認メールを送信しました", "email": "new@example.com", "cooldownSeconds": 600}
+```
+
+### セッション管理
+
+```
+GET  /auth/sessions                  → 全セッション一覧
+  Response: セッション配列。各セッション: id, deviceId, clientType, deviceName, userAgent, createdAt, lastUsedAt, expiresAt, isCurrent
+DELETE /auth/sessions/:id            → 特定セッション削除
+DELETE /auth/sessions/others         → 他の全セッションを削除
+  Response 200: {"message": "他のセッションを失効しました", "revokedCount": 5}
+DELETE /auth/sessions/all            → 全セッション削除
+POST /auth/switch-session            → セッション切り替え (マルチアカウント用)
+  Body: {"sessionId": "uuid"} または {"userId": 12345}
+  Response 200: {"accessToken": "jwt...", "sessionId": "uuid", "user": {...}}
+  ※ 新しいアクセストークンとセッションIDが発行される
+  ※ 空Body: 400 {"error": "セッションIDまたはユーザーIDが必要です"}
+  ※ 無効なセッション: 401 {"error": "無効なセッションです"}
+POST /auth/session-unread-snapshots  → 未読スナップショット
+  Body: {"deviceId": "uuid"}  ※ deviceId必須
+  Response 200: {"snapshots": [...]}
+```
+
+### 2FA
+
+```
+GET   /auth/2fa/setup            → 2FAのセットアップ
+  Response: { "secret": "...", "qrCodeDataURL": "data:image/png;base64,..." }
+POST  /auth/2fa/enable           → 2FAの有効化
+  Body: {code: "831637"}
+  Response: { "message": "2段階認証が有効になりました", "backupCodes": [ ... ] }
+POST  /auth/2fa/disable          → 2FAの無効化
+  Body: {password: "..."}
+```
+
+### 規約クイズ
+
+```
+GET   /auth/legal-quiz
+  Response: { "token": "...", "expiresInSeconds": 900, "requiredCorrectAnswers": 10, "questions": [ ... ] }
+POST  /auth/legal-quiz/grade
+  Body: { "legalQuizToken": "..." }
+  Response: { "passed": true, "correctCount": 10, "requiredCorrectAnswers": 10, "questions": [ ....] }
+```
+
+---
+
+## 投稿 (Posts) エンドポイント
+
+---
+
+### カロート投稿
+
+```
+POST /posts
+Content-Type: multipart/form-data
+Authorization: Bearer {token}
+X-CSRF-Token: {csrf}
+
+Fields:
+  content          : string (テキスト)
+  questionId       : string (質問箱限定)
+  media            : File[] (画像/動画ファイル、同名で複数append可)
+  mediaAlts        : string (JSON配列 e.g. ["alt text", ""])
+  mediaSpoilerFlags: string (JSON配列 e.g. [false, false])
+  mediaR18Flags    : string (JSON配列 e.g. [false, false])
+  isAiGenerated    : string ("true" / "false")
+  isPromotional    : string ("true" / "false")
+  isR18            : string ("true" / "false")
+  hideFromMinors   : string ("true" / "false")
+  visibility       : string ("PUBLIC" / "FOLLOWERS" / "CIRCLE" / "PRIVATE")
+  replyRestriction : string ("EVERYONE" / "FOLLOWERS" / "CIRCLE" / "MENTIONS")
+  parentId         : string (返信先の投稿ID)
+  quotedPostId     : string (引用元の投稿ID)
+  pollOptions      : string (JSON配列 e.g. ["選択肢1", "選択肢2"])
+  pollDurationHours: string (投票期間)
+  scheduledFor     : string (ISO 8601, 予約投稿日時)
+  viewerCircleId   : string (サークル限定時)
+  replyCircleId    : string (返信制限サークル)
+  excludedMentions : string (JSON配列, メンション除外ユーザーID)
+
+Response 201:
+{
+  "message": "カロートしました",
+  "post": {
+    "id": 12345,
+    "content": "テキスト",
+    "authorId": 15459,
+    "parentId": null,
+    "quotedPostId": null,
+    "mediaUrls": [],
+    "mediaTypes": [],
+    "mediaAlts": [],
+    "mediaSpoilerFlags": [],
+    "mediaR18Flags": [],
+    "isR18": false,
+    "hideFromMinors": false,
+    "adminForceHidden": false,
+    "adminForceR18": false,
+    "embedUrl": null,
+    "embedTitle": null,
+    "embedDescription": null,
+    "embedImage": null,
+    "likesCount": 0,
+    "rekarotsCount": 0,
+    "repliesCount": 0,
+    "viewsCount": 0,
+    "bookmarksCount": 0,
+    "replyRestriction": "EVERYONE",
+    "visibility": "PUBLIC",
+    "isAiGenerated": false,
+    "isPromotional": false,
+    "bookmarked": false,
+    "createdAt": "2026-03-29T...",
+    "author": {
+      "id": 15459,
+      "username": "claude",
+      "displayName": "claude",
+      "avatarUrl": "/uploads/avatars/...",
+      "avatarFrameId": null,
+      "officialMark": [],
+      "isBotAccount": true,
+      "isParodyAccount": false,
+      "adminForceBot": true,
+      "adminForceParody": false,
+      "isPrivate": false
+    },
+    "poll": null
+  }
+}
+```
+- レート制限: 50 req / 3600s
+
+**制限事項**:
+- 画像と動画の同時投稿不可 (`400: 画像と動画は同時に送信できません`)
+- フィールド名は `media` (投稿) / `attachments` (DM) -- 間違えると500エラー
+
+### 投稿取得
+
+```
+GET /posts/{id}
+Authorization: Bearer {token}
+
+Response 200:
+{
+  "post": {
+    "id": 94803,
+    "content": "テキスト",
+    "authorId": 15459,
+    "parentId": null,
+    "quotedPostId": null,
+    "mediaUrls": ["/uploads/posts/uuid.png"],
+    "mediaTypes": ["image"],
+    "mediaAlts": [""],
+    "mediaSpoilerFlags": [false],
+    "mediaR18Flags": [false],
+    "likesCount": 6,
+    "rekarotsCount": 0,
+    "repliesCount": 1,
+    "reactionsCount": 2,
+    "liked": false,
+    "rekaroted": false,
+    "bookmarked": false,
+    "author": { ... },
+    "poll": null | { ... },
+    "reactions": [...],
+    "reactionSummary": [...],
+    "createdAt": "2026-03-27T...",
+    ...
+  }
+}
+```
+
+### 投稿編集
+
+```
+PUT /posts/{id}
+Content-Type: multipart/form-data
+
+Fields: content (必須), media, mediaAlts, etc.
+Error: 400 {"error": "本文を空にすることはできません"}
+```
+- 自分の投稿のみ編集可能 (403)
+
+### 投稿削除
+
+```
+DELETE /posts/{id}
+
+Response 200: {"message": "カロートを削除しました"}
+```
+- 他人の投稿: `403 {"error": "このカロートを削除する権限がありません"}`
+- 削除後のGET: `404 {"error": "カロートが見つかりません"}`
+
+### 投稿の返信一覧
+
+```
+GET /posts/{id}/replies
+
+Response 200: {"replies": [...]}  ← 投稿オブジェクト配列
+```
+
+### いいねしたユーザー一覧
+
+```
+GET /posts/{id}/likes
+
+Response 200: {"users": [...]}  ← ユーザーオブジェクト配列
+```
+
+### 引用一覧
+
+```
+GET /posts/{id}/quotes
+
+Response 200: {"quotes": [...]}  ← 引用投稿オブジェクト配列
+```
+
+### リアクションしたユーザー一覧
+
+```
+GET /posts/{id}/react/{encoded-emoji}/users
+
+Response 200: { "emoji": "👍️", "count": 3, users: [] }
+```
+
+- `pro%3A{ローマ字}`でプロ用リアクション
+
+### リカロートしたユーザー一覧
+
+```
+GET /posts/{id}/rekarots
+
+Response 200: {"users": [...]}  ← ユーザーオブジェクト配列
+```
+
+### 会話スレッド
+
+```
+GET /posts/{id}/conversation
+  Response 200: {"rootPostId", "isParticipant", "hasLeftConversation", "participants": [user...]}
+
+POST /posts/{id}/conversation/leave  → 会話から離脱
+```
+
+### 投稿アナリティクス
+
+```
+GET /posts/{id}/analytics
+
+Response 200: (自分の投稿のみ、他人は403)
+{
+  "viewsCount": 100,
+  "likesCount": 6,
+  "rekarotsCount": 0,
+  "repliesCount": 1,
+  "audience": {
+    "gender": {"MALE": 30, "FEMALE": 40, "OTHER": 30},
+    "age": {"13-17": 10, "18-24": 50, "25-34": 30, "35-44": 5, "45-54": 3, "55+": 1, "unknown": 1}
+  },
+  "knownViewerCount": 80,
+  "anonymousViews": 20
+}
+```
+
+### タイムライン
+
+```
+GET /posts/timeline?page=1&limit=15&mode=latest
+```
+- `mode`: `latest` (最新), `trending` (トレンド), `following` (フォロー中)
+
+```
+Response 200:
+{
+  "posts": [...],
+  "pagination": { "page": 1, "limit": 15, "mode": "latest" }
+}
+```
+- `limit` 最大値: 100 (サーバー側でキャップ)
+
+### トレンド
+
+```
+GET /posts/trending
+```
+- 認証不要
+
+### おすすめ投稿
+
+```
+GET /posts/recommended
+```
+
+### 予約投稿
+
+```
+GET    /posts/scheduled/me       → {"scheduledPosts": [...]}
+DELETE /posts/scheduled/{id}     → 予約投稿削除
+```
+
+### 自分の返信
+
+```
+GET /posts/me/replies?limit=15
+
+Response 200: {"replies": [...]}
+```
+
+### 閲覧数バッチ送信
+
+```
+POST /posts/batch-views
+Body: {"postIds": [12345, 67890]}
+
+Response 200: {"recorded": 2}
+```
+
+### ベータUIフィードバック
+
+```
+POST /posts/feedback/beta-survey
+Content-Type: application/json
+
+{
+  "preference": "beta" | "current"
+}
+```
+
+### 返信先ユーザー取得
+
+```
+GET /posts/{id}/reply-targets
+
+Response 200: {"rootPostId", "selectedUserIds": [...], "excludedUserIds": [...], "candidates": [user...]}
+```
+
+### いいね (Like)
+
+#### いいねする
+
+```
+POST /posts/{id}/like
+
+Response 200: {"message": "いいねしました"}
+```
+- レート制限: 30 req / 60s
+- 重複: `400 {"error": "既にいいねしています"}`
+
+#### いいね取り消し
+
+```
+DELETE /posts/{id}/like
+
+Response 200: {"message": "いいねを取り消しました"}
+```
+- `/likes` (複数形) は404。単数形のみ
+
+### リアクション (Reaction)
+
+#### リアクション追加
+
+```
+POST /posts/{id}/react
+Content-Type: application/json
+
+{
+  "emoji": "👍"
+}
+
+Response 200: {"message": "リアクションしました"}
+```
+- 絵文字は32文字以内 (任意文字列可)
+- 過去に全ての文字を受け付けていたが､修正されているため､文字列リアクションは不可
+- 重複: `400 {"error": "既にこの絵文字でリアクションしています"}`
+- レート制限: 30 req / 60s
+- `pro%3A{ローマ字}`でプロ用リアクション
+
+#### リアクション取り消し
+
+```
+DELETE /posts/{id}/react/{url-encoded-emoji}
+
+Response 200: {"message": "リアクションを取り消しました"}
+```
+- 絵文字はURLエンコード必須 (e.g. `%F0%9F%91%8D` = 👍)
+
+### 投票 (Poll)
+
+#### 投票する
+
+```
+POST /posts/{id}/poll/vote
+Content-Type: application/json
+
+{
+  "optionId": 123
+}
+```
+- トグル式: 再度POSTで投票取り消し
+- 投票データは `GET /posts/{id}` の `post.poll` に含まれる
+
+#### 投票したユーザー表示
+
+```
+GET /posts/{id}/poll/options/{option_id}/voters
+```
+
+### リカロート (Rekarot)
+
+#### リカロートする / 取り消す
+
+```
+POST   /posts/{id}/rekarot    → {"message": "リカロートしました"}
+DELETE /posts/{id}/rekarot    → {"message": "リカロートを取り消しました"}
+```
+- レート制限: 30 req / 60s
+
+### ブックマーク
+
+#### ブックマーク一覧
+
+```
+GET /posts/me/bookmarks
+Authorization: Bearer {token}
+```
+
+#### ブックマーク追加 / 解除
+
+```
+POST   /posts/{id}/bookmark    → {"message": "ブックマークしました"}
+  Body: {"folderIds":[id, id]}
+DELETE /posts/{id}/bookmark    → {"message": "ブックマークを解除しました"}
+```
+- レート制限: 30 req / 60s
+
+#### ブックマークフォルダ
+
+```
+GET    /posts/me/bookmark-folders       → ブックマークフォルダの一覧
+POST   /posts/me/bookmark-folders       → ブックマークフォルダの作成
+  Body: {"name":"..."}
+DELETE /posts/me/bookmark-folders/{id}  → ブックマークフォルダの削除
+```
+
+#### 翻訳
+
+```
+POST   /posts/{id}/translate
+```
+
+---
+
+## ユーザー (Users) エンドポイント
+
+---
+
+### ユーザー情報取得
+
+```
+GET /users/{username}
+Authorization: Bearer {token}
+
+Response 200:
+{
+  "user": {
+    "id": 15459,
+    "username": "claude",
+    "displayName": "claude",
+    "avatarUrl": "...",
+    "headerUrl": "...",
+    "bio": "...",
+    "isBotAccount": true,
+    "isParodyAccount": false,
+    "hideProfileFromMinors": true,
+    "isPrivate": false,
+    "onlineStatus": "ONLINE",
+    "followersCount": 167,
+    "followingCount": 172,
+    "postsCount": 1131,
+    ...
+  },
+  "isFollowing": false,
+  "isFollowedBy": false,
+  "isBlocked": false,
+  ...
+}
+```
+
+### ユーザーのサブリソース
+
+```
+GET /users/{userId}/posts?limit=15         → {"posts": [...]}
+GET /users/{userId}/likes?limit=15         → {"posts": [...]}
+GET /users/{userId}/media?limit=15         → {"posts": [...]} (メディア付き投稿のみ)
+GET /users/{userId}/replies?limit=15       → {"posts": [...]}
+GET /users/{userId}/mutual-followers       → {"users": [...], "pagination": {"hasNext", "nextCursor"}}
+```
+
+### フォロワー / フォロー中一覧
+
+```
+GET /users/{userId}/followers?limit=100
+GET /users/{userId}/following?limit=1000
+
+Response 200: {"users": [...], "pagination": {"hasNext", "nextCursor"}}
+```
+- ユーザーオブジェクト: id, username, displayName, avatarUrl, bio, followersCount, isPrivate, officialMark, is_following, follow_request_sent
+- クエリパラメータ`?q={string}`で、名前にその文字が入っているユーザーを検索
+
+### おすすめユーザー
+
+```
+GET /users/recommended?limit=3
+
+Response 200: {"users": [...]}
+```
+
+### ユーザー名クォータ確認
+
+```
+GET /users/username/quota
+
+Response 200:
+{
+  "windowDays": 14,
+  "maxChanges": 5,
+  "usedChanges": 0,
+  "remainingChanges": 5
+}
+```
+
+### プロフィール更新
+
+```
+PATCH /users/profile
+Content-Type: application/json
+
+{
+  "displayName": "表示名",
+  "bio": "自己紹介",
+  "websiteUrl": "https://example.com",
+  "location": "東京",
+  "birthday": "2000-01-01",
+  "birthdayVisibility": "PRIVATE",
+  "gender": "OTHER"
+}
+
+Response 200:
+{
+  "message": "プロフィールを更新しました",
+  "user": { ... }
+}
+```
+- 変更したいフィールドのみ送信可 (空オブジェクトでも200を返す)
+
+### ステータス更新
+
+```
+PATCH /users/status
+Body: {"status": "ONLINE"}  ← ONLINE / OFFLINE / INVISIBLE / IDLE / DND
+      {"statusMessage": "作業中"}  ← ステータスメッセージ（任意）
+
+Response 200: {"message": "ステータスを更新しました", "status": "ONLINE", "statusMessage": "..."}
+```
+
+### パスワード変更
+
+```
+PATCH /users/password
+Body: {"currentPassword": "old", "newPassword": "new"}
+
+Error: 400 {"error": "現在のパスワードが正しくありません"}
+```
+
+### ユーザー名変更
+
+```
+PATCH /users/username
+Body: {"username": "newname"}
+
+Response 200: {"message": "ユーザー名を変更しました", "user": {...}, "limit": {"windowDays": 14, "maxChanges": 5}}
+変更なし: {"message": "ユーザー名に変更はありません"}
+```
+- レート制限: 14日間で最大5回
+
+### ピン留め投稿変更
+
+```
+PATCH /users/profile/pinned-post
+Body: {"postId": 12345}  ← ピン留め
+Body: {}                 ← ピン解除
+
+Response 200: {"message": "固定カロートを解除しました", "pinnedPostId": null}
+```
+
+### ユーザー設定
+
+```
+PATCH /users/settings
+Body: {} ← 変更したいフィールドのみ
+
+Response 200: 全設定を返す
+```
+
+設定フィールド一覧:
+- `isPrivate`: 非公開アカウント
+- `onlineStatusVisibility`: オンライン状態の公開範囲
+- `showLikedPosts`: いいね投稿を表示
+- `showReadReceipts`: 既読表示
+- `directMessagesEnabled`: DM有効
+- `mutedKeywords`: ミュートキーワード配列
+- `dmRequestPolicy`: DMリクエストポリシー
+- `notifyLikes`, `notifyRekarots`, `notifyReplies`, `notifyMentions`, `notifyFollows`, `notifyQuotes`, `notifyReactions`, `notifyDMs`, `notifyNewsOnLaunch`: 通知設定 (各boolean)
+- `notificationMuteNonFollowing`, `notificationMuteNonFollowers`, `notificationMuteNewAccounts`, `notificationMuteNoAvatar`: 通知ミュート設定
+- `showHiddenPosts`, `showParodyAccounts`, `showBotAccounts`, `showR18Content`: 表示設定
+- `isBotAccount`, `isParodyAccount`, `hideProfileFromMinors`: アカウント属性
+
+### アカウント削除
+
+```
+DELETE /users/account
+Body: {"password": "current_password"}
+
+Error: 401 {"error": "パスワードが正しくありません"}
+```
+- 正しいパスワード必須。取り消し不可。
+
+### アバター / ヘッダー更新
+
+```
+POST /profile/avatar    → アバター (multipart/form-data)
+POST /profile/header    → ヘッダー画像 (multipart/form-data)
+```
+
+---
+
+## フォロー (Follow) エンドポイント
+
+---
+
+### フォローする
+
+```
+POST /follow/{userId}
+
+Response 200: {"message": "フォローしました"}
+```
+- レート制限: 5 req / 60s (厳しい)
+- 重複: `400 {"error": "既にフォローしています"}`
+- 自分自身: `400`
+
+### フォロー解除
+
+```
+DELETE /follow/{userId}
+
+Response 200: {"message": "フォローを解除しました"}
+```
+
+### フォロワー削除
+
+```
+DELETE /follow/follower/{userId}    → フォロワーを外す
+  Error: 400 {"error": "このユーザーはフォロワーではありません"}
+```
+
+### フォローリクエスト
+
+```
+GET  /follow/requests/pending          → 保留中の受信リクエスト
+POST /follow/requests/{id}/accept      → 承認
+POST /follow/requests/{id}/reject      → 拒否
+  Error: 404 {"error": "リクエストが見つかりません"}
+```
+
+### ブロック
+
+```
+GET    /follow/block              → ブロック一覧 {"users": [...]}
+POST   /follow/block/{userId}     → ブロック追加
+DELETE /follow/block/{userId}     → ブロック解除
+  Error: 400 {"error": "ブロックしていません"}
+```
+
+### ミュート
+
+```
+GET    /follow/mute               → ミュート一覧 {"users": [...]}
+POST   /follow/mute/{userId}      → ミュート追加
+DELETE /follow/mute/{userId}      → ミュート解除
+  Error: 400 {"error": "ミュートしていません"}
+```
+
+### 通知
+
+```
+POST   /follow/{id}/post-notify   → ユーザーの通知をオン
+DELETE /follow/{id}/post-notify   → ユーザーの通知をオフ
+```
+
+### リカロート表示
+
+```
+POST   /follow/hide-rekarots/{id} → ユーザーのリカロートを非表示
+DELETE /follow/hide-rekarots/{id} → ユーザーのリカロートを再表示
+```
+
+---
+
+## 通知 (Notifications) エンドポイント
+
+---
+
+### 通知一覧
+
+```
+GET /notifications?limit=30
+Authorization: Bearer {token}
+
+Response 200:
+{
+  "notifications": [
+    {
+      "id": "...",
+      "type": "REPLY",
+      "actor": { ... },
+      "actors": [{ ... }],
+      "post": { ... },
+      "posts": [{ ... }],
+      "createdAt": "..."
+    },
+    ...
+  ]
+}
+```
+- `type`: `REPLY`, `MENTION`, `FOLLOW`, `FOLLOW_REQUEST`, `LIKE`, `REKAROT`, `QUOTE`, `DM`, `SYSTEM`, `BOARD`, `REPORT_UPDATE`, `FOLLOWED_POST`
+
+### 未読通知数
+
+```
+GET /notifications/unread/count
+
+Response 200: {"count": 0}
+```
+
+### グループ化された投稿通知
+
+```
+GET /notifications/grouped-posts?limit=15
+
+Response 200: {"posts": [...]}
+```
+
+### 全通知既読
+
+```
+PATCH /notifications/read-all
+
+Response 200: {"message": "すべての通知を既読にしました"}
+```
+
+### 通知削除
+
+```
+DELETE /notifications/{id}        → {"message": "通知を削除しました"}
+DELETE /notifications/all         → 500 (サーバーバグ、未修正)
+```
+
+### プッシュ通知登録
+
+```
+POST /notifications/push/register     Body: {"token": "fcm-token", "deviceId": "uuid"}
+POST /notifications/push/unregister   Body: {"token": "fcm-token"}
+```
+
+---
+
+## ダイレクトメッセージ (DM) エンドポイント
+
+---
+
+### DMグループ一覧 / 作成
+
+```
+POST /dm/groups                → グループ作成 (Body: {"userIds": [userId, ...]})
+GET  /dm/groups                → グループ一覧
+```
+グループ内フィールド: `id`, `members[]` (オンライン状態含む), `lastMessage`, `activeCall`, `canSend`, `sendDisabledReason`
+
+```
+GET  /dm/groups
+Authorization: Bearer {token}
+
+Response 200:
+{
+  "groups": [
+    {
+      "id": 487,
+      "members": [...],
+      "lastMessage": { ... },
+      "messages": [...],
+      ...
+    }
+  ]
+}
+```
+
+### メッセージ取得
+
+```
+GET /dm/groups/{groupId}/messages?page=1&limit=50
+Authorization: Bearer {token}
+
+Response 200:
+{
+  "messages": [
+    {
+      "id": 4125,
+      "groupId": 487,
+      "senderId": 15459,
+      "content": "テキスト",
+      "replyToId": null,
+      "attachmentUrls": ["/uploads/dm/uuid.png"],
+      "attachmentTypes": ["image/png"],
+      "attachmentAlts": [""],
+      "attachmentSpoilerFlags": [false],
+      "attachmentR18Flags": [false],
+      "isDeleted": false,
+      "createdAt": "...",
+      "sender": { ... },
+      "reactions": [...]
+    }
+  ],
+  "pagination": { ... }
+}
+```
+
+### メッセージ送信
+
+```
+POST /dm/groups/{groupId}/messages
+Content-Type: multipart/form-data
+Authorization: Bearer {token}
+X-CSRF-Token: {csrf}
+
+Fields:
+  content               : string
+  attachments           : File[] (画像ファイル、同名で複数append可)
+  attachmentAlts        : string (JSON配列)
+  attachmentSpoilerFlags: string (JSON配列)
+  attachmentR18Flags    : string (JSON配列)
+  replyToId             : string (返信先メッセージID)
+  pollOptions           : string (JSON配列)
+  pollDurationHours     : string
+
+Response 201:
+{
+  "message": {
+    "id": 4125,
+    "groupId": 487,
+    ...
+  }
+}
+```
+- フィールド名は `attachments` (投稿の `media` とは異なる)
+
+### 既読マーク
+
+```
+POST /dm/groups/{groupId}/read
+```
+
+### 1対1 DM開始
+
+```
+POST /dm/start
+Content-Type: application/json
+
+{
+  "targetUserId": 12345
+}
+```
+
+### グループ操作
+
+```
+POST   /dm/groups/{groupId}/clear              → チャット履歴クリア (自分の表示のみ削除)
+POST   /dm/groups/{groupId}/leave              → グループ退出 (1対1DMは退出不可、クリアを使用)
+POST   /dm/groups/{groupId}/members            → メンバー追加 (メール認証必須)
+DELETE /dm/groups/{groupId}/members/{userId}    → メンバー削除
+POST   /dm/groups/{groupId}/request/accept     → DMリクエスト承認
+POST   /dm/groups/{groupId}/request/reject     → DMリクエスト拒否
+```
+
+### メッセージ操作
+
+```
+DELETE /dm/messages/{id}              → メッセージ削除
+PATCH  /dm/messages/{id}              → メッセージ編集
+POST   /dm/messages/{id}/reactions    → メッセージリアクション
+POST   /dm/messages/{id}/poll/vote    → DM内投票
+```
+
+### 通話
+
+```
+GET  /dm/groups/{groupId}/call          → 通話状態確認
+POST /dm/groups/{groupId}/call/start    → 通話開始
+POST /dm/groups/{groupId}/call/join     → 通話参加
+POST /dm/groups/{groupId}/call/leave    → 通話退出
+```
+
+---
+
+## 検索 (Search) エンドポイント
+
+---
+
+### 統合検索
+
+```
+GET /search?q={keyword}
+
+Response 200: {"users": [...], "posts": [...], "hashtags": [...], "pagination": {"page", "limit", "hasNext"}}
+```
+- 3種類の結果を同時に返す
+
+### 投稿検索
+
+```
+GET /search/posts?q={keyword}&limit=15
+GET /posts/search?q={keyword}               ← 500エラーの場合あり
+```
+
+### ユーザー検索
+
+```
+GET /search/users?q={keyword}&limit=15
+
+Response 200: {"users": [...]}
+```
+- ユーザーフィールド: id, username, displayName, avatarUrl, officialMark, bio, followersCount, followingCount, is_following (snake_case注意)
+
+### ハッシュタグ検索
+
+```
+GET /search/hashtags?q={keyword}&limit=15
+
+Response 200: {"hashtags": [...], "pagination": {"page", "limit", "total", "pages"}}
+```
+- ハッシュタグフィールド: id, name, usageCount, trendScore, createdAt, updatedAt
+
+### トレンドトピック
+
+```
+GET /search/trending/topics?limit=5
+
+Response 200: {"trends": [...]}
+```
+- トレンドフィールド: token, label, type, postCount, authorCount, trendScore
+
+### トレンドハッシュタグ
+
+```
+GET /search/trending/hashtags?limit=5
+
+Response 200: {"hashtags": [...]}
+```
+- フィールド: id, name, usageCount, trendScore
+
+### ディスカバー
+
+```
+GET /search/discover/latest?limit=12&cursor={lastPostId}    → 最新投稿
+GET /search/discover/media?limit=12&cursor={lastPostId}     → メディア投稿
+```
+- `limit`: 取得件数 (デフォルト12)
+- `cursor`: 取得開始位置。指定したIDより前の投稿を取得
+- 初回は `cursor` なしで最新を取得、以降は最後の投稿IDを `cursor` にセットして無限スクロール
+
+---
+
+## ソーシャル (Social) エンドポイント
+
+---
+
+### サークル
+
+```
+GET    /social/circles                        → 一覧
+POST   /social/circles                        → 作成
+DELETE /social/circles/{id}                   → 削除
+POST   /social/circles/{id}/members           → メンバー追加
+DELETE /social/circles/{id}/members/{userId}  → メンバー削除
+```
+
+### リスト
+
+```
+GET    /social/lists                          → 一覧
+POST   /social/lists                          → 作成
+DELETE /social/lists/{id}                     → 削除
+POST   /social/lists/{id}/members             → メンバー追加
+DELETE /social/lists/{id}/members/{userId}    → メンバー削除
+GET    /social/lists/{id}/posts               → リストの投稿一覧
+```
+
+### ストーリー
+
+```
+GET    /social/stories                → ストーリー一覧
+POST   /social/stories                → ストーリー投稿 (multipart/form-data)
+DELETE /social/stories/{id}           → ストーリー削除
+GET    /social/stories/user/{userId}  → ユーザーのストーリー
+GET    /social/stories/{id}/viewers   → 閲覧者一覧 (owner only)
+POST   /social/stories/{id}/views     → 閲覧記録 {"message": "閲覧を記録しました"}
+POST   /social/stories/{id}/like      → ストーリーいいね
+DELETE /social/stories/{id}/like      → ストーリーいいね取消
+POST   /social/stories/{id}/comments  → ストーリーにコメントする
+```
+- ストーリーフィールド: `id`, `authorId`, `mediaUrl`, `mediaType`, `caption`, `isR18`, `hideFromMinors`, `visibility`, `expiresAt`, `viewsCount`, `likesCount`, `hasViewed`, `liked`
+
+### リンクプレビュー
+
+```
+GET /social/link-preview?url={url}        → OGP情報取得
+GET /social/link-preview-image?url={url}  → プレビュー画像取得 (常時500の可能性)
+```
+
+### 質問箱
+
+```
+POST   /social/questions/{username}       → 質問をする
+GET    /social/questions/inbox            → 質問を表示
+DELETE /social/questions/{id}             → 質問を削除
+```
+
+---
+
+## 絵チャ (Draw-chat) エンドポイント
+
+---
+
+### ルーム一覧
+
+```
+GET /draw/rooms
+
+Response 200: {"rooms": [...]}
+```
+- ルームフィールド: id, name, ownerId, ownerUsername, visibility, participantCount, participants, layers, createdAt, updatedAt
+- 参加者: userId, username, displayName, avatarUrl, joinedAt
+- レイヤー: id, name, order, visible, opacity, dataUrl (base64 PNG、大容量注意)
+
+### ルーム作成
+
+```
+POST /draw/rooms
+Content-Type: application/json
+
+{
+  "name": "ルーム名"
+}
+```
+
+### ルーム詳細 (レイヤー含む)
+
+```
+GET /draw/rooms/{roomId}
+```
+
+### レイヤー更新
+
+```
+PUT /draw/rooms/{roomId}/layers
+Content-Type: application/json
+
+{
+  "layers": [
+    {
+      "id": "layerId",
+      "name": "レイヤー名",
+      "order": 0,
+      "visible": true,
+      "opacity": 1,
+      "dataUrl": "data:image/png;base64,..."
+    }
+  ]
+}
+```
+- キャンバス: 2560x2560px RGBA PNG
+- 合計ペイロード上限: 約5MB
+- 新レイヤー追加時は既存レイヤーも含めて一括送信 (しないと既存レイヤーが消える)
+
+### ルーム参加
+
+```
+POST /draw/rooms/{roomId}/join
+```
+
+### ルーム削除
+
+```
+DELETE /draw/rooms/{roomId}
+```
+- オーナーのみ
+
+### 招待リンクのローテーション
+
+```
+POST /draw/rooms/{roomId}/invite/rotate
+```
+
+---
+
+## ラジオ / スペース エンドポイント
+
+---
+
+### ラジオ作成
+
+```
+POST /radio
+Content-Type: application/json
+
+{
+  "title": "ラジオタイトル"
+}
+```
+- タイトルは1〜100文字
+
+### アクティブなラジオ一覧
+
+```
+GET /radio/active
+```
+
+### ラジオ詳細
+
+```
+GET /radio/{id}
+```
+
+### ラジオ内メッセージ
+
+```
+GET  /radio/{id}/messages    → メッセージ一覧
+POST /radio/{id}/messages    → メッセージ送信
+```
+
+### ラジオ設定
+
+```
+PATCH /radio/{id}/settings
+```
+
+### 参加者管理
+
+```
+PATCH  /radio/{id}/participants/{userId}/role            → ロール変更
+PATCH  /radio/{id}/participants/{userId}/mute            → ミュート
+POST   /radio/{id}/participants/{userId}/invite-speaker  → スピーカー招待
+DELETE /radio/{id}/participants/{userId}/invite-speaker  → スピーカー招待取消
+POST   /radio/{id}/accept-speaker-invite                 → スピーカー招待承諾
+POST   /radio/{id}/request-speaker                       → スピーカーリクエスト
+```
+
+### ラジオ参加 / 退出 / 終了
+
+```
+POST  /radio/{id}/join
+POST  /radio/{id}/leave
+POST  /radio/{id}/end
+```
+
+### その他
+
+```
+GET   //radio/${id}/realtime-token
+GET   /radio/ice-servers
+```
+
+---
+
+## 掲示板 (Boards) エンドポイント
+
+---
+
+### 一覧 / 内容取得
+
+#### 板
+```
+GET /boards
+Response 200:
+{
+  "boards": [ ... ]
+}
+```
+
+#### スレッド
+```
+GET /boards/{slug}
+Response 200:
+{
+  "board": { ... },
+  "threads": [ ... ]
+}
+```
+
+#### レスポンス（コメント）
+```
+GET /boards/{slug}/threads/{ID}
+Response 200:
+{
+  "board": { ... },
+  "replies": { ... },
+  "thread": { ... }
+}
+```
+
+#### その他
+```
+GET /boards/{slug}/stream
+Response 200:
+{
+  "boardSlug": "...",
+  "timestamp": "..."
+}
+```
+
+```
+GET /boards/api
+Response 200:
+{
+  "boards": { ... },
+  "threads": [ ... ]
+}
+```
+
+---
+
+### 作成
+
+#### 板の作成
+```
+POST /boards
+Content-Type: application/json
+
+{
+  "title": "...",
+  "slug": "...",
+  "description": "...",
+  "minimumAge": 13
+}
+```
+
+#### スレッドの作成
+```
+POST /threads
+Content-Type: multipart/form-data
+
+title: ...
+content: ...
+```
+
+---
+
+### 返信
+
+```
+POST /boards/api/threads/{ID}/replies
+Content-Type: multipart/form-data
+
+content: ...
+```
+
+---
+
+### リアクション
+
+```
+POST /boards/api/threads/{ID}/reactions  → スレッドの最初のコメントへのリアクションを行う/取り消す
+Content-Type: application/json
+
+{
+  "emoji": "😃"
+}
+```
+
+```
+POST /boards/api/replies/{ID}/reactions  → 返信へのリアクションを行う/取り消す
+Content-Type: application/json
+
+{
+  "emoji": "😃"
+}
+```
+
+```
+GET /boards/{slug}/threads/{id}/reactions/{encoded-emoji}/users
+   → スレッドの最初のコメントへの特定のリアクションをしたユーザー一覧を見る
+GET /boards/{slug}/replies/{id}/reactions/{encoded-emoji}/users
+   → 返信への特定のリアクションをしたユーザー一覧を見る
+```
+
+- `pro%3A{ローマ字}`でプロ用リアクション
+
+---
+
+### お気に入り
+
+```
+POST   /boards/{slug}/follow              → 板をお気に入りに追加
+DELETE /boards/{slug}/follow              → 板をお気に入りから削除
+GET    /boards/following                  → 板のお気に入り一覧
+POST   /boards/{slug}/threads/{id}/follow → スレッドをお気に入りに追加
+DELETE /boards/{slug}/threads/{id}/follow → スレッドをお気に入りから削除
+```
+
+---
+
+### 削除
+
+```
+DELETE /boards/api
+   → 板の削除
+DELETE /boards/api/threads/{ID}
+   → スレッドの削除
+```
+
+---
+
+**備考**
+- スレッド作成・返信はmultipart/form-data形式（画像添付対応）
+- リアクションは任意の絵文字（Unicode）を使用可能
+- `/boards/api` は内部API互換用エンドポイント（従来のKarotter掲示板互換）
+
+---
+
+## ニュース (News) エンドポイント
+
+---
+
+### 一覧取得
+
+```
+GET /news?limit=12
+
+Response 200:
+{
+  "articles": [ ... ],
+  "pagination": { ... }
+}
+```
+
+**クエリパラメータ**
+- `?limit={数値}`：取得件数（デフォルト12）
+- `?category={category}`：カテゴリー指定
+- `category`は`general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
+
+---
+
+### 内容取得
+
+```
+GET /news/{slug}
+
+Response 200:
+{
+  "article": { ... }
+}
+```
+
+```
+GET /news/me
+
+Response 200:
+{
+  "articles": [ ... ]
+}
+```
+- 自分が作成した記事の一覧を取得
+
+---
+
+### コメント取得
+
+```
+GET /news/{ID}/comments
+
+Response 200:
+{
+  "comments": [ ... ],
+  "pagination": { ... }
+}
+```
+
+---
+
+### いいね
+
+```
+POST /news/{ID}/like
+
+Response 200: {"message": "いいねしました"}
+```
+
+---
+
+### コメント投稿
+
+```
+POST /news/{newsID}/comments
+Content-Type: application/json
+
+{
+  "content": "..."
+}
+```
+
+---
+
+### コメント更新
+
+```
+PATCH /news/{newsID}/comments/{commentID}
+Content-Type: application/json
+
+{
+  "content": "..."
+}
+```
+
+---
+
+### コメント削除
+
+```
+DELETE /news/{newsID}/comments/{commentID}
+
+Response 200: {"message": "コメントを削除しました"}
+```
+
+---
+
+### 記事作成
+
+```
+PUT /news/{slug}
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+```
+
+### 記事更新
+
+```
+PUT /news/{slug}
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+```
+
+- `action: "submit"` で公開
+- `category`は`general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
+
+---
+
+### 記事削除
+
+```
+DELETE /news/{Num}
+
+Response 200: {"message": "記事を削除しました"}
+```
+
+---
+
+**備考**
+- ニュース機能は管理者の承認後に公開される（詳しくは[管理者API](#ニュース記事管理)を参照）
+- 記事作成・更新は `PUT` メソッドを使用
+- コメント・いいねは一般ユーザーも可能
+- 画像関連フィールド（thumbnailUrl, coverImageUrl, ogImageUrl）はフルURLを指定
+- カテゴリー例: `general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
+
+---
+
+## サブスクリプション (Subscriptions) エンドポイント
+
+---
+
+### サブスクリプション確認
+
+```
+GET /subscriptions/me
+
+Response 200:
+{
+    "summary": {
+        "plan": "FREE",
+        "status": "INACTIVE",
+        "activeUntil": null,
+        "cancelAtPeriodEnd": false,
+        "badgeColors": [],
+        "premiumBadgeColor": "ORANGE",
+        "profileAccentColor": null,
+        "cardAccentColor": null
+    },
+    "entitlements": {
+        "plan": "FREE",
+        "postTextLimit": 200,
+        "pinnedPostLimit": 1,
+        "replyBoost": 0,
+        "canCustomizeProfile": false,
+        "canCustomizeCards": false
+    },
+    "subscriptions": [],
+    "plans": [
+        {
+            "code": "PLUS",
+            "name": "Karotter Plus",
+            "type": "plan",
+            "amount": 400,
+            "currency": "jpy",
+            "interval": "month",
+            "priceIdConfigured": false
+        },
+        {
+            "code": "PRO",
+            "name": "Karotter Pro",
+            "type": "plan",
+            "amount": 1300,
+            "currency": "jpy",
+            "interval": "month",
+            "priceIdConfigured": false
+        }
+    ],
+    "badges": [
+        {
+            "code": "BADGE_RED",
+            "name": "Karotter 赤バッジ",
+            "type": "badge",
+            "amount": 100,
+            "currency": "jpy",
+            "interval": "month",
+            "priceIdConfigured": false
+        },
+        {
+            "code": "BADGE_GREEN",
+            "name": "Karotter 緑バッジ",
+            "type": "badge",
+            "amount": 100,
+            "currency": "jpy",
+            "interval": "month",
+            "priceIdConfigured": false
+        }
+    ]
+}
+```
+
+### サブスクリプション管理
+
+```
+POST   /subscriptions/portal
+```
+
+### サブスクリプション購入
+
+```
+POST   /subscriptions/checkout
+Content-Type: application/json
+
+{
+  "productCode": "PLUS"
+}
+```
+
+- 現在はstripeを認証していないと不可
+- productCode: `PLUS`, `PRO`, `BADGE_RED`, `BADGE_GREEN`
+
+### サブスクリプション解約
+
+```
+DELETE /subscriptions/checkout
+```
+
+### Pro装飾保存
+
+```
+PATCH  /subscriptions/preferences
+Content-Type: application/json
+
+{"premiumBadgeColor":"ORANGE","profileAccentColor":null,"cardAccentColor":null}
+```
+
+---
+
+## フィード (Feed) エンドポイント
+
+⚠️`v2`のAPIのためパスは`/api/v2/`である⚠️
+
+---
+
+### フィード取得
+
+```
+GET   /feed/public
+GET   /feed/home
+
+Response 200: { "posts": [...], "pagination": {...} }
+```
+
+### カロート閲覧
+
+POST不可
+
+```
+POST  /feed/views
+
+Content-Type: application/json
+{"postIds":[1035417,1035416,1035446,1035445]}
+```
+
+---
+
+## サーバー (Guilds) エンドポイント
+
+---
+
+### サーバー
+
+#### サーバーの作成
+
+```
+POST   /guilds
+
+Content-Type: application/json
+Body: {"name":"..."}
+```
+
+#### サーバーの削除
+
+```
+DELETE /guilds/{id}
+```
+
+#### サーバーの更新
+
+```
+PATCH  /guilds/{id}
+
+Content-Type: application/json
+Body: {"name":"...","description":"...","iconUrl":"...","bannerUrl":"...","isCommunity":true}
+```
+
+#### 所有権の譲渡
+
+```
+POST   /guilds/{guildId}/members/{userId}/transfer-ownership
+```
+
+### 基本情報取得
+
+#### サーバーの情報取得
+
+```
+GET    /guilds
+
+Response 200:
+{
+    "guilds": [
+        {
+            "id": 4,
+            "name": "test",
+            "description": null,
+            "iconUrl": null,
+            "bannerUrl": null,
+            "ownerId": 814,
+            "vanityCode": null,
+            "preferredLocale": "ja",
+            "isCommunity": false,
+            "isFrozen": false,
+            "frozenReason": null,
+            "memberCount": 1,
+            "permissions": "703687441776639",
+            "channels": [
+                {
+                    "id": 19,
+                    "guildId": 4,
+                    "parentId": null,
+                    "type": "GUILD_CATEGORY",
+                    "name": "Welcome",
+                    "topic": null,
+                    "position": 0,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": null,
+                    "userLimit": null,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.127Z",
+                    "updatedAt": "2026-07-08T06:41:08.127Z"
+                },
+                {
+                    "id": 20,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_TEXT",
+                    "name": "general",
+                    "topic": "サーバーのメインテキストチャンネル",
+                    "position": 1,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": null,
+                    "userLimit": null,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                },
+                {
+                    "id": 21,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_ANNOUNCEMENT",
+                    "name": "announcements",
+                    "topic": "お知らせ",
+                    "position": 2,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": null,
+                    "userLimit": null,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                },
+                {
+                    "id": 22,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_FORUM",
+                    "name": "forum",
+                    "topic": "話題ごとの投稿",
+                    "position": 3,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": null,
+                    "userLimit": null,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                },
+                {
+                    "id": 23,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_VOICE",
+                    "name": "Voice",
+                    "topic": null,
+                    "position": 4,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": 64000,
+                    "userLimit": 0,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                },
+                {
+                    "id": 24,
+                    "guildId": 4,
+                    "parentId": 19,
+                    "type": "GUILD_STAGE_VOICE",
+                    "name": "Stage",
+                    "topic": null,
+                    "position": 5,
+                    "nsfw": false,
+                    "rateLimitPerUser": 0,
+                    "bitrate": 64000,
+                    "userLimit": 0,
+                    "archived": false,
+                    "createdAt": "2026-07-08T06:41:08.130Z",
+                    "updatedAt": "2026-07-08T06:41:08.130Z"
+                }
+            ],
+            "createdAt": "2026-07-08T06:41:08.110Z",
+            "updatedAt": "2026-07-08T06:41:08.110Z"
+        }
+    ]
+}
+```
+
+#### サーバーの参加済みメンバー一覧取得
+
+```
+GET    /guilds/{id}/members
+
+Response 200:
+{
+    "members": [
+        {
+            "id": 4,
+            "guildId": 4,
+            "userId": 814,
+            "nick": null,
+            "avatarUrl": null,
+            "isBot": false,
+            "pending": false,
+            "mute": false,
+            "deaf": false,
+            "communicationDisabledUntil": null,
+            "joinedAt": "2026-07-08T06:41:08.119Z",
+            "leftAt": null,
+            "updatedAt": "2026-07-08T06:41:08.119Z",
+            "user": {
+                "id": 814,
+                "username": "ui",
+                "displayName": "みらいのさぶ@日常",
+                "avatarUrl": "/uploads/avatars/avatar_814_1781613309023.webp",
+                "avatarFrameId": null,
+                "officialMark": [
+                    "BLUE"
+                ],
+                "isBotAccount": false,
+                "isParodyAccount": false,
+                "adminForceBot": false,
+                "adminForceParody": false,
+                "onlineStatus": "OFFLINE",
+                "statusMessage": null
+            },
+            "roles": [
+                {
+                    "id": 7,
+                    "guildMemberId": 4,
+                    "roleId": 7,
+                    "createdAt": "2026-07-08T06:41:08.121Z",
+                    "role": {
+                        "id": 7,
+                        "guildId": 4,
+                        "name": "@everyone",
+                        "color": null,
+                        "hoist": false,
+                        "iconUrl": null,
+                        "unicodeEmoji": null,
+                        "position": 0,
+                        "permissions": "311421897793",
+                        "managed": false,
+                        "mentionable": false,
+                        "isEveryone": true,
+                        "createdAt": "2026-07-08T06:41:08.113Z",
+                        "updatedAt": "2026-07-08T06:41:08.113Z"
+                    }
+                },
+                {
+                    "id": 8,
+                    "guildMemberId": 4,
+                    "roleId": 8,
+                    "createdAt": "2026-07-08T06:41:08.121Z",
+                    "role": {
+                        "id": 8,
+                        "guildId": 4,
+                        "name": "Admin",
+                        "color": "#58b4ff",
+                        "hoist": true,
+                        "iconUrl": null,
+                        "unicodeEmoji": null,
+                        "position": 1,
+                        "permissions": "703687441776639",
+                        "managed": false,
+                        "mentionable": false,
+                        "isEveryone": false,
+                        "createdAt": "2026-07-08T06:41:08.117Z",
+                        "updatedAt": "2026-07-08T06:41:08.117Z"
+                    }
+                }
+            ]
+        }
+    ]
+}
+```
+
+### モデレーション
+
+#### ニックネーム設定
+
+```
+PATCH  /guilds/{guildId}/members/{userId}
+
+Content-Type: application/json
+Body: { "nick": "..." }
+
+// ニックネームを消す場合
+// Body: { "nick": null }
+```
+
+#### タイムアウト
+
+```
+PATCH  /guilds/{guildId}/members/{userId}
+
+Content-Type: application/json
+Body: { "communicationDisabledUntil": ... }
+
+// タイムアウトを解除する場合
+// Body: { "communicationDisabledUntil": null }
+```
+
+#### キック (サーバー脱退兼用)
+
+```
+DELETE /guilds/{guildId}/members/{userId}
+```
+
+#### BAN
+
+```
+POST   /guilds/{guildId}/bans/{userId}
+
+Content-Type: application/json
+Body: { "reason": "..." }
+```
+
+#### 監査ログ
+
+```
+GWT    /guilds/{id}/audit-logs?limit=100
+
+Response 200: { "auditLogs": [ ... ] }
+```
+
+### チャンネル
+
+#### サーバーのチャンネル取得
+
+```
+GET    /guilds/{id}/channels
+
+Response 200:
+{
+    "channels": [
+        {
+            "id": 19,
+            "guildId": 4,
+            "parentId": null,
+            "type": "GUILD_CATEGORY",
+            "name": "Welcome",
+            "topic": null,
+            "position": 0,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": null,
+            "userLimit": null,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.127Z",
+            "updatedAt": "2026-07-08T06:41:08.127Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 20,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_TEXT",
+            "name": "general",
+            "topic": "サーバーのメインテキストチャンネル",
+            "position": 1,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": null,
+            "userLimit": null,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 21,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_ANNOUNCEMENT",
+            "name": "announcements",
+            "topic": "お知らせ",
+            "position": 2,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": null,
+            "userLimit": null,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 22,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_FORUM",
+            "name": "forum",
+            "topic": "話題ごとの投稿",
+            "position": 3,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": null,
+            "userLimit": null,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 23,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_VOICE",
+            "name": "Voice",
+            "topic": null,
+            "position": 4,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": 64000,
+            "userLimit": 0,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        },
+        {
+            "id": 24,
+            "guildId": 4,
+            "parentId": 19,
+            "type": "GUILD_STAGE_VOICE",
+            "name": "Stage",
+            "topic": null,
+            "position": 5,
+            "nsfw": false,
+            "rateLimitPerUser": 0,
+            "bitrate": 64000,
+            "userLimit": 0,
+            "archived": false,
+            "createdAt": "2026-07-08T06:41:08.130Z",
+            "updatedAt": "2026-07-08T06:41:08.130Z",
+            "overwrites": [],
+            "permissions": "703687441776639"
+        }
+    ]
+}
+```
+
+#### チャンネルの作成
+
+```
+POST   /guilds/{id}/channels
+
+Content-Type: application/json
+Body: {"name":"Voice","type":"GUILD_VOICE"}
+
+Response 201:
+{
+    "channel": {
+        "id": 25,
+        "guildId": 4,
+        "parentId": null,
+        "type": "GUILD_VOICE",
+        "name": "Voice",
+        "topic": null,
+        "position": 0,
+        "nsfw": false,
+        "rateLimitPerUser": 0,
+        "bitrate": null,
+        "userLimit": null,
+        "archived": false,
+        "createdAt": "2026-07-08T06:56:36.189Z",
+        "updatedAt": "2026-07-08T06:56:36.189Z",
+        "overwrites": []
+    }
+}
+```
+
+#### チャンネルの削除
+
+```
+DELETE /channels/{id}
+```
+
+#### チャンネルの更新
+
+```
+PATCH  /channels/{id}
+
+Content-Type: application/json
+Body: { "name": '...' }
+```
+
+#### 権限を更新
+
+```
+PUT    /channels/${channelId}/permissions/{type}/${perm}
+```
+
+#### 順番の変更
+
+```
+PUT    /guilds/{guildId}/channels/reorder
+```
+
+### フォーラム
+
+#### 投稿一覧取得
+
+```
+GET    /channels/{id}/forum-posts?limit=50
+
+Response 200:
+{
+    "posts": [
+        {
+            "id": 103,
+            "guildId": 3,
+            "channelId": 16,
+            "authorId": 814,
+            "botApplicationId": null,
+            "replyToId": null,
+            "type": "DEFAULT",
+            "content": "荒らさないこと",
+            "forumTitle": "Rules",
+            "attachmentUrls": [],
+            "attachmentTypes": [],
+            "attachmentAlts": [],
+            "attachmentSpoilerFlags": [],
+            "attachmentR18Flags": [],
+            "pinned": false,
+            "tts": false,
+            "mentionEveryone": false,
+            "isDeleted": false,
+            "editedAt": null,
+            "createdAt": "2026-07-15T04:45:02.179Z",
+            "updatedAt": "2026-07-15T04:45:02.179Z",
+            "author": {
+                "id": 814,
+                "username": "ui",
+                "displayName": "みらいのさぶ@日常",
+                "avatarUrl": "/uploads/avatars/avatar_814_1781613309023.webp",
+                "avatarFrameId": null,
+                "officialMark": [],
+                "isBotAccount": false,
+                "isParodyAccount": false,
+                "adminForceBot": false,
+                "adminForceParody": false,
+                "onlineStatus": "OFFLINE",
+                "statusMessage": null
+            },
+            "reactions": [],
+            "replyTo": null
+        }
+    ],
+    "pagination": {
+        "page": 1,
+        "limit": 50,
+        "total": 1,
+        "pages": 1
+    }
+}
+```
+
+#### フォーラム投稿作成
+
+```
+POST   /channels/${id}/forum-posts
+Content-Type: application/json; charset=utf-8
+```
+
+### メッセージ
+
+#### チャンネルのメッセージを取得
+
+```
+GET    /channels/{id}/messages
+
+Response 200: {"messages":[],"pagination":{"page":1,"limit":80,"total":0,"pages":0}}
+```
+
+#### メッセージを送信
+
+```
+POST   /channels/{id}/messages
+
+Content-Type: application/json
+Body: { "content": '...' }
+```
+
+#### メッセージを検索
+
+```
+GET     /guilds/${id}/messages/search
+```
+
+### 招待
+
+#### 招待一覧
+
+```
+GET    /guilds/{id}/invites
+
+Response 200: { "invites": [ ... ] }
+```
+
+#### 招待を作成
+
+```
+POST   /guilds/{id}/invites
+
+Response 201:
+{
+    "invite": {
+        "id": 5,
+        "code": "-uncPu3u-ppS",
+        "guildId": 4,
+        "channelId": 20,
+        "inviterId": 814,
+        "maxAge": 86400,
+        "maxUses": 0,
+        "uses": 0,
+        "temporary": false,
+        "expiresAt": "2026-07-09T06:49:11.165Z",
+        "revokedAt": null,
+        "createdAt": "2026-07-08T06:49:11.167Z"
+    }
+}
+```
+
+#### 招待の削除
+
+```
+DELETE /guilds/{id}/invites/{code}
+```
+
+#### 招待への参加
+
+```
+POST   /invites/{code}
+```
+
+### ロール
+
+#### ロール一覧取得
+
+```
+GET    /guilds/{id}/roles
+
+Response 200:
+{
+    "roles": [
+        {
+            "id": 8,
+            "guildId": 4,
+            "name": "Admin",
+            "color": "#58b4ff",
+            "hoist": true,
+            "iconUrl": null,
+            "unicodeEmoji": null,
+            "position": 1,
+            "permissions": "703687441776639",
+            "managed": false,
+            "mentionable": false,
+            "isEveryone": false,
+            "createdAt": "2026-07-08T06:41:08.117Z",
+            "updatedAt": "2026-07-08T06:41:08.117Z"
+        },
+        {
+            "id": 7,
+            "guildId": 4,
+            "name": "@everyone",
+            "color": null,
+            "hoist": false,
+            "iconUrl": null,
+            "unicodeEmoji": null,
+            "position": 0,
+            "permissions": "311421897793",
+            "managed": false,
+            "mentionable": false,
+            "isEveryone": true,
+            "createdAt": "2026-07-08T06:41:08.113Z",
+            "updatedAt": "2026-07-08T06:41:08.113Z"
+        }
+    ]
+}
+```
+
+#### ロールを作成
+
+```
+POST   /guilds/{id}/roles
+
+Content-Type: application/json
+Body: {"name":"AAA","permissions":"0"}
+
+Response 201:
+{
+    "role": {
+        "id": 9,
+        "guildId": 4,
+        "name": "AAA",
+        "color": null,
+        "hoist": false,
+        "iconUrl": null,
+        "unicodeEmoji": null,
+        "position": 2,
+        "permissions": "0",
+        "managed": false,
+        "mentionable": false,
+        "isEveryone": false,
+        "createdAt": "2026-07-08T06:52:30.683Z",
+        "updatedAt": "2026-07-08T06:52:30.683Z"
+    }
+}
+```
+
+#### ロールの削除
+
+```
+DELETE /guilds/{guildId}/roles/{roleId}
+```
+
+#### ロールの更新
+
+```
+PATCH  /guilds/{guildId}/roles/{roleId}
+
+Content-Type: application/json
+Body: { "name": '...' }
+```
+
+#### ロールの付与
+
+```
+PUT    /guilds/{guildId}/members/{userId}/roles/{roleId}
+```
+
+#### ロールの剥奪
+
+```
+DELETE /guilds/{guildId}/members/{userId}/roles/{roleId}
+```
+
+---
+
+## 管理パネル (Admin) エンドポイント
+
+管理者向けの全エンドポイント (`/control-room-x9k2/*`)。
+
+---
+
+### 概要
+
+| 項目 | 詳細 |
+|------|------|
+| フロントエンドURL | `https://karotter.com/admin` |
+| APIベースパス | `/control-room-x9k2` |
+| JSチャンク | `Admin-{ランダムな文字列}.js` |
+| 認証 | `user.isAdmin === true` が必要 |
+| 非管理者アクセス | 「アクセス拒否 -- 管理者権限が必要です」表示 |
+| 全APIレスポンス | `403: 認証が必要です` |
+
+### UIタブ構成 (JSチャンクから確認)
+
+| タブID | ラベル | 説明 |
+|--------|--------|------|
+| `dashboard` | ダッシュボード | システム統計 (総ユーザー数、総カロート数、24h活動ユーザー、未対応通報) |
+| `users` | ユーザー管理 | 検索、BAN/解除、フラグ変更、公式マーク付与、アカウント編集、削除 |
+| `dm` | DM削除 | DMの削除 |
+| `posts` | カロート管理 | 検索、R18強制、非表示、削除 |
+| `stories` | ストーリー管理 | 検索、R18強制、非表示、削除、有効期限表示 |
+| `news` | ニュース管理 | 記事検索、削除、コメント |
+| `recommend` | おすすめ β | おすすめアルゴリズムテスト (userId指定、スコア詳細表示) |
+| `trending` | トレンド β | トレンドアルゴリズムテスト (velocity, uniqueActors, engagementRate) |
+| `survey` | アンケート | おすすめ満足度アンケート結果 (投票数、満足度スコア) |
+| `beta-experiment` | Beta実験 | A/Bテスト結果 (A〜E 5バリアント、userId%5で振り分け) |
+
+### ダッシュボード統計
+
+```
+GET /control-room-x9k2/analytics
+
+Response:
+{
+  "totalUsers": 12000,
+  "totalPosts": 120000,
+  "activeUsers": 2300,     // 24時間アクティブ
+  "totalReports": 5        // 未対応通報数
+}
+```
+
+### ユーザー管理
+
+管理者がユーザーに対して行える操作:
+
+#### アカウント情報変更
+
+`PATCH /control-room-x9k2/users/{id}/account`:
+- username、displayName の変更
+- email 変更（任意）
+- password 強制リセット（任意）
+- emailVerified フラグの切り替え
+
+#### 公式マーク
+
+`PATCH /control-room-x9k2/users/{id}/official-mark`:
+
+| 値 | ラベル |
+|-----|--------|
+| `YELLOW` | 黄色: 認証済み団体マーク |
+| `PURPLE` | 紫: 運営マーク |
+| `BLUE` | 青: 本人マーク |
+| `GRAY` | 灰色: 政府関係者マーク |
+| `BLACK` | 黒: 認証済みマーク |
+| `RED` | 赤: 認証済みマーク |
+| `GREEN` | 緑: 認証済みマーク |
+| `ORANGE` | オレンジ: 認証済みマーク |
+| `PINK` | ピンク: 認証済みマーク |
+- 複数マーク同時付与可能（配列で管理）
+
+#### フラグ操作
+
+`PATCH /control-room-x9k2/users/{id}/flags`:
+
+| フラグ | 説明 |
+|--------|------|
+| `isParodyAccount` | パロディアカウント |
+| `isBotAccount` | BOTユーザー |
+| `adminForceHidden` | 管理者非表示 |
+| `adminForceParody` | パロディ強制 |
+| `adminForceBot` | BOT強制 |
+| `adminForceR18` | R18強制 |
+| `showBotAccounts` | BOT表示許可 |
+| `showHiddenPosts` | 非表示閲覧許可 |
+| `showR18Content` | R18表示許可 |
+| `hideProfileFromMinors` | 未成年にプロフ非表示 |
+| `adminForceMinimumAge` | 最小強制年齢制限 |
+| `adminForceMaximumAge` | 最大強制年齢制限 |
+
+#### BAN
+
+`PATCH /control-room-x9k2/users/{id}/ban`:
+- BAN時に `reason` を指定
+- BAN中ユーザーには赤い「BAN中」バッジ表示
+- `unban` で解除
+
+#### 禁止理由
+
+| コード | 説明 |
+|--------|------|
+| `ADMIN_HIDDEN` | 運営の表示制限により、このプロフィールは現在非表示です。 |
+| `PARODY_FILTERED` | パロディアカウントを表示しない設定のため、このプロフィールは表示されません。 |
+| `BOT_FILTERED` | BOTアカウントを表示しない設定のため、このプロフィールは表示されません。 |
+| `R18_FILTERED` | R18表示設定がオフのため、このプロフィールは表示されません。 |
+| `MINOR_RESTRICTED` | 未成年ユーザーには表示できない設定のため、このプロフィールは表示されません。 |
+| その他 | 現在の表示設定では、このプロフィールを表示できません。 |
+
+#### 削除
+
+`DELETE /control-room-x9k2/users/{id}`:
+- 確認ダイアログ:「@{username} を削除しますか？この操作は取り消せません。」
+
+### 投稿管理
+
+管理者が投稿に対して行える操作:
+- `adminForceR18`: R18強制フラグ
+- `adminForceHidden`: 非表示フラグ
+- 投稿削除
+
+表示情報: viewsCount、likesCount、rekarotsCount、repliesCount
+
+### ストーリー管理
+
+投稿管理と同様のフラグ操作に加え:
+- mediaType（画像/動画）のプレビュー表示
+- caption表示
+- visibility（PUBLIC/FOLLOWERS/サークル）
+- 有効期限（expiresAt）の表示
+
+### おすすめアルゴリズムテスト (β)
+
+```
+GET /control-room-x9k2/test-recommend?limit=30&userId={id}
+
+Response:
+{
+  "targetUser": { "id", "username", "displayName" },
+  "followingCount": 100,
+  "candidateCount": 500,
+  "signalsSummary": {
+    "authorAffinityCount": 50,
+    "socialProofCount": 30,
+    "mutualFollowCount": 20,
+    "tagAffinityTop10": [{"tag": "プログラミング", "score": 85}]
+  },
+  "rawTopByScore": [{"rank", "author", "score", "trending"}],
+  "ranked": [{
+    "rank", "author", "content",
+    "stats": {"likes", "rekarots", "replies", "views"},
+    "ageHours",
+    "scores": {
+      "engagement", "freshness", "authorAffinity",
+      "graph", "socialProof", "tagAffinity",
+      "inNetwork", "totalRecommend"
+    }
+  }]
+}
+```
+
+### A/Bテスト 5バリアント
+
+| タイプ | コンセプト | 新しさ | エンゲージメント | 会話 | 発見 |
+|--------|-----------|--------|----------------|------|------|
+| A | 新しさ最優先 | ★★★ | ★ | - | - |
+| B | 質重視 | ★ | ★★★ | ★ | - |
+| C | バランス | ★★ | ★★ | ★ | ★ |
+| D | 会話重視 | ★★ | ★★ | ★★★ | - |
+| E | 発見重視 | ★★ | ★★ | ★ | ★★★ |
+
+ユーザーは `userId % 5` でバリアントに自動振り分け。
+
+### トレンドアルゴリズムテスト (β)
+
+```
+GET /control-room-x9k2/test-trending?limit=30
+
+Response:
+{
+  "candidateCount": 200,
+  "rawTop10": [{"rank", "author", "total", "velocity", "uniqueActors"}],
+  "ranked": [{
+    "rank", "author", "content",
+    "stats": {"likes", "rekarots", "replies", "views"},
+    "ageHours",
+    "trendBreakdown": {
+      "velocity", "uniqueActors", "engagementRate", "freshness", "total"
+    },
+    "windowStats": {
+      "likes1h", "likes6h", "likes24h",
+      "rekarots1h", "rekarots6h", "rekarots24h",
+      "replies1h", "replies6h", "replies24h",
+      "uniqueActors"
+    }
+  }]
+}
+```
+
+### 全エンドポイント一覧
+
+#### コア
+
+```
+GET /control-room-x9k2
+GET /control-room-x9k2/dashboard
+GET /control-room-x9k2/overview
+```
+
+#### ユーザー管理
+
+```
+GET    /control-room-x9k2/users
+GET    /control-room-x9k2/users/{id}
+GET    /control-room-x9k2/users/search
+POST   /control-room-x9k2/users
+PATCH  /control-room-x9k2/users/{id}/ban
+PATCH  /control-room-x9k2/users/{id}/unban
+PATCH  /control-room-x9k2/users/{id}/verify
+PATCH  /control-room-x9k2/users/{id}/flags
+PATCH  /control-room-x9k2/users/{id}/account
+PATCH  /control-room-x9k2/users/{id}/official-mark
+PATCH  /control-room-x9k2/users/{id}/email
+PATCH  /control-room-x9k2/users/{id}/password
+PATCH  /control-room-x9k2/users/{id}/role
+GET    /control-room-x9k2/users/{id}/sessions
+GET    /control-room-x9k2/users/{id}/posts
+GET    /control-room-x9k2/users/{id}/reports
+GET    /control-room-x9k2/users/{id}/bans
+GET    /control-room-x9k2/users/{id}/notes
+GET    /control-room-x9k2/users/{id}/history
+GET    /control-room-x9k2/users/{id}/suspend
+GET    /control-room-x9k2/users/{id}/restrict
+POST   /control-room-x9k2/users/{id}/warn
+DELETE /control-room-x9k2/users/{id}/delete
+```
+
+#### 投稿管理
+
+```
+GET    /control-room-x9k2/posts
+GET    /control-room-x9k2/posts/{id}
+GET    /control-room-x9k2/posts/search
+PATCH  /control-room-x9k2/posts/{id}/flags
+PATCH  /control-room-x9k2/posts/{id}/hide
+DELETE /control-room-x9k2/posts/{id}/delete
+```
+
+#### ストーリー管理
+
+```
+GET    /control-room-x9k2/stories
+PATCH  /control-room-x9k2/stories/{id}/flags
+```
+
+#### 通報 / モデレーション
+
+```
+GET  /control-room-x9k2/reports
+GET  /control-room-x9k2/reports/pending
+GET  /control-room-x9k2/reports/resolved
+GET  /control-room-x9k2/reports/{id}
+POST /control-room-x9k2/reports/{id}/resolve
+POST /control-room-x9k2/reports/{id}/dismiss
+POST /control-room-x9k2/reports/{id}/escalate
+GET  /control-room-x9k2/moderation
+GET  /control-room-x9k2/moderation/queue
+GET  /control-room-x9k2/moderation/filters
+GET  /control-room-x9k2/moderation/automod
+GET  /control-room-x9k2/moderation/words
+GET  /control-room-x9k2/moderation/rules
+GET  /control-room-x9k2/flagged-content
+```
+
+#### BAN
+
+```
+GET  /control-room-x9k2/bans
+GET  /control-room-x9k2/bans/{id}
+POST /control-room-x9k2/bans/create
+GET  /control-room-x9k2/ip-bans
+GET  /control-room-x9k2/ip-bans/{id}
+GET  /control-room-x9k2/shadowbans
+```
+
+#### コンテンツ管理
+
+```
+GET  /control-room-x9k2/badges
+GET  /control-room-x9k2/badges/{id}
+POST /control-room-x9k2/badges/create
+GET  /control-room-x9k2/emoji
+GET  /control-room-x9k2/emoji/{id}
+POST /control-room-x9k2/emoji/create
+GET  /control-room-x9k2/frames
+GET  /control-room-x9k2/frames/{id}
+GET  /control-room-x9k2/gacha
+GET  /control-room-x9k2/gacha/{id}
+GET  /control-room-x9k2/gacha/items
+GET  /control-room-x9k2/themes
+GET  /control-room-x9k2/themes/{id}
+GET  /control-room-x9k2/stickers
+GET  /control-room-x9k2/stickers/{id}
+```
+
+#### DM管理
+
+```
+POST /control-room-x9k2/dm/direct/delete
+  Body: { firstUserId: 1, secondUserId: 2 }
+```
+
+#### ニュース記事管理
+```
+GET    /control-room-x9k2/news
+GET    /control-room-x9k2/news/comments
+PATCH  /control-room-x9k2/news/{articleId}/review
+  Body: { action: "approve" | "reject" | "unpublish", reviewNote: "..." }
+DELETE /control-room-x9k2/news/{articleId}
+DELETE /control-room-x9k2/news/comments/{commentId}
+```
+
+#### お知らせ
+
+```
+GET  /control-room-x9k2/announcements
+GET  /control-room-x9k2/announcements/{id}
+POST /control-room-x9k2/announcements/create
+```
+
+#### アナリティクス
+
+```
+GET /control-room-x9k2/analytics
+GET /control-room-x9k2/analytics/users
+GET /control-room-x9k2/analytics/posts
+GET /control-room-x9k2/analytics/growth
+GET /control-room-x9k2/analytics/engagement
+GET /control-room-x9k2/analytics/retention
+GET /control-room-x9k2/analytics/revenue
+GET /control-room-x9k2/stats
+GET /control-room-x9k2/stats/users
+GET /control-room-x9k2/stats/posts
+GET /control-room-x9k2/stats/daily
+```
+
+#### 申請 / リクエスト
+
+```
+GET /control-room-x9k2/verification-requests
+GET /control-room-x9k2/bot-requests
+GET /control-room-x9k2/appeals
+```
+
+#### システム
+
+```
+GET  /control-room-x9k2/settings
+POST /control-room-x9k2/settings
+GET  /control-room-x9k2/config
+GET  /control-room-x9k2/system
+GET  /control-room-x9k2/logs
+GET  /control-room-x9k2/logs/{type}
+GET  /control-room-x9k2/audit
+GET  /control-room-x9k2/audit-log
+GET  /control-room-x9k2/maintenance
+POST /control-room-x9k2/maintenance
+GET  /control-room-x9k2/backup
+POST /control-room-x9k2/backup
+GET  /control-room-x9k2/cron
+GET  /control-room-x9k2/queue
+GET  /control-room-x9k2/tasks
+GET  /control-room-x9k2/jobs
+GET  /control-room-x9k2/cache
+POST /control-room-x9k2/cache/clear
+GET  /control-room-x9k2/database
+GET  /control-room-x9k2/migrations
+```
+
+#### その他管理
+
+```
+GET /control-room-x9k2/beta-experiment
+GET /control-room-x9k2/test-recommend
+GET /control-room-x9k2/test-trending
+GET /control-room-x9k2/survey-results
+GET /control-room-x9k2/feedback
+GET /control-room-x9k2/media
+GET /control-room-x9k2/uploads
+GET /control-room-x9k2/notifications
+GET /control-room-x9k2/invites
+GET /control-room-x9k2/features
+GET /control-room-x9k2/feature-flags
+GET /control-room-x9k2/roles
+GET /control-room-x9k2/permissions
+GET /control-room-x9k2/radio
+GET /control-room-x9k2/draw
+GET /control-room-x9k2/dm
+GET /control-room-x9k2/emails
+GET /control-room-x9k2/actions
+GET /control-room-x9k2/sessions
+GET /control-room-x9k2/webhooks
+GET /control-room-x9k2/api-keys
+GET /control-room-x9k2/apikeys
+GET /control-room-x9k2/premium
+GET /control-room-x9k2/subscriptions
+GET /control-room-x9k2/monetization
+GET /control-room-x9k2/payments
+GET /control-room-x9k2/domains
+GET /control-room-x9k2/rate-limits
+GET /control-room-x9k2/blocked-words
+GET /control-room-x9k2/filtered-words
+GET /control-room-x9k2/trending
+GET /control-room-x9k2/trending/override
+GET /control-room-x9k2/search
+GET /control-room-x9k2/search/index
+```
+
+---
+
+## Developer API エンドポイント
+
+APIキーを使用する第三者アプリ向けエンドポイント。セルフBot APIのサブセット。
+
+---
+
+### 概要
+
+| 項目 | 詳細 |
+|------|------|
+| Base URL | `https://api.karotter.com/api/developer` |
+| 認証 | `Authorization: Bearer {apiKey}` (`kar_live_*` プレフィックス) |
+| 認証ミドルウェア | 全パスでキー検証が先に実行される。無効キーでは全て401 |
+
+### 投稿 (Posts)
+
+#### 投稿一覧
+```
+GET /posts?limit=15
+
+Response 200: {"posts": [...]}
+```
+
+#### 投稿詳細
+```
+GET /posts/{id}
+
+Response 200: {"post": {...}}
+```
+- IDは数値のみ。`/posts/trending` 等の名前付きパスは `/:id` パターンにキャッチされ `400: 数値IDの形式が正しくありません` になる
+
+#### 返信一覧
+```
+GET /posts/{id}/replies
+
+Response 200: {"replies": [...]}
+```
+
+#### 引用一覧
+```
+GET /posts/{id}/quotes
+
+Response 200: {"quotes": [...], "pagination": {...}}
+```
+
+#### 投稿作成
+```
+POST /posts
+Content-Type: application/json
+
+{"content": "テキスト"}
+
+Response 201: {"message": "カロートしました", "post": {...}}
+```
+- multipart/form-data での画像添付は未検証
+
+#### 投稿削除
+```
+DELETE /posts/{id}
+
+Response 200: { message }
+```
+
+#### いいね / 取消
+```
+POST   /posts/{id}/like    → 200 {"message": "いいねしました"}
+DELETE /posts/{id}/like    → 200 {"message": "いいねを取り消しました"}
+```
+
+#### ブックマーク / 取消
+```
+POST   /posts/{id}/bookmark    → 200 {"message": "ブックマークしました"}
+DELETE /posts/{id}/bookmark    → 200 {"message": "ブックマークを解除しました"}
+```
+
+#### リカロート / 取消
+```
+POST   /posts/{id}/rekarot    → 200 {"message": "リカロートしました"}
+DELETE /posts/{id}/rekarot    → 200 {"message": "リカロートを取り消しました"}
+```
+
+#### リアクション / 取消
+
+```
+POST /posts/{id}/react
+Content-Type: application/json
+
+Bosy: { "emoji": "👍️" }
+```
+
+```
+DELETE /posts/{id}/react/{emoji}
+```
+
+#### リアクション取得
+
+```
+GET /posts/{id}/react
+
+Response 200: { reactions: [{ emoji, count, reacted }] }
+```
+
+### タイムライン (Timeline)
+
+```
+GET /timeline?limit=15&mode=latest
+
+Response 200: {"posts": [...]}
+```
+- `mode`: `latest` (最新), `trending` (トレンド), `following` (フォロー中) — 全て動作確認済み
+- セルフBot APIの `/posts/timeline` とは異なり、Developer APIでは `/timeline` がパス
+
+### 検索 (Search)
+
+```
+GET /search?q={keyword}&type=posts
+
+Response 200: {"type": "posts", "results": [...], "pagination": {...}}
+```
+- `type`: `posts` (デフォルト), `users`, `hashtags`
+- セルフBot APIとは異なり、統合検索のみ。`/search/posts`, `/search/users`, `/search/hashtags` 等のサブパスは存在しない
+- `type=hashtags` は実際にはpostsを返す（仕様/バグ）
+
+### ユーザー (Users)
+
+#### ユーザー情報取得
+```
+GET /users/{id}
+
+Response 200: {"user": {...}}
+```
+
+```
+GET /users/me
+
+Response 200: { id, username, displayName, avatarUrl, bio, isPrivate, isOfficial, ... }
+```
+
+```
+GET /users/by/username/{username}
+```
+
+#### フォロワー / フォロー中一覧
+```
+GET  /users/{id}/followers    → 200 {"users": [...]}
+GET  /users/{id}/following    → 200 {"users": [...]}
+```
+
+#### フォロー
+```
+POST   /users/{id}/follow
+DELETE /users/{id}/follow
+```
+
+#### フォローリクエスト
+```
+GET   /follow-requests
+POST  /follow-requests/{id}/accept
+POST  /follow-requests/{id}/reject
+```
+
+### ブックマーク (Bookmarks)
+
+```
+GET /bookmarks
+
+Response 200: {"posts": [...], "pagination": {"page", "limit", "total", "pages"}}
+```
+
+```
+PUT /posts/{id}/bookmark-folders
+Content-Type: application/json
+
+Body: { folderIds: [] }
+```
+
+### 通知 (Notifications)
+
+#### 読み取り
+
+```
+GET /notifications?limit=30
+
+Response 200:
+{
+  "notifications": [
+    {
+      "id": "...",
+      "type": "REPLY",
+      "actor": { ... },
+      "actors": [{ ... }],
+      "post": { ... },
+      "posts": [{ ... }],
+      "createdAt": "..."
+    },
+    ...
+  ]
+}
+```
+
+```
+GET /notifications/unread/count
+
+Response 200: { "count": 1 }
+```
+
+#### 既読
+
+```
+PATCH /notifications/read-all
+
+Response 200: {"message": "すべての通知を既読にしました"}
+```
+
+```
+PATCH /notifications/{id}/read
+
+Response 200: {"message": "通知を削除しました"}
+```
+
+```
+DELETE /notifications/{id}
+
+Response 200: {"message": "通知を削除しました"}
+```
+
+
+### ダイレクトメッセージ (DM)
+
+#### 読み取り
+
+```
+GET  /dm/groups
+
+Response 200:
+{
+  "groups": [
+    {
+      "id": 487,
+      "members": [...],
+      "lastMessage": { ... },
+      "messages": [...],
+      ...
+    }
+  ],
+  "pagination": { ... }
+}
+```
+
+```
+GET /dm/groups/{groupId}/messages?page=1&limit=50
+
+Response 200:
+{
+  "messages": [
+    {
+      "id": 4125,
+      "groupId": 487,
+      "senderId": 15459,
+      "content": "テキスト",
+      "replyToId": null,
+      "attachmentUrls": ["/uploads/dm/uuid.png"],
+      "attachmentTypes": ["image/png"],
+      "attachmentAlts": [""],
+      "attachmentSpoilerFlags": [false],
+      "attachmentR18Flags": [false],
+      "isDeleted": false,
+      "createdAt": "...",
+      "sender": { ... },
+      "reactions": [...]
+    }
+  ],
+  "pagination": { ... }
+}
+```
+
+#### メッセージを送信
+
+```
+POST /dm/groups/{groupId}/messages
+Content-Type: application/json
+
+Body: { "content": "..." }
+
+Response 200: { message: { id, groupId, senderId, content, sender, createdAt } }
+```
+
+#### 既読
+
+```
+POST /dm/groups/{groupId}/read
+```
+
+### ストーリー (Story)
+
+#### 読み取り
+
+```
+GET /stories
+
+Response 200: { "stories": [ ... ] }
+```
+
+```
+GET /stories/user/{id}
+```
+
+```
+GET /stories/{id}/comments
+```
+
+#### いいね / 取消
+
+```
+POST /stories/{id}/like
+DELETE /stories/{id}/like
+```
+
+```
+POST /stories/{id}/comments
+Content-Type: application/json
+
+Body: { "content": "..." }
+
+Response 201: { comment: { id, storyId, authorId, content, createdAt, author } }
+```
+
+### 掲示板 (Boards)
+
+#### 読み取り
+```
+GET /boards
+
+Response 200: { "boards": [ ... ] }
+```
+
+```
+GET /boards/{slug}
+
+Response 200:
+{
+  "board": { ... },
+  "threads": [ ... ]
+}
+```
+
+```
+GET /boards/{slug}/threads/{id}
+
+Response 200: { thread: Thread, replies: Reply[] }
+```
+
+#### スレッド作成
+
+```
+POST /boards/{slug}/threads
+Content-Type: application/json
+
+Body: { "title": "...", "content": "..." }
+```
+
+#### リプレイ
+
+```
+POST /boards/threads/{id}/replies
+Content-Type: application/json
+
+Body: { "content": "..." }
+```
+
+#### リアクション
+
+```
+POST /boards/threads/{id}/react → スレッドの最初のコメントへのリアクションを行う/取り消す
+Content-Type: application/json
+
+Body: { "emoji": "👍️" }
+```
+
+```
+POST /boards/replies/{id}/react → 返信へのリアクションを行う/取り消す
+Content-Type: application/json
+
+Body: { "emoji": "👍️" }
+```
+
+### ニュース (News)
+
+#### 読み取り
+
+```
+GET /news?limit=12
+
+Response 200: { "articles": [ ... ] }
+```
+
+```
+GET /news/{id}
+```
+
+#### 記事作成
+
+```
+POST /news
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+```
+
+#### 申請
+
+```
+POST /news/{id}/submit
+```
+
+#### 記事更新
+
+```
+PUT /news/{id}
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+
+```
+
+#### 画像アップロード
+
+```
+POST /news/uploads
+
+media File[]
+```
+
+### レスポンススキーマー (Schemas)
+
+```
+GET /schemas/post
+Response: { "id": 123, "content": "投稿本文", "authorId": 45, "parentId": null, "quotedPostId": null, "mediaUrls": ["https://.../1.jpg"], "mediaTypes": ["image"], "mediaAlts": [""], "mediaSpoilerFlags": [false], "mediaR18Flags": [false], "minimumAge": null, "maximumAge": null, "isR18": false, "hideFromMinors": false, "adminForceHidden": false, "adminForceR18": false, "embedUrl": null, "embedTitle": null, "embedDescription": null, "embedImage": null, "likesCount": 10, "rekarotsCount": 2, "repliesCount": 3, "viewsCount": 100, "bookmarksCount": 1, "replyRestriction": "EVERYONE", "replyCircleId": null, "excludedMentions": [], "isAiGenerated": false, "isPromotional": false, "editedAt": null, "createdAt": "2026-04-12T12:34:56.789Z", "updatedAt": "2026-04-12T12:34:56.789Z", "author": { "id": 45, "username": "alice", "displayName": "Alice", "avatarUrl": "https://.../avatar.jpg", "avatarFrameId": null, "officialMark": "NONE", "isParodyAccount": false, "isBotAccount": false, "adminForceParody": false, "adminForceBot": false, "isPrivate": false }, "viewerCircle": null, "viewerCircleId": null, "replyCircle": null, "replyCircleId": null, "mentions": [{ "mentionedId": 12 }], "replyTargets": [{ "user": { "id": 12, "username": "bob", "displayName": "Bob", "avatarUrl": "https://.../bob.jpg", "avatarFrameId": null, "officialMark": "NONE", "isPrivate": false } }], "quotedPost": null, "poll": null, "reactions": [{ "emoji": "👍", "userId": 45 }], "reactionSummary": [{ "emoji": "👍", "count": 1, "reacted": false }], "likes": [{ "id": 678 }], "rekarots": [], "bookmarks": [], "hashtags": ["tag1", "tag2"], "replyToUsers": [], "bookmarksCount": 1, "_count": { "likes": 10, "rekarots": 2, "replies": 3, "reactions": 5, "bookmarks": 1 }, "liked": false, "rekaroted": false, "bookmarked": false }
+
+GET /schemas/user
+Response: { "user": { "id": 45, "username": "alice", "displayName": "Alice", "avatarUrl": "https://.../avatar.jpg", "avatarFrameId": null, "headerUrl": "https://.../header.jpg", "bio": "自己紹介", "websiteUrl": null, "location": null, "isPrivate": false, "officialMark": "NONE", "isBotAccount": false, "isParodyAccount": false, "followersCount": 123, "followingCount": 45, "postsCount": 78, "createdAt": "2026-01-01T00:00:00.000Z", "pinnedPostId": null }, "relationship": { "isFollowing": false, "isFollowedBy": false, "isBlocked": false, "isBlockedBy": false, "isMuted": false, "hasPendingRequest": false }, "pinnedPost": null }
+
+GET /schemas/poll
+Response: { "id": 11, "expiresAt": "2026-04-12T13:00:00.000Z", "isExpired": false, "isAnonymous": true, "totalVotes": 42, "ownVoteOptionId": null, "options": [ { "id": 1, "text": "選択肢A", "imageUrl": null, "position": 0, "votesCount": 30, "percentage": 71, "votedByMe": false }, { "id": 2, "text": "選択肢B", "imageUrl": null, "position": 1, "votesCount": 12, "percentage": 29, "votedByMe": false } ] }
+
+GET /schemas/timeline-item
+Response: { "type": "POST", "time": "2026-04-12T12:34:56.789Z", "itemId": "post-123", "id": 123, "content": "投稿本文", "authorId": 45, "likesCount": 10, "repliesCount": 3, "rekarotsCount": 2, "createdAt": "2026-04-12T12:34:56.789Z", "author": { "id": 45, "username": "alice", "displayName": "Alice", "avatarUrl": "https://.../avatar.jpg" } }
+```
+
+### Twitter API v2 互換エンドポイント
+
+**ベースパス:** `/api/developer/2/`
+
+| メソッド | パス | 説明 | Twitter API v2 対応 |
+|---------|------|------|-------------------|
+| GET | `/developer/2/users/me` | 認証中ユーザー情報 | `GET /2/users/me` |
+| GET | `/developer/2/users/by/username/:username` | ユーザー名でユーザー検索 | `GET /2/users/by/username/:username` |
+| GET | `/developer/2/users/:id/tweets` | ユーザーの投稿一覧 | `GET /2/users/:id/tweets` |
+| GET | `/developer/2/users/:id/timelines/reverse_chronological` | ホームタイムライン | `GET /2/users/:id/timelines/reverse_chronological` |
+| POST | `/developer/2/tweets` | 投稿作成 | `POST /2/tweets` |
+| GET | `/developer/2/tweets/:id` | 投稿詳細取得 | `GET /2/tweets/:id` |
+| GET | `/developer/2/tweets/search/recent?query=...&max_results=10` | 投稿検索 | `GET /2/tweets/search/recent` |
+
+#### 注意事項
+
+- 認証は通常のDeveloper APIと同じ (`Authorization: Bearer {apiKey}`)
+- レスポンス形式はTwitter API v2に準拠（カロッター独自のDeveloper APIとは異なる
+- ユーザー名検索が可能（通常のDeveloper APIでは数値IDのみ）
+
+### 備考
+
+- APIキーは `kar_live_` プレフィックスの形式
+- `/apikeys` エンドポイント（セルフBot API側）で発行・管理可能
+- APIキーには権限フィールドあり: `canReadPosts`, `canCreatePosts`, `canReadTimeline`, `canReadFollows`, `canWriteFollows`, `requestsPerMinute`
+- 認証ミドルウェアがルートマッチング前に実行されるため、無効キーでは全パスが `401 {"error": "認証エラー"}` を返す
+- 認証系は現在リライト中の可能性あり
+
+---
+
+## OAuth API エンドポイント
+
+外部アプリとの連携を可能にする。
+
+---
+
+### 概要
+
+| 項目 | 詳細 |
+|------|------|
+| Base URL | `https://api.karotter.com/api/oauth` |
+| 認証 | `Authorization: Bearer {token}` (`kar_client_*`, `kar_secret_*` プレフィックス) |
+
+#### 認可画面へリダイレクト
+
+```
+GET /oauth/authorize
+
+パラメータ
+response_type string 必須 — code を指定
+client_id string 必須 — OAuthアプリのclient_id
+redirect_uri string 必須 — 登録済みリダイレクトURI
+scope string — profile, email, offline_access
+state string — CSRF対策用の任意文字列
+code_challenge string — PKCE code challenge
+code_challenge_method string — S256 または plain
+```
+
+#### トークン変換
+
+```
+POST /oauth/token
+
+リクエストボディ
+grant_type string 必須 — authorization_code または refresh_token
+code string — 認可コード
+redirect_uri string — 認可時と同じリダイレクトURI
+client_id string — 公開クライアントまたはPOST認証で使用
+client_secret string — 機密クライアントで使用
+code_verifier string — PKCE code verifier
+refresh_token string — refresh_token grantで使用
+
+Response 200:
+{ access_token, token_type: "Bearer", expires_in, scope, refresh_token? }
+```
+
+#### アクセストークンでユーザー情報を取得
+
+```
+GET /oauth/userinfo
+
+Request Header:
+Authorization: Bearer ACCESS_TOKEN
+
+Response 200:
+{ sub, id, username, displayName, picture, email?, email_verified? }
+```
+
+---
+
+## サーバーボット (Guild Bots) エンドポイント
+
+---
+
+### インストール済みサーバー一覧の取得
+
+```
+GET   /developer/guilds
+```
+
+### サーバーのチャンネル一覧を表示
+
+```
+GEt   /deveoper/guilds/{id}/channels
+```
+
+### チャンネルにメッセージを送信
+
+```
+POST  /developer/channels/{id}/messages
+```
+
+### スラッシュコマンド登録
+
+```
+POST  /developer/applications/commands
+```
+
+### コマンドの権限設定を変更
+
+```
+PUT   /developer/applications/commands/{id}/permissions
+```
+
+---
+
+## その他のエンドポイント
+
+---
+
+### 規約 (Legal)
+
+```
+GET /legal/summary    → 規約バージョン・発効日
+GET /legal/terms      → 利用規約全文
+GET /legal/privacy    → プライバシーポリシー全文
+GET /legal/{slug}     → 法的文書（汎用、認証不要）
+```
+
+レスポンス例 (`/legal/summary`):
+```json
+{
+  "version": "terms:2026-03-27|privacy:2026-03-27",
+  "termsEffectiveDate": "2026-03-27",
+  "privacyEffectiveDate": "2026-03-27"
+}
+```
+
+### 通報 (Reports)
+
+```
+POST /reports
+Content-Type: application/json
+
+{
+  "type": "POST",       // 通報対象種類
+  "postId": 12345,      // 投稿通報時
+  "newsArticleId": 12345      // ニュース通報時
+  "reason": "${selectedReason}: 入力した理由"
+}
+
+```
+- `type`: `POST`, `STORY`, `DM_MESSAGE`, `USER`, `NEWS`, `NEWS_COMMENT`, `RADIO_MESSAGE`
+- `type` が不正: `400 {"error": "通報対象の種類が不正です"}`
+- レート制限: 10 req / 900s
+
+### お問い合わせ (Contact)
+
+```
+POST /contact
+Content-Type: application/json
+
+{
+  "category": "bug" | "feature_request" | "general_inquiry",
+  "subject": "件名",
+  "body": "本文"
+}
+```
+- 認証不要
+- レート制限: 5 req / 3600s
+
+### APIキー
+
+```
+GET    /apikeys        → {"apiKeys": [...]}
+POST   /apikeys        → APIキー作成 Body: {"name":"...","canReadPosts":true,"canCreatePosts":true,"canReadTimeline":true,"canReadFollows":true,"canWriteFollows":true,"canReadNews":true,"canCreateNews":true,"canPublishNews":true}
+DELETE /apikeys/{id}   → {"message": "APIキーを削除しました"}
+```
+- APIキーフィールド: id, name, canReadPosts, canCreatePosts, canReadTimeline, canReadFollows, canWriteFollows, requestsPerMinute, lastUsedAt, isActive, createdAt, maskedKey
+- POST時のみ `plainKey` (e.g. `kar_live_...`) が返る。以降は `maskedKey` のみ表示
+
+### OAuthアプリ
+
+#### OAuthアプリの作成
+
+```
+POST /oauth/clients
+Content-Type: application/json
+
+Body: {"name":"七虎なるくん","description":"Karotter連携","homepageUrl":"https://www.shichitora.pro","logoUrl":"https://www.shichitora.pro/icon.JPG","redirectUris":["https://auth.shichitora.pro/karotter-connect"],"isConfidential":true}
+```
+
+#### OAuthアプリの削除
+
+```
+DELETE /oauth/clients/{id}
+
+Response 200:
+{"message":"OAuthアプリを削除しました"}
+```
+
+#### OAuthアプリ認証情報の再生成
+
+```
+POST /oauth/clients/{id}/secret
+
+Response 200:
+{
+    "clientId": "kar_client_...",
+    "clientSecret": "kar_secret_...",
+    "maskedClientSecret": "kar_secret...",
+    "message": "client_secretを再生成しました。この値は再表示できません。"
+}
+```
+
+#### OAuthアプリの一覧取得
+
+```
+GET  /oauth/clients
+
+Response 200:
+{
+    "clients": [
+        {
+            "id": 3,
+            "clientId": "kar_client_...",
+            "name": "七虎なるくん",
+            "description": "Karotter連携",
+            "homepageUrl": "https://www.shichitora.pro",
+            "logoUrl": "https://www.shichitora.pro/icon.JPG",
+            "redirectUris": [
+                "https://auth.shichitora.pro/karotter-connect"
+            ],
+            "isConfidential": true,
+            "isActive": true,
+            "createdAt": "2026-05-14T08:35:34.932Z",
+            "updatedAt": "2026-05-14T08:35:34.932Z",
+            "revokedAt": null
+        }
+    ]
+}
+```
+
+### サーバーボット (Guild Bots)
+
+#### 一覧取得
+
+```
+GET   /guild-bots/applications
+
+Response 200: {"applications":[]}
+```
+
+#### ボットの作成
+
+```
+POST  /guild-bots/applications
+Content-Type: application/json
+
+Body: {"name":"TEST","description":"TEST","interactionsEndpointUrl":"https://auth.shichitora.pro/test","public":true}
+```
+
+#### トークンの再生成
+
+```
+POST  /guild-bots/applications/{id}/token
+```
+
+#### ボットの削除
+
+```
+DELETE /guild-bots/applications/{id}
+```
+
+### 埋め込み (Embed)
+
+```
+GET https://karotter.com/embed/{postId}     → 投稿の埋め込みHTML
+GET https://karotter.com/oembed?url={url}   → oEmbed形式
+```
+- フロントエンドルート（`/api/` 配下ではない）
+
+---
+
+## Socket.IO (リアルタイム通信)
+
+**接続先**: `wss://karotter.com/socket.io`
+
+---
+
+### DM
+
+| イベント | 方向 | 説明 |
+|---------|------|------|
+| `dm:join` | C→S | DMグループ参加 |
+| `dm:leave` | C→S | DMグループ退出 |
+| `dm:read` | C→S | 既読マーク |
+| `dm:new-message` | S→C | 新規メッセージ受信 |
+| `dm:message-deleted` | S→C | メッセージ削除 |
+| `dm:message-updated` | S→C | メッセージ更新 |
+| `dm:member-added` | S→C | メンバー追加 |
+| `dm:member-left` | S→C | メンバー退出 |
+| `dm:member-removed` | S→C | メンバー削除 |
+| `dm:request-updated` | S→C | DMリクエスト更新 |
+| `typing:start` | C→S | タイピングを開始 |
+| `typing:stop` | C→S | タイピングを停止 |
+
+### 通話 (Voice)
+
+| イベント | 方向 | 説明 |
+|---------|------|------|
+| `call:incoming` | S→C | 着信イベント |
+| `call:state` | S→C | 通話ステータス |
+| `voice:offer` | C→S | WebRTC SDP Offer |
+| `voice:answer` | C→S | WebRTC SDP Answer |
+| `voice:ice-candidate` | C→S | ICE candidate |
+| `voice:hangup` | C→S | 通話切断 |
+| `voice:participant-state` | C→S | マイク/スピーカー状態 |
+
+### スクリーンシェア
+
+| イベント | 方向 | 説明 |
+|---------|------|------|
+| `screen-share:view` | C→S | 画面共有視聴 |
+
+### ラジオ/スペース
+
+| イベント | 方向 | 説明 |
+|---------|------|------|
+| `radio:signal` | C→S | WebRTCシグナリング |
+| `radio:renegotiate-request` | C→S | 再ネゴシエーション |
+| `radio:participant-state` | C→S | 参加者状態 |
+| `radio:join` | S→C | スペース参加通知 |
+| `radio:leave` | S→C | スペース退出通知 |
+| `radio:user-joined` | S→C | ユーザー参加 |
+| `radio:user-left` | S→C | ユーザー退出 |
+| `radio:ended` | S→C | スペース終了 |
+| `radio:signal` | S→C | WebRTCシグナル受信 |
+| `radio:host-disconnected` | C→S | ホストが切断 |
+| `radio:host-reconnected` | C→S | ホストが再接続 |
+| `radio:message` | C↔S | スペース内メッセージ |
+| `radio:reaction` | C↔S | スペース内リアクション |
+| `radio:sync-request` | C↔S | Sync Request |
+| `radio:sync` | S→C | Sync |
+| `radio:presence-ping` | C→S | Ping |
+| `radio:presence-pong` | S→C | Pong |
+| `radio:share-state` | S↔C | Share State |
+
+### 絵チャ
+
+| イベント | 方向 | 説明 |
+|---------|------|------|
+| `draw:join` | C→S | 絵チャルーム参加 |
+| `draw:leave` | C→S | 絵チャルーム退出 |
+| `draw:stroke` | C↔S | 描画ストローク |
+| `draw:cursor` | C↔S | カーソル位置 |
+| `draw:layer-sync` | C↔S | レイヤー同期 |
+| `draw:chat` | C↔S | 絵チャ内チャット |
+| `draw:room-state` | S→C | 絵チャルーム状態 |
+| `draw:user-left` | S→C | ユーザー退出通知 |
+| `draw:error` | S→C | エラー通知 |
+
+### サーバー
+
+| イベント | 方向 | 説明 |
+|---------|------|------|
+| `guild:join` | C→S | サーバー参加 |
+| `guild:join` | C→S | サーバー退出 |
+| `channel:join` | C→S | チャンネル参加 |
+| `channel:leave` | C→S | チャンネル退出 |
+| `guild:message-create` | S→C | メッセージ作成 |
+| `guild:message-update` | S→C | メッセージ更新 |
+| `guild:message-delete` | S→C | メッセージ削除 |
+| `guild:typing:user` | S→C | タイピング |
+| `channel:created` | S→C | チャンネル作成 |
+| `channel:updated` | S→C | チャンネル更新 |
+| `channel:deleted` | S→C | チャンネル削除 |
+| `guild:forum-post-create` | S→C | フォーラム投稿作成 |
+| `guild:forum-post-update` | S→C | フォーラム投稿更新 |
+| `guild:forum-post-delete` | S→C | フォーラム投稿削除 |
+| `guild:member-joined` | S→C | メンバー参加 |
+| `guild:member-removed` | S→C | メンバー退出 |
+| `guild:invites-updated` | S→C | 招待情報更新 |
+
+
+
+### その他
+
+| イベント | 方向 | 説明 |
+|---------|------|------|
+| `notification` | S→C | プッシュ通知 |
+| `post:created` | S→C | カロート作成通知 |
+| `post:deleted` | S→C | カロート削除通知 |
+| `user:status` | S→C | ユーザーステータス |
+| `token` | C→S | トークン |
+| `sid` | S→C | SID |
+
+---
+
+## バッジ一覧
+
+---
+
+### 公式マーク
+
+これらは管理者への問い合わせを行い､管理者に付与されないと入手できない。
+
+| 画像 | ID | 名前 | 入手方法 |
+|-----|-----|-----|--------|
+| <img src="/badges/badge_yellow.PNG" width="32" height="32" > | `YELLOW` | 認証済み団体マーク | 団体からの申請があった場合に運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_purple.PNG" width="32" height="32" > | `PURPLE` | 運営マーク | Karotterの運営者・開発者に付与される |
+| <img src="/badges/badge_blue.PNG" width="32" height="32" > | `BLUE` | 本人マーク | ある程度の影響力のある者などに運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_gray.PNG" width="32" height="32" > | `GRAY` | 政府関係者マーク | 政府関係者からの申請があった場合に運営が管理者APIを通じて付与する |
+
+### 課金要素バッジ
+
+これらは課金でのみ入手することができる。
+
+| 画像 | ID | 名前 | 入手方法 |
+|-----|-----|-----|--------|
+| <img src="/badges/badge_black.PNG" width="32" height="32" > | `BLACK` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_red.PNG" width="32" height="32" > | `RED` | 認証済みマーク | 「Karotter 赤バッジ」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_green.PNG" width="32" height="32" > | `GREEN` | 認証済みマーク | 「Karotter 緑バッジ」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_orange.PNG" width="32" height="32" > | `ORANGE` | 認証済みマーク | 「Karotter Plus」または「Karotter Pro」を購入する |
+| <img src="/badges/badge_pink.PNG" width="32" height="32" > | `PINK` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_coral.PNG" width="32" height="32" > | `CORAL` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_magenta.PNG" width="32" height="32" > | `MAGENTA` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_lime.PNG" width="32" height="32" > | `LIME` | 認証済みマーク | 「Karotter Pro」を購入する |
+| <img src="/badges/badge_brown.PNG" width="32" height="32" > | `BROWN` | 認証済みマーク | 「Karotter Pro」を購入する |
+
+### バグバッジ
+
+これらは入手できない。過去にバグで全員のプロフィールに表示されたり、DMバグで表示されたりした。
+
+| 画像 | 名前 | 入手方法 |
+|-----|-----|--------|
+| <img src="/badges/badge_white.PNG" width="32" height="32" > | 不明 | 認証バッジが正しく表示できない場合に表示される |
+| <img src="/badges/badge_parody_black.PNG" width="32" height="32" > | パロディ | ダークモードでバロディマークが正しく表示できない場合に表示される |
+| <img src="/badges/badge_parody_white.PNG" width="32" height="32" > | パロディ | ライトモードでバロディマークが正しく表示できない場合に表示される |
+
+### 属性マーク
+
+これらは個人が､アカウントに任意で付与することができるマークである。管理者が強制表示させることが可能である。
+
+| 画像 | 名前 | 入手方法 |
+|-----|-----|--------|
+| <img src="/badges/badge_lock.PNG" width="32" height="32" > | 非公開アカウント | 設定の「プライバシー」から「非公開アカウント」を有効にする |
+| <img src="/badges/badge_bot.PNG" width="32" height="32" > | BOT | 設定の「コンテンツ表示」から「BOTアカウントとして表示する」を有効にする |
+| <img src="/badges/badge_parody.PNG" width="32" height="32" > | パロディ | 設定の「コンテンツ表示」から「パロディアカウントとして表示する」を有効にする |
+
+---
+
+## Pro絵文字
+
+---
+
+| 画像 | ID | 文字 |
+|-----|-----|-----|
+| <img src="/pro-emoji/ai.png" > | `pro:ai` | 愛 |
+| <img src="/pro-emoji/arara.png" > | `pro:arara` | あらら |
+| <img src="/pro-emoji/arigato.png" > | `pro:arigato` | ありがとう |
+| <img src="/pro-emoji/bananala.png" > | `pro:bananala` | ばななぁ |
+| <img src="/pro-emoji/bimi.png" > | `pro:bimi` | 美味 |
+| <img src="/pro-emoji/bimyou.png" > | `pro:bimyou` | 微妙 |
+| <img src="/pro-emoji/critical.png" > | `pro:critical` | クリティカル |
+| <img src="/pro-emoji/daijoubu.png" > | `pro:daijoubu` | 大丈夫？ |
+| <img src="/pro-emoji/daisuki.png" > | `pro:daisuki` | だいすき |
+| <img src="/pro-emoji/dakara.png" > | `pro:dakara` | だから |
+| <img src="/pro-emoji/dame.png" > | `pro:dame` | だめ |
+| <img src="/pro-emoji/desu.png" > | `pro:desu.png` | です |
+| <img src="/pro-emoji/e.png" > | `pro:e` | え？ |
+| <img src="/pro-emoji/ee.png" > | `pro:ee` | えぇ… |
+| <img src="/pro-emoji/fanburu.png" > | `pro:fanburu` | ファンブル |
+| <img src="/pro-emoji/furaidopoteto.png" > | `pro:furaidopoteto` | ふらいどぽてと |
+| <img src="/pro-emoji/ganbare.png" > | `pro:ganbare` | がんばれ |
+| <img src="/pro-emoji/gekiatsu.png" > | `pro:gekiatsu` | 激アツ |
+| <img src="/pro-emoji/gomen.png" > | `pro:gomen` | ごめんね |
+| <img src="/pro-emoji/hai-gimon.png" > | `pro:hai-gimon` | はい？ |
+| <img src="/pro-emoji/hai.png" > | `pro:hai` | はい |
+| <img src="/pro-emoji/hiku.png" > | `pro:hiku` | 引 |
+| <img src="/pro-emoji/hosii.png" > | `pro:hosii` | ほしい |
+| <img src="/pro-emoji/hurokuu.png" > | `pro:hurokuu` | 風呂食う |
+| <img src="/pro-emoji/igyo.png" > | `pro:igyo` | 偉業 |
+| <img src="/pro-emoji/iie.png" > | `pro:iie` | いいえ |
+| <img src="/pro-emoji/iiyo.png" > | `pro:iiyo` | いいよ |
+| <img src="/pro-emoji/kakkoyosugiru.png" > | `pro:kakkoyosugiru` | かっこよすぎる |
+| <img src="/pro-emoji/kanasii.png" > | `pro:kanasii` | 悲しい |
+| <img src="/pro-emoji/kandou.png" > | `pro:kandou` | 感動 |
+| <img src="/pro-emoji/kane.png" > | `pro:kane` | 金 |
+| <img src="/pro-emoji/kansya.png" > | `pro:kansya` | 感謝 |
+| <img src="/pro-emoji/karoart.png" > | `pro:karoart` | かろあーと |
+| <img src="/pro-emoji/karoearth.png" > | `pro:karoearth` | かろあーす |
+| <img src="/pro-emoji/karon.png" > | `pro:karon` | かろん |
+| <img src="/pro-emoji/karotter.png" > | `pro:karotter` | Karotter |
+| <img src="/pro-emoji/kawaii.png" > | `pro:kawaii` | かわいい |
+| <img src="/pro-emoji/kekkonsitai.png" > | `pro:kekkonsitai` | 結婚したい |
+| <img src="/pro-emoji/kirei.png" > | `pro:kirei` | 綺麗 |
+| <img src="/pro-emoji/kore.png" > | `pro:kore` | これ |
+| <img src="/pro-emoji/kowasugiru.png" > | `pro:kowasugiru` | 怖すぎる |
+| <img src="/pro-emoji/kurusii.png" > | `pro:kurusii` | 苦しい |
+| <img src="/pro-emoji/kusa.png" > | `pro:kusa` | 草 |
+| <img src="/pro-emoji/mazi.png" > | `pro:mazi` | マジ？ |
+| <img src="/pro-emoji/mazide.png" > | `pro:mazide` | マジで |
+| <img src="/pro-emoji/medaka.png" > | `pro:medaka` | めだか |
+| <img src="/pro-emoji/medetai.png" > | `pro:medetai` | めでたい |
+| <img src="/pro-emoji/melonsoda.png" > | `pro:melonsoda` | めろんそーだ |
+| <img src="/pro-emoji/nani.png" > | `pro:nani` | なに？ |
+| <img src="/pro-emoji/odaizini.png" > | `pro:odaizini` | お大事に… |
+| <img src="/pro-emoji/ohayo.png" > | `pro:ohayo` | おはよ |
+| <img src="/pro-emoji/otsukaresama.png" > | `pro:otsukaresama` | おつかれ様 |
+| <img src="/pro-emoji/owari.png" > | `pro:owari` | 終 |
+| <img src="/pro-emoji/owatta.png" > | `pro:owatta` | おわった |
+| <img src="/pro-emoji/oyasumi.png" > | `pro:oyasumi` | おやすみ |
+| <img src="/pro-emoji/sagidesu.png" > | `pro:sagidesu` | 詐欺です |
+| <img src="/pro-emoji/saida-.png" > | `pro:saida-` | さいだー |
+| <img src="/pro-emoji/saikoukaryoku.png" > | `pro:saikoukaryoku` | 最高火力 |
+| <img src="/pro-emoji/saikousugiru.png" > | `pro:saikousugiru` | 最高すぎる |
+| <img src="/pro-emoji/sayonara.png" > | `pro:sayonara` | さよなら |
+| <img src="/pro-emoji/shihiro.png" > | `pro:shihiro` | しひろ |
+| <img src="/pro-emoji/sinpaidayo.png" > | `pro:sinpaidayo` | 心配だよ |
+| <img src="/pro-emoji/sonnnawake.png" > | `pro:sonnnawake` | そんなわけ |
+| <img src="/pro-emoji/sorena.png" > | `pro:sorena` | それな |
+| <img src="/pro-emoji/sugoi.png" > | `pro:sugoi` | すごい |
+| <img src="/pro-emoji/suki.png" > | `pro:suki` | すき |
+| <img src="/pro-emoji/syogyomujo.png" > | `pro:syogyomujo` | 諸行無常 |
+| <img src="/pro-emoji/syunkasyuutouasahiruban.png" > | `pro:syunkasyuutouasahiruban` | 春夏秋冬朝昼晩 |
+| <img src="/pro-emoji/takuan.png" > | `pro:takuan` | たくあん |
+| <img src="/pro-emoji/tasukaru.png" > | `pro:tasukaru` | 助かる |
+| <img src="/pro-emoji/tasukete.png" > | `pro:tasukete` | たすけて |
+| <img src="/pro-emoji/tensai.png" > | `pro:tensai` | 天才！ |
+| <img src="/pro-emoji/thinkkaron1.png" > | `pro:thinkkaron1` | 疑問（かろん） |
+| <img src="/pro-emoji/this.png" > | `pro:this` | これは |
+| <img src="/pro-emoji/tigaimasu.png" > | `pro:tigaimasu` | 違います |
+| <img src="/pro-emoji/umai.png" > | `pro:umai` | うまい |
+| <img src="/pro-emoji/uo-!!.png" > | `pro:uo-!!` | うおー！！ |
+| <img src="/pro-emoji/urayamasii.png" > | `pro:urayamasii` | 羨ましい |
+| <img src="/pro-emoji/wakaru.png" > | `pro:wakaru` | わかる |
+| <img src="/pro-emoji/watashihakami.png" > | `pro:watashihakami` | 私は神 |
+| <img src="/pro-emoji/yamete.png" > | `pro:yamete` | やめて |
+| <img src="/pro-emoji/yasasii.png" > | `pro:yasasii` | やさしい |
+| <img src="/pro-emoji/yoroshiku.png" > | `pro:yoroshiku` | よろしく |
+| <img src="/pro-emoji/youkoso.png" > | `pro:youkoso` | ようこそ |
+| <img src="/pro-emoji/yurusanai.png" > | `pro:yurusanai` | 許さない |
+| <img src="/pro-emoji/yurushite.png" > | `pro:yurushite` | ゆるして |
+| <img src="/pro-emoji/yuunousugiru.png" > | `pro:yuunousugiru` | 有能すぎる |
+
+---
+
+## サブスクリプションプラン一覧
+
+---
+
+| コード | 説明 |
+|-----|--------|
+| `FREE` | 期限: なし / 投稿文字数: 200文字 / 固定カロート: 1個 / アップロード上限: 標準 |
+| `PLUS` | バッジ: オレンジ / 投稿文字数: 500文字 / 固定カロート: 3個 / 返信で上位表示 |
+| `PRO` | Plusの全特典 / バッジ: 任意の色のバッジを1つ / 投稿文字数: 1000文字 / 固定カロート: 5個 / プロフィール・カード装飾 / アップロード上限: 200MB |
+| `BADGE_RED` | バッジ: 赤 |
+| `BADGE_GREEN` | バッジ: 緑 |
+
+---
+
+## 高度な検索
+
+高度な検索では、条件を絞ってカロートなどを検索できる。
+
+---
+
+検索欄（クエリパラメーター`?q=`のあと）に以下の形で入力されることで、条件を絞れる。
+
+### 単語
+
+- **単語を含む**: `text`
+- **単語のいずれかを含む**: `text1 text2`
+- **単語に完全一致**: `"text"`
+- **単語を含まない**: `-text`
+- **いずれかの単語を含む**: `text OR text`
+- **ハッシュタグを含む**: `#text`
+- **ハッシュタグを含まない**: `-#text`
+- **ルビ振りが完全一致**: `《text》`
+- **ルビ振りの完全一致を弾く**: `-《text》`
+
+### 言語
+
+- **言語指定**: `lang:code`
+   *   code: `ja`, `en`, `ko`, `zh-CN`, `zh-TW`, `es`, `fr`, `de`, `pt-BR`, `it`, `id`, `vi`, `th`, `hi`
+
+### 形態
+
+- **リンクのみ**: `filter:links`
+- **リンクを弾く**: `-filter:links`
+- **返信のみ**: `filter:replies`
+- **返信を弾く**: `-filter:replies`
+- **引用のみ**: `filter:quotes`
+- **引用を弾く**: `-filter:quotes`
+- **画像のみ**: `filter:media`
+- **画像を弾く**: `-filter:media`
+- **動画のみ**: `filter:videos`
+- **動画を弾く**: `-filter:videos`
+
+### エンゲージメント
+
+- **返信数**: `min_replies:num`
+- **いいね数**: `min_faves:num`
+- **リカロート数**: `min_rekarots:num`
+
+### アカウント
+
+- **特定アカウントのカロート**: `from:user`
+- **特定のアカウントへの返信**: `to:user`
+- **特定のアカウントへのメンション**: `@user`
+- **特定のアカウントへのメンションを含まない**: `-@user`
+
+### 日付
+
+- **開始**: `since:yyyy-mm-dd`
+- **終了**: `until:yyyy-mm-dd`
+
+---
+
+## 投稿レスポンス構造
+
+投稿オブジェクトの全フィールド定義。
+
+### 完全なレスポンス例
+
+```json
+{
+  "id": 12345,
+  "content": "投稿テキスト @mention #hashtag",
+  "createdAt": "2026-03-28T06:50:55.026Z",
+  "authorId": 15459,
+  "parentId": null,
+  "quotedPostId": null,
+  "mediaUrls": [],
+  "mediaTypes": [],
+  "mediaAlts": [],
+  "mediaSpoilerFlags": [],
+  "mediaR18Flags": [],
+  "isAiGenerated": false,
+  "isPromotional": false,
+  "isR18": false,
+  "hideFromMinors": false,
+  "visibility": "PUBLIC",
+  "replyRestriction": "EVERYONE",
+  "likesCount": 6,
+  "rekarotsCount": 0,
+  "repliesCount": 1,
+  "reactionsCount": 2,
+  "viewsCount": 100,
+  "liked": false,
+  "rekaroted": false,
+  "bookmarked": false,
+  "author": {
+    "id": 15459,
+    "username": "claude",
+    "displayName": "claude",
+    "avatarUrl": "/uploads/avatars/...",
+    "isBotAccount": true,
+    "isParodyAccount": false,
+    "officialMark": []
+  },
+  "poll": null,
+  "reactions": [{"emoji": "🥕", "userId": 15459}],
+  "reactionSummary": [{"emoji": "🥕", "count": 1, "reacted": true}],
+  "mentions": [],
+  "hashtags": [],
+  "editedAt": null
+}
+```
+
+### 主要フィールド
+
+| フィールド | 型 | 説明 |
+|-----------|-----|------|
+| `id` | number | 投稿ID |
+| `content` | string | 本文 (メンション・ハッシュタグ含む) |
+| `authorId` | number | 投稿者ID |
+| `parentId` | number\|null | 返信先投稿ID |
+| `quotedPostId` | number\|null | 引用元投稿ID |
+| `createdAt` | string | 投稿日時 (ISO 8601) |
+| `editedAt` | string\|null | 編集日時 |
+| `mediaUrls` | string[] | メディアの相対パス |
+| `mediaTypes` | string[] | `"image"` / `"video"` |
+| `mediaAlts` | string[] | Alt text |
+| `mediaSpoilerFlags` | boolean[] | スポイラーフラグ |
+| `mediaR18Flags` | boolean[] | R18フラグ |
+| `visibility` | string | `PUBLIC` / `FOLLOWERS` / `CIRCLE` / `PRIVATE` |
+| `replyRestriction` | string | `EVERYONE` / `FOLLOWERS` / `CIRCLE` / `MENTIONS` |
+| `isAiGenerated` | boolean | AI生成フラグ |
+| `isPromotional` | boolean | プロモーションフラグ |
+| `isR18` | boolean | R18フラグ |
+| `hideFromMinors` | boolean | 未成年非表示 |
+| `adminForceHidden` | boolean | 管理者非表示 |
+| `adminForceR18` | boolean | 管理者R18強制 |
+| `likesCount` | number | いいね数 |
+| `rekarotsCount` | number | リカロート数 |
+| `repliesCount` | number | 返信数 |
+| `viewsCount` | number | 閲覧数 |
+| `bookmarksCount` | number | ブックマーク数 |
+| `reactionsCount` | number | リアクション数 |
+| `liked` | boolean | 自分がいいねしたか |
+| `rekaroted` | boolean | 自分がリカロートしたか |
+| `bookmarked` | boolean | 自分がブックマークしたか |
+| `isMutedByViewer` | boolean | ミュート中か |
+| `hasBlockedAuthor` | boolean | 投稿者をブロック中か |
+| `isBlockedByAuthor` | boolean | 投稿者にブロックされてるか |
+| `canInteract` | boolean | インタラクション可能か |
+| `canQuote` | boolean | 引用可能か |
+| `author` | object | 投稿者情報 |
+| `poll` | object\|null | 投票データ |
+| `reactions` | array | リアクション配列 |
+| `reactionSummary` | array | リアクション集計 |
+| `mentions` | array | メンション |
+| `hashtags` | array | ハッシュタグ |
+
+### タイムライン固有フィールド
+
+タイムラインの各アイテムには追加フィールドあり:
+
+| フィールド | 説明 |
+|-----------|------|
+| `type` | `"POST"` / `"REKAROT"` |
+| `time` | アイテムの表示時刻 |
+| `itemId` | タイムラインアイテムID |
+
+### snake_case 例外
+
+検索ユーザー結果のみ `is_following` (snake_case)。他は全てcamelCase。
+
+---
+
+## 通知グルーピング構造
+
+通知はグルーピングされて返される。
+
+### グルーピングフィールド
+
+| フィールド | 説明 |
+|-----------|------|
+| `groupKey` | グループキー |
+| `actors[]` | アクションしたユーザー配列 |
+| `actorCount` | アクターの総数 |
+| `posts[]` | 関連投稿配列 |
+| `postCount` | 投稿の総数 |
+| `notificationIds[]` | 通知ID配列 |
+
+### 通知タイプ一覧
+
+| type | 説明 |
+|------|------|
+| `REPLY` | 返信 |
+| `MENTION` | メンション |
+| `FOLLOW` | フォロー |
+| `FOLLOW_REQUEST` | フォローリクエスト |
+| `LIKE` | いいね |
+| `REKAROT` | リカロート |
+| `QUOTE` | 引用 |
+| `DM` | ダイレクトメッセージ |
+| `BOARD` | 掲示板 |
+| `REPORT_UPDATE` | 報告 |
+| `FOLLOWED_POST` | 通知オン |
+| `SYSTEM` | お知らせ |
+
+### 通知オブジェクト例
+
+```json
+{
+  "id": "...",
+  "type": "REPLY",
+  "actor": { ... },
+  "actors": [{ ... }],
+  "post": { ... },
+  "posts": [{ ... }],
+  "createdAt": "..."
+}
+```
+
+グループ化された通知 (`GET /notifications/grouped-posts`) では、同じ投稿に対する複数の通知がまとめられ、`actors` 配列に全アクターが含まれる。
+
+---
+
+## 技術スタック
+
+| 項目 | 詳細 |
+|------|------|
+| Backend | Node.js (Express) + Prisma |
+| Database | PostgreSQL |
+| Frontend | Vite + React |
+| CDN/WAF | Cloudflare |
+| リアルタイム | Socket.IO (WebSocketのみ) |
+| 認証 | JWT (HS256) + CSRF |
+| SSL | Let's Encrypt |
+
+---
+
+## 注意事項
+
+- `/api/users/me` は「me」というユーザー名を検索する (現在のユーザーは `/api/auth/me`)
+- 同様に `/api/users/settings`, `/api/users/notifications` 等もユーザー名として解釈される
+- 画像アップロードのフィールド名: 投稿は `media`、DMは `attachments` (間違えると500)
+- 画像と動画の同時投稿不可 (400)
+- Cookie認証 (`karotter_at`, `karotter_rt`) が一部エンドポイントで必要。`requests.Session()` で自動処理
