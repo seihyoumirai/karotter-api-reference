@@ -2573,6 +2573,8 @@ Body: { "name": '...' }
 PUT    /channels/${channelId}/permissions/{type}/${perm}
 ```
 
+- `type`: `ROLE`, `MEMBER`
+
 #### 順番の変更
 
 ```
