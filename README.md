@@ -4065,10 +4065,10 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `radio:message` | C↔S | スペース内メッセージ |
 | `radio:reaction` | C↔S | スペース内リアクション |
 | `radio:sync-request` | C↔S | Sync Request |
-| `radio:participant-state` | C↔S | Participant State |
 | `radio:sync` | S→C | Sync |
 | `radio:presence-ping` | C→S | Ping |
 | `radio:presence-pong` | S→C | Pong |
+| `radio:share-state` | S↔C | Share State |
 
 ### 絵チャ
 
