@@ -4152,13 +4152,14 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | <img src="/badges/badge_lime.PNG" width="32" height="32" > | `LIME` | 認証済みマーク | 「Karotter Pro」を購入する |
 | <img src="/badges/badge_brown.PNG" width="32" height="32" > | `BROWN` | 認証済みマーク | 「Karotter Pro」を購入する |
 
-### バグバッジ
+### 入手不可バッジ
 
-これらは入手できない。過去にバグで全員のプロフィールに表示されたり、DMバグで表示されたりした。
+これらは入手できない。
 
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
 | <img src="/badges/badge_white.PNG" width="32" height="32" > | 不明 | 認証バッジが正しく表示できない場合に表示される |
+| <img src="/badges/badge_old.PNG" width="32" height="32" > | 認証済みマーク | 過去のピンクバッジ |
 | <img src="/badges/badge_parody_black.PNG" width="32" height="32" > | パロディ | ダークモードでバロディマークが正しく表示できない場合に表示される |
 | <img src="/badges/badge_parody_white.PNG" width="32" height="32" > | パロディ | ライトモードでバロディマークが正しく表示できない場合に表示される |
 
