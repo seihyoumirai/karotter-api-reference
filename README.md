@@ -58,6 +58,7 @@ Karotterの非公式APIリファレンスです。
 | [掲示板 (Boards) エンドポイント](#掲示板-boards-エンドポイント) | 掲示板エンドポイントについて |
 | [ニュース (News) エンドポイント](#ニュース-news-エンドポイント) | ニュースエンドポイントについて |
 | [サブスクリプション (Subscriptions) エンドポイント](#サブスクリプション-subscriptions-エンドポイント) | サブスクリプションエンドポイントについて |
+| [コミュニティ (Community) エンドポイント](#コミュニティ-community-エンドポイント) | コミュニティエンドポイントについて |
 | [サーバー (Guilds) エンドポイント](#サーバー-guilds-エンドポイント) | サーバーエンドポイントについて |
 | [管理パネル (Admin) エンドポイント](#管理パネル-admin-エンドポイント) | 管理パネルエンドポイントについて |
 | [Developer API エンドポイント](#developer-api-エンドポイント) | Developer API エンドポイントについて |
@@ -84,7 +85,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計24カテゴリー / 計369件 |
+| エンドポイント | 計25カテゴリー / 計387件 |
 | Socket.IO イベント | 計7カテゴリー / 計68件 |
 
 ---
@@ -1432,6 +1433,14 @@ GET /search/discover/media?limit=12&cursor={lastPostId}     → メディア投�
 - `cursor`: 取得開始位置。指定したIDより前の投稿を取得
 - 初回は `cursor` なしで最新を取得、以降は最後の投稿IDを `cursor` にセットして無限スクロール
 
+### コミュニティ
+
+```
+GET /search/communities
+
+Response 200: {"communities":[],"pagination":{"page":1,"limit":10,"total":0,"hasNext":false}}
+```
+
 ---
 
 ## ソーシャル (Social) エンドポイント
@@ -2078,8 +2087,8 @@ Content-Type: application/json
 ### フィード取得
 
 ```
-GET   /feed/public
-GET   /feed/home
+GET    /feed/public
+GET    /feed/home
 
 Response 200: { "posts": [...], "pagination": {...} }
 ```
@@ -2089,10 +2098,234 @@ Response 200: { "posts": [...], "pagination": {...} }
 POST不可
 
 ```
-POST  /feed/views
+POST   /feed/views
 
 Content-Type: application/json
 {"postIds":[1035417,1035416,1035446,1035445]}
+```
+
+---
+
+## コミュニティ (Community) エンドポイント
+
+---
+
+### コミュニティを作成
+
+※`Karotter Pro`が必要
+
+```
+POST    /communities
+
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarynftESmTxBjgbY51s
+name: 名前
+description: 説明
+joinType: OPEN
+```
+
+### コミュニティを削除
+
+```
+DELETE /communities/{id}
+```
+
+### コミュニティの更新
+
+```
+PATCH  /communities/{id}
+
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryjA73mmx1FCGYhqms
+name: 名前
+description: 説明
+joinType: OPEN
+headerImage: （バイナリ）
+```
+
+### ルールの更新
+
+```
+PUT     /communities/{id}/rules
+
+Content-Type: application/json
+Body: {"rules":["荒らし・迷惑行為をしないこと","節度を持って他のメンバーと接すること"]}
+```
+
+### コミュニティ一覧取得
+
+```
+GET    /communities
+
+Response 200:
+{
+    "joined": [ ... ],
+    "joinedCommunityIds": [ ... ],
+    "owned": [ ... ],
+    "recommended": [ ... ]
+}
+```
+
+### コミュニティ情報の取得
+
+```
+GET     /communities/{id}
+
+Response 200:
+{
+    "community": {
+        "id": 0,
+        "name": "TEST",
+        "description": "TEST",
+        "headerImage": "/uploads/headers/{hash}.jpg",
+        "ownerId": 0,
+        "joinType": "OPEN",
+        "memberCount": 0,
+        "createdAt": "2026-07-18T16:14:25.295Z",
+        "updatedAt": "2026-07-18T16:31:47.517Z",
+        "owner": {},
+        "membership": null,
+        "isMember": false,
+        "isInvited": false,
+        "permissions": {
+            "canPost": false,
+            "canModerate": false,
+            "canManage": false,
+            "canDelete": false
+        },
+        "rules": []
+    }
+}
+```
+
+### タイムラインのコミュニティ情報取得
+
+```
+GET     /communities/home-timelines
+
+Response 200: {"timelines":[]}
+```
+
+### タイムラインにコミュニティを追加
+
+```
+POST    /communities/{id}/home-timeline
+
+Response 200:
+{
+    "timeline": {
+        "id": 16,
+        "userId": 480,
+        "communityId": 4,
+        "position": 0,
+        "createdAt": "2026-07-18T21:56:50.122Z",
+        "updatedAt": "2026-07-18T21:56:50.122Z"
+    }
+}
+```
+
+### コミュニティのカロート一覧を取得
+
+```
+GET     /communities/{id}/posts
+
+Response 200: { "posts": [ ... ] }
+```
+
+### コミュニティに参加
+
+```
+POST    /communities/{id}/join
+
+Response 200:
+{
+    "membership": {
+        "id": 52,
+        "communityId": 4,
+        "userId": 480,
+        "role": "MEMBER",
+        "joinedAt": "2026-07-18T21:56:42.139Z"
+    }
+}
+```
+
+### コミュニティから退出
+
+```
+POST    /communities/{id}/leave
+```
+
+### コミュニティに招待
+
+```
+POST    /communities/{id}/invite
+
+Content-Type: application/json
+Body: {"user":"@naru"}
+```
+
+### コミュニティのメンバーを取得
+
+```
+GET     /communities/{id}/members
+
+Response 200:
+{
+    "members": [
+        {
+            "id": 0,
+            "communityId": 0,
+            "userId": 0,
+            "role": "OWNER",
+            "joinedAt": "2026-07-18T16:14:25.295Z",
+            "user": { ... }
+        },
+        {
+            "id": 1,
+            "communityId": 1,
+            "userId": 1,
+            "role": "MEMBER",
+            "joinedAt": "2026-07-18T16:15:36.900Z",
+            "user": { ... }
+        }
+    ],
+    "pagination": {
+        "page": 1,
+        "limit": 20,
+        "total": 3,
+        "hasNext": false
+    }
+}
+```
+
+### メンバーをキック
+
+```
+DELETE /communities/{communityId}/members/{userId}
+```
+
+### メンバーの権限を更新
+
+```
+PATCH  /communities/{communityId}/members/{userId}/role
+
+Content-Type: application/json
+Body{ "role": type }
+```
+
+- `type`: `MEMBER`, `MODERATOR`, `ADMIN`
+
+### コミュニティオーナーの譲渡
+
+```
+POST    /communities/{id}/owner-transfer
+
+Content-Type: application/json
+Body: {userId: 480}
+```
+
+### コミュニティのカロートを非表示
+
+```
+POST    /communities/{communityId}/posts/{postId}/hide
 ```
 
 ---
