@@ -85,7 +85,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計25カテゴリー / 計390件 |
+| エンドポイント | 計25カテゴリー / 計392件 |
 | Socket.IO イベント | 計7カテゴリー / 計68件 |
 
 ---
@@ -2610,19 +2610,27 @@ Body: { "communicationDisabledUntil": ... }
 // Body: { "communicationDisabledUntil": null }
 ```
 
-#### キック (サーバー脱退兼用)
+#### キック / サーバー脱退
 
 ```
 DELETE /guilds/{guildId}/members/{userId}
 ```
 
-#### BAN
+#### BANをする
 
 ```
 POST   /guilds/{guildId}/bans/{userId}
 
 Content-Type: application/json
 Body: { "reason": "..." }
+```
+
+#### BANしたユーザー一覧
+
+```
+GET     /guilds/{id}/bans
+
+Response 200: {"bans":[]}
 ```
 
 #### 監査ログ
@@ -3075,6 +3083,16 @@ PUT    /guilds/{guildId}/members/{userId}/roles/{roleId}
 
 ```
 DELETE /guilds/{guildId}/members/{userId}/roles/{roleId}
+```
+
+### イベント
+
+#### イベント一覧
+
+```
+GET     /guilds/{id}/events
+
+Response 200: {"events":[]}
 ```
 
 ---
