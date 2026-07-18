@@ -85,7 +85,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計25カテゴリー / 計387件 |
+| エンドポイント | 計25カテゴリー / 計390件 |
 | Socket.IO イベント | 計7カテゴリー / 計68件 |
 
 ---
@@ -2897,6 +2897,30 @@ POST   /channels/{id}/messages
 
 Content-Type: application/json
 Body: { "content": '...' }
+```
+
+#### メッセージを削除
+
+```
+DELETE /channels/messages/{id}
+```
+
+#### メッセージを更新
+
+```
+PATCH  /channels/messages/{id}
+
+Content-Type: application/json
+Body: {"content":"..."}
+```
+
+#### リアクションをつける/外す
+
+```
+POST    /channels/messages/{id}/reactions
+
+Content-Type: application/json
+Body: {"emoji":"👍"}
 ```
 
 #### メッセージを検索
