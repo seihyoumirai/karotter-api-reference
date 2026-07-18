@@ -86,7 +86,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計25カテゴリー / 計394件 |
+| エンドポイント | 計25カテゴリー / 計398件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -2626,6 +2626,12 @@ Content-Type: application/json
 Body: { "reason": "..." }
 ```
 
+#### BANを解除
+
+```
+DELETE /guilds/{guildId}/bans/{userId}
+```
+
 #### BANしたユーザー一覧
 
 ```
@@ -3125,6 +3131,68 @@ DELETE /guilds/{guildId}/members/{userId}/roles/{roleId}
 GET     /guilds/{id}/events
 
 Response 200: {"events":[]}
+```
+
+#### イベントの作成
+
+```
+POST    /guilds/{id}/events
+
+Content-Type: application/json
+Body: {"name":"...","description":"...","scheduledStartAt":"2026-07-19T00:40:00.000Z","scheduledEndAt":null,"entityType":"EXTERNAL","channelId":null,"location":"..."}
+
+Response 201:
+{
+    "event": {
+        "id": 1,
+        "guildId": 1,
+        "channelId": null,
+        "creatorId": 0,
+        "name": "...",
+        "description": "...",
+        "scheduledStartAt": "2026-07-19T00:40:00.000Z",
+        "scheduledEndAt": null,
+        "status": "SCHEDULED",
+        "entityType": "EXTERNAL",
+        "location": "...",
+        "createdAt": "2026-07-18T23:41:08.740Z",
+        "updatedAt": "2026-07-18T23:41:08.740Z"
+    }
+}
+```
+
+#### イベントの更新
+
+```
+PATCH  /guilds/{guildId}/events/{eventId}
+
+Content-Type: application/json
+Body: {"name":"...","description":"...","scheduledStartAt":"2026-07-19T00:40:00.000Z","scheduledEndAt":null,"entityType":"EXTERNAL","channelId":null,"location":"..."}
+
+Response 200:
+{
+    "event": {
+        "id": 1,
+        "guildId": 1,
+        "channelId": null,
+        "creatorId": 0,
+        "name": "...",
+        "description": "...",
+        "scheduledStartAt": "2026-07-19T00:40:00.000Z",
+        "scheduledEndAt": null,
+        "status": "SCHEDULED",
+        "entityType": "EXTERNAL",
+        "location": "...",
+        "createdAt": "2026-07-18T23:41:08.740Z",
+        "updatedAt": "2026-07-18T23:41:08.740Z"
+    }
+}
+```
+
+#### イベントの削除
+
+```
+DELETE /guilds/{guildId}/events/{eventId}
 ```
 
 ---
@@ -4418,8 +4486,6 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `guild:event-update` | S→C | イベント更新 |
 | `guild:event-delete` | S→C | イベント削除 |
 
-
-
 ### その他
 
 | イベント | 方向 | 説明 |
@@ -4672,6 +4738,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | 自分のカロートへのリアクション | 10 EXP |
 | 自分のカロートがリカロートされる | 50 EXP |
 | 登録から30日経過 | 1,000 EXP（1回限り） |
+
 ※自分自身のカロートへの「いいね」・リアクションでは経験値を獲得できない。
 ※同じユーザーから受け取る「いいね」・リアクションの経験値は、1日1回まで。
 
