@@ -4223,7 +4223,7 @@ Body: { "content": "..." }
 POST  /developer/applications/commands
 
 Content-Type: application/json
-Body: { "name": "...", "discription": "..." }
+Body: { "name": "...", "description": "..." }
 ```
 
 ### コマンドの権限設定を変更
@@ -4836,134 +4836,100 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 
 ---
 
-## 投稿レスポンス構造
-
-投稿オブジェクトの全フィールド定義。
-
-### 完全なレスポンス例
-
-```json
-{
-  "id": 12345,
-  "content": "投稿テキスト @mention #hashtag",
-  "createdAt": "2026-03-28T06:50:55.026Z",
-  "authorId": 15459,
-  "parentId": null,
-  "quotedPostId": null,
-  "mediaUrls": [],
-  "mediaTypes": [],
-  "mediaAlts": [],
-  "mediaSpoilerFlags": [],
-  "mediaR18Flags": [],
-  "isAiGenerated": false,
-  "isPromotional": false,
-  "isR18": false,
-  "hideFromMinors": false,
-  "visibility": "PUBLIC",
-  "replyRestriction": "EVERYONE",
-  "likesCount": 6,
-  "rekarotsCount": 0,
-  "repliesCount": 1,
-  "reactionsCount": 2,
-  "viewsCount": 100,
-  "liked": false,
-  "rekaroted": false,
-  "bookmarked": false,
-  "author": {
-    "id": 15459,
-    "username": "claude",
-    "displayName": "claude",
-    "avatarUrl": "/uploads/avatars/...",
-    "isBotAccount": true,
-    "isParodyAccount": false,
-    "officialMark": []
-  },
-  "poll": null,
-  "reactions": [{"emoji": "🥕", "userId": 15459}],
-  "reactionSummary": [{"emoji": "🥕", "count": 1, "reacted": true}],
-  "mentions": [],
-  "hashtags": [],
-  "editedAt": null
-}
-```
-
-### 主要フィールド
-
-| フィールド | 型 | 説明 |
-|-----------|-----|------|
-| `id` | number | 投稿ID |
-| `content` | string | 本文 (メンション・ハッシュタグ含む) |
-| `authorId` | number | 投稿者ID |
-| `parentId` | number\|null | 返信先投稿ID |
-| `quotedPostId` | number\|null | 引用元投稿ID |
-| `createdAt` | string | 投稿日時 (ISO 8601) |
-| `editedAt` | string\|null | 編集日時 |
-| `mediaUrls` | string[] | メディアの相対パス |
-| `mediaTypes` | string[] | `"image"` / `"video"` |
-| `mediaAlts` | string[] | Alt text |
-| `mediaSpoilerFlags` | boolean[] | スポイラーフラグ |
-| `mediaR18Flags` | boolean[] | R18フラグ |
-| `visibility` | string | `PUBLIC` / `FOLLOWERS` / `CIRCLE` / `PRIVATE` |
-| `replyRestriction` | string | `EVERYONE` / `FOLLOWERS` / `CIRCLE` / `MENTIONS` |
-| `isAiGenerated` | boolean | AI生成フラグ |
-| `isPromotional` | boolean | プロモーションフラグ |
-| `isR18` | boolean | R18フラグ |
-| `hideFromMinors` | boolean | 未成年非表示 |
-| `adminForceHidden` | boolean | 管理者非表示 |
-| `adminForceR18` | boolean | 管理者R18強制 |
-| `likesCount` | number | いいね数 |
-| `rekarotsCount` | number | リカロート数 |
-| `repliesCount` | number | 返信数 |
-| `viewsCount` | number | 閲覧数 |
-| `bookmarksCount` | number | ブックマーク数 |
-| `reactionsCount` | number | リアクション数 |
-| `liked` | boolean | 自分がいいねしたか |
-| `rekaroted` | boolean | 自分がリカロートしたか |
-| `bookmarked` | boolean | 自分がブックマークしたか |
-| `isMutedByViewer` | boolean | ミュート中か |
-| `hasBlockedAuthor` | boolean | 投稿者をブロック中か |
-| `isBlockedByAuthor` | boolean | 投稿者にブロックされてるか |
-| `canInteract` | boolean | インタラクション可能か |
-| `canQuote` | boolean | 引用可能か |
-| `author` | object | 投稿者情報 |
-| `poll` | object\|null | 投票データ |
-| `reactions` | array | リアクション配列 |
-| `reactionSummary` | array | リアクション集計 |
-| `mentions` | array | メンション |
-| `hashtags` | array | ハッシュタグ |
-
-### タイムライン固有フィールド
-
-タイムラインの各アイテムには追加フィールドあり:
-
-| フィールド | 説明 |
-|-----------|------|
-| `type` | `"POST"` / `"REKAROT"` |
-| `time` | アイテムの表示時刻 |
-| `itemId` | タイムラインアイテムID |
-
-### snake_case 例外
-
-検索ユーザー結果のみ `is_following` (snake_case)。他は全てcamelCase。
+## レスポンス構造
 
 ---
 
-## 通知グルーピング構造
+### 投稿レスポンス構造
 
-通知はグルーピングされて返される。
+```json
+{
+    "type": "POST",
+    "time": "2026-07-19T10:35:35.845Z",
+    "id": 0,
+    "communityId": null,
+    "community": null,
+    "parentId": null,
+    "quotedPostId": null,
+    "authorId": 0,
+    "content": "Content #hashtags @mention",
+    "mediaUrls": [],
+    "mediaAlts": [],
+    "mediaSpoilerFlags": [],
+    "mediaR18Flags": [],
+    "createdAt": "2026-07-19T10:35:35.845Z",
+    "updatedAt": "2026-07-19T10:35:42.545Z",
+    "editedAt": null,
+    "author": { ...UserData },
+    "likesCount": 0,
+    "rekarotsCount": 0,
+    "repliesCount": 0,
+    "viewsCount": 0,
+    "isAiGenerated": false,
+    "isPromotional": false,
+    "minimumAge": null,
+    "maximumAge": null,
+    "effectiveMinimumAge": null,
+    "effectiveMaximumAge": null,
+    "isR18": false,
+    "hideFromMinors": false,
+    "adminForceR18": false,
+    "adminForceMinimumAge": null,
+    "adminForceMaximumAge": null,
+    "quotedPost": null,
+    "poll": null,
+    "liked": false,
+    "rekaroted": false,
+    "bookmarked": false,
+    "reactionSummary": [],
+    "replyToUsers": [ ...UserData ],
+    "bookmarksCount": 0,
+    "quoteUsersCount": 0,
+    "visibility": "PUBLIC",
+    "viewerCircleId": null,
+    "viewerCircle": null,
+    "replyRestriction": "EVERYONE",
+    "replyCircleId": null,
+    "replyCircle": null,
+    "expiresAt": null,
+    "isMutedByViewer": false,
+    "hasBlockedAuthor": false,
+    "isBlockedByAuthor": false,
+    "canInteract": true,
+    "canQuote": true,
+    "itemId": "post-{id}"
+}
+```
 
-### グルーピングフィールド
+### 通知グルーピング構造
 
-| フィールド | 説明 |
-|-----------|------|
-| `groupKey` | グループキー |
-| `actors[]` | アクションしたユーザー配列 |
-| `actorCount` | アクターの総数 |
-| `posts[]` | 関連投稿配列 |
-| `postCount` | 投稿の総数 |
-| `notificationIds[]` | 通知ID配列 |
+```json
+{
+  "id": 0,
+  "groupKey": "TYPE:actor:id:OWN_POST",
+  "type": "TYPE",
+  "message": null,
+  "userId": 0,
+  "actorId": 0,
+  "actor": { ...UserData },
+  "actors": [ ...UserData ],
+  "actorCount": 1,
+  "postId": null,
+  "post": { ...PostData },
+  "communityId": null,
+  "community": null,
+  "posts": [ ...PostData ],
+  "postCount": 1,
+  "likeContext": "OWN_POST",
+  "rekarotContext": "OTHER",
+  "reactionEmojis": [],
+  "isRead": true,
+  "createdAt": "2026-07-19T10:32:16.509Z",
+  "notificationIds": [ ... ]
+}
+```
 
-### 通知タイプ一覧
+#### 通知タイプ一覧
 
 | type | 説明 |
 |------|------|
@@ -4980,22 +4946,6 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `REPORT_UPDATE` | 報告 |
 | `FOLLOWED_POST` | 通知オン |
 | `SYSTEM` | お知らせ |
-
-### 通知オブジェクト例
-
-```json
-{
-  "id": "...",
-  "type": "REPLY",
-  "actor": { ... },
-  "actors": [{ ... }],
-  "post": { ... },
-  "posts": [{ ... }],
-  "createdAt": "..."
-}
-```
-
-グループ化された通知 (`GET /notifications/grouped-posts`) では、同じ投稿に対する複数の通知がまとめられ、`actors` 配列に全アクターが含まれる。
 
 ---
 
