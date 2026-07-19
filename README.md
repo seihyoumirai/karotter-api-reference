@@ -87,7 +87,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計25カテゴリー / 計398件 |
+| エンドポイント | 計25カテゴリー / 計399件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -1087,6 +1087,14 @@ Error: 401 {"error": "パスワードが正しくありません"}
 ```
 POST /profile/avatar    → アバター (multipart/form-data)
 POST /profile/header    → ヘッダー画像 (multipart/form-data)
+```
+
+### レベルランキング
+
+```
+GET /users/level-ranking
+
+Response 200: { "users": [ ... ] }
 ```
 
 ---
@@ -4797,6 +4805,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | 登録から30日経過 | 1,000 EXP（1回限り） |
 
 ※自分自身のカロートへの「いいね」・リアクションでは経験値を獲得できない。
+
 ※同じユーザーから受け取る「いいね」・リアクションの経験値は、1日1回まで。
 
 ### 連続ログインボーナス
