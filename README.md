@@ -1190,7 +1190,7 @@ Response 200:
   ]
 }
 ```
-- `type`: `REPLY`, `MENTION`, `FOLLOW`, `FOLLOW_REQUEST`, `LIKE`, `REKAROT`, `QUOTE`, `DM`, `SYSTEM`, `BOARD`, `REPORT_UPDATE`, `FOLLOWED_POST`
+- `type`: `REPLY`, `MENTION`, `FOLLOW`, `FOLLOW_REQUEST`, `LIKE`, `REKAROT`, `QUOTE`, `DM`, `SYSTEM`, `BOARD`, `COMMUNITY`, `REPORT_UPDATE`, `FOLLOWED_POST`
 
 ### 未読通知数
 
@@ -4954,6 +4954,7 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `QUOTE` | 引用 |
 | `DM` | ダイレクトメッセージ |
 | `BOARD` | 掲示板 |
+| `COMMUNITY` | コミュニティ |
 | `REPORT_UPDATE` | 報告 |
 | `FOLLOWED_POST` | 通知オン |
 | `SYSTEM` | お知らせ |
