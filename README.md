@@ -4196,30 +4196,43 @@ Response 200:
 
 ```
 GET   /developer/guilds
+
+Response 200: { guilds: [ ... ] }
 ```
 
 ### サーバーのチャンネル一覧を表示
 
 ```
 GEt   /deveoper/guilds/{id}/channels
+
+Response 200: { channels: [ ... ] }
 ```
 
 ### チャンネルにメッセージを送信
 
 ```
 POST  /developer/channels/{id}/messages
+
+Content-Type: application/json
+Body: { "content": "..." }
 ```
 
 ### スラッシュコマンド登録
 
 ```
 POST  /developer/applications/commands
+
+Content-Type: application/json
+Body: { "name": "...", "discription": "..." }
 ```
 
 ### コマンドの権限設定を変更
 
 ```
 PUT   /developer/applications/commands/{id}/permissions
+
+Content-Type: application/json
+Body: { "guildId": id, "permissions": [{ id, type: ROLE|USER|CHANNEL, permission }] }
 ```
 
 ---
