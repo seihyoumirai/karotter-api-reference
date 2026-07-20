@@ -1,0 +1,1 @@
+import{t as m}from"./minimumAgeGate-BU3pn7XE.js";var t=t=>m(t,13);export{t};

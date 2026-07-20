@@ -1,0 +1,1 @@
+var r="/admin",o=((r,o)=>{const t=r.trim();return t?t.startsWith("/")?t:`/${t}`:o})("/control-room-x9k2","/ops-core").replace(/^\/api(?=\/|$)/,"")||"/ops-core";export{r as n,o as t};

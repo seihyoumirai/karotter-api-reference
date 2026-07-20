@@ -1,0 +1,1 @@
+var e="karotter:auth-required",t=()=>{"undefined"!=typeof window&&window.dispatchEvent(new CustomEvent(e))};export{t as n,e as t};

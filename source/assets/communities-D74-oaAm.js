@@ -1,0 +1,1 @@
+import{t}from"./react-vendor-DOWtrr9O.js";import{t as o}from"./ParentRouteSwitch-DCDRU8oc.js";import{t as r}from"./CommunitiesPage-B3SlnetZ.js";var s=t(),e=()=>(0,s.jsx)(o,{isParentPath:"/communities",children:(0,s.jsx)(r,{})});export{e as component};
