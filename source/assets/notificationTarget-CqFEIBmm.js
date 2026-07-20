@@ -1,0 +1,1 @@
+var t="質問が届きました",s="/questions",r=t=>"SYSTEM"===t.type&&"質問が届きました"===t.message,a=(t,a="/notifications")=>{return"string"==typeof(e=t.route)&&e.startsWith("/")&&!e.startsWith("//")?t.route:r(t)?s:a;var e};export{a as i,s as n,r,t};

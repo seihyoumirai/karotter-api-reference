@@ -1,0 +1,1 @@
+var n=({id:n,username:e})=>null==n||""===n?"/":"string"==typeof e&&e.trim().length>0?`/${encodeURIComponent(e)}/status/${encodeURIComponent(String(n))}`:`/posts/${encodeURIComponent(String(n))}`;export{n as t};

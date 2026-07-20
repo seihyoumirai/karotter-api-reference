@@ -1,0 +1,1 @@
+import{r as o}from"./nativeRuntime-BvSdj5NH.js";var i="https://karotter.com",n=()=>{var n;return o()?i:"undefined"!=typeof window&&(null===(n=window.location)||void 0===n?void 0:n.origin)?window.location.origin.replace(/\/+$/,""):i};export{n as t};

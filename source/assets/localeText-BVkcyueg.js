@@ -1,0 +1,1 @@
+var a=(a,h,o,r=o,s=o,t=s)=>"ja"===a?h:"ko"===a?r:"zh-CN"===a?s:"zh-TW"===a?t:o,h=h=>(o,r,s=r,t=r,z=t)=>a(h,o,r,s,t,z);export{h as n,a as t};
