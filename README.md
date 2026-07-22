@@ -86,7 +86,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計25カテゴリー / 計399件 |
+| エンドポイント | 計25カテゴリー / 計402件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -3228,7 +3228,8 @@ DELETE /guilds/{guildId}/events/{eventId}
 |--------|--------|------|
 | `dashboard` | ダッシュボード | システム統計 (総ユーザー数、総カロート数、24h活動ユーザー、未対応通報) |
 | `users` | ユーザー管理 | 検索、BAN/解除、フラグ変更、公式マーク付与、アカウント編集、削除 |
-| `dm` | DM削除 | DMの削除 |
+| `dm` | DM削除 | 1対1のDMの削除 |
+| `communities` | コミュニティ管理 | コミュニティの削除、更新、制限など |
 | `posts` | カロート管理 | 検索、R18強制、非表示、削除 |
 | `stories` | ストーリー管理 | 検索、R18強制、非表示、削除、有効期限表示 |
 | `news` | ニュース管理 | 記事検索、削除、コメント |
@@ -3434,6 +3435,7 @@ PATCH  /control-room-x9k2/users/{id}/email
 PATCH  /control-room-x9k2/users/{id}/password
 PATCH  /control-room-x9k2/users/{id}/role
 GET    /control-room-x9k2/users/{id}/sessions
+GET    /control-room-x9k2/users/{id}/subscriptions
 GET    /control-room-x9k2/users/{id}/posts
 GET    /control-room-x9k2/users/{id}/reports
 GET    /control-room-x9k2/users/{id}/bans
@@ -3518,6 +3520,13 @@ GET  /control-room-x9k2/stickers/{id}
 ```
 POST /control-room-x9k2/dm/direct/delete
   Body: { firstUserId: 1, secondUserId: 2 }
+```
+
+#### コミュニティ管理
+
+```
+GET    /control-room-x9k2/communities
+PATCH  /control-room-x9k2/communities/{id}/age-restriction
 ```
 
 #### ニュース記事管理
