@@ -2128,13 +2128,11 @@ Response 200: { "posts": [...], "pagination": {...} }
 
 ### カロート閲覧
 
-POST不可
-
 ```
 POST   /feed/views
 
 Content-Type: application/json
-{"postIds":[1035417,1035416,1035446,1035445]}
+Body: {"postIds":[1,2,3,4,5]}
 ```
 
 ---
