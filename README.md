@@ -86,7 +86,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計25カテゴリー / 計402件 |
+| エンドポイント | 計25カテゴリー / 計406件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -2083,6 +2083,30 @@ PATCH  /subscriptions/preferences
 Content-Type: application/json
 
 {"premiumBadgeColor":"ORANGE","profileAccentColor":null,"cardAccentColor":null}
+```
+
+### プラン一覧取得
+
+```
+GET    /subscriptions/plans
+```
+
+### 受け取ったギフトを取得
+
+```
+GET    /subscriptions/gifts/received
+```
+
+### ギフト購入
+
+```
+POST   /subscriptions/gifts/checkout
+```
+
+### ギフトの承認
+
+```
+POST   /subscriptions/gifts/{id}/response
 ```
 
 ---
