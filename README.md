@@ -340,9 +340,11 @@ POST /auth/login
 Content-Type: application/json
 
 {
-  "identifier": "username",
-  "password": "password",
-  "gender": "OTHER"
+  "identifier": "naru",
+  "password":"password",
+  "deviceId":"uuid",
+  "clientType":"web|ios|android",
+  "deviceName":"Web on Windows"
 }
 
 Response 200:
@@ -352,12 +354,12 @@ Response 200:
   "sessionId": "uuid",
   "deviceId": "uuid",
   "user": {
-    "id": 15459,
-    "username": "claude",
-    "displayName": "claude",
+    "id": 814,
+    "username": "ui",
+    "displayName": "みらい",
     "email": "",
     "avatarUrl": "/uploads/avatars/...",
-    "emailVerified": false
+    "emailVerified": true
   }
 }
 ```
