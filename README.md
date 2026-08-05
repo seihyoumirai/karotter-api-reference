@@ -4597,8 +4597,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 |-----|-----|--------|
 | <img src="/badges/badge_pink_old.PNG" width="32" height="32" > | 認証済みマーク | 過去のピンクバッジ |
 | <img src="/badges/badge_white.PNG" width="32" height="32" > | 不明 | 認証バッジが正しく表示できない場合に表示される |
-| <img src="/badges/badge_parody_black.PNG" width="32" height="32" > | パロディ | ダークモードでバロディマークが正しく表示できない場合に表示される |
-| <img src="/badges/badge_parody_white.PNG" width="32" height="32" > | パロディ | ライトモードでバロディマークが正しく表示できない場合に表示される |
+| <img src="/badges/badge_parody_black.PNG" width="32" height="32" > | パロディアカウント | ダークモードでバロディマークが正しく表示できない場合に表示される |
+| <img src="/badges/badge_parody_white.PNG" width="32" height="32" > | パロディアカウント | ライトモードでバロディマークが正しく表示できない場合に表示される |
 
 ### 属性マーク
 
@@ -4607,8 +4607,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | 画像 | 名前 | 入手方法 |
 |-----|-----|--------|
 | <img src="/badges/badge_lock.PNG" width="32" height="32" > | 非公開アカウント | 設定の「プライバシー」から「非公開アカウント」を有効にする |
-| <img src="/badges/badge_bot.PNG" width="32" height="32" > | BOT | 設定の「コンテンツ表示」から「BOTアカウントとして表示する」を有効にする |
-| <img src="/badges/badge_parody.PNG" width="32" height="32" > | パロディ | 設定の「コンテンツ表示」から「パロディアカウントとして表示する」を有効にする |
+| <img src="/badges/badge_bot.PNG" width="32" height="32" > | BOTアカウント | 設定の「コンテンツ表示」から「BOTアカウントとして表示する」を有効にする |
+| <img src="/badges/badge_parody.PNG" width="32" height="32" > | パロディアカウント | 設定の「コンテンツ表示」から「パロディアカウントとして表示する」を有効にする |
 
 ---
 
