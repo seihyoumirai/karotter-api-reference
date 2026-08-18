@@ -60,6 +60,7 @@ Karotterの非公式APIリファレンスです。
 | [コミュニティ (Community) エンドポイント](#コミュニティ-community-エンドポイント) | コミュニティエンドポイントについて |
 | [サーバー (Guilds) エンドポイント](#サーバー-guilds-エンドポイント) | サーバーエンドポイントについて |
 | [管理パネル (Admin) エンドポイント](#管理パネル-admin-エンドポイント) | 管理パネルエンドポイントについて |
+| [外部連携 (Activity Pub) エンドポイント](#外部連携-activity-pub-エンドポイント) | 外部連携のエンドポイントについて |
 | [その他のエンドポイント](#その他のエンドポイント) | その他のエンドポイントについて |
 
 ### v2 エンドポイント
@@ -91,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計25カテゴリー / 計406件 |
+| エンドポイント | 計26カテゴリー / 計410件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -326,6 +327,13 @@ DM添付: /uploads/dm/{uuid}.{ext}
 1. 初回は `cursor` なしでリクエスト → 最新N件を取得
 2. レスポンスの最後の投稿IDを `cursor` に指定 → それ以前のデータを取得
 3. データの重複なく過去を遡れる
+
+### 外部
+
+**Scope方式** (外部連携用):
+```
+?scope=public
+```
 
 ---
 
@@ -3666,6 +3674,47 @@ GET /control-room-x9k2/search/index
 
 ---
 
+## 外部連携 (Activity Pub) エンドポイント
+
+---
+
+### タイムライン
+
+#### 外部連携タイムライン取得
+
+```
+GET /activitypub/timeline
+
+Response 200: { "posts": [ ... ] }
+```
+
+### ユーザー
+
+#### 外部ユーザー取得
+
+```
+GET /activitypub/actors/{id}
+
+Response 200: { "actor": { ... } }
+```
+
+#### 外部ユーザーフォロー
+
+```
+POST /activitypub/follows
+
+Content-Type: application/json
+Body: { "account": "url" }
+```
+
+#### 外部ユーザーフォロー解除
+
+```
+DELETE /activitypub/follows/{id}
+```
+
+---
+
 ## Developer API エンドポイント
 
 APIキーを使用する第三者アプリ向けエンドポイント。セルフBot APIのサブセット。
@@ -4983,6 +5032,30 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 | `REPORT_UPDATE` | 報告 |
 | `FOLLOWED_POST` | 通知オン |
 | `SYSTEM` | お知らせ |
+
+### 外部ユーザーレスポンス構造
+
+```
+{
+    "actor": {
+        "id": 0,
+        "actorId": "https://example.co.jp/users/example",
+        "username": "username",
+        "domain": "example.co.jp",
+        "displayName": "表示名",
+        "summary": "​説明",
+        "profileUrl": "https://example.co.jp/@example",
+        "iconUrl": "https://media.example.co.jp/icon/hash.png",
+        "headerUrl": "https://media.example.co.jp/header/hash.png",
+        "publishedAt": null,
+        "createdAt": "2026-08-18T19:01:46.776Z",
+        "followersCount": 0,
+        "followingCount": 0,
+        "postsCount": 0
+    },
+    "follow": null
+}
+```
 
 ---
 
