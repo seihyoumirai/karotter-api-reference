@@ -332,8 +332,10 @@ DM添付: /uploads/dm/{uuid}.{ext}
 
 **Scope方式** (外部連携用):
 ```
-?scope=public
+?scope={type}
 ```
+
+- `type`: `global`, `public`
 
 ---
 
