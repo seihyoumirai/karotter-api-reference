@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計410件 |
+| エンドポイント | 計26カテゴリー / 計422件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -3678,7 +3678,7 @@ GET /control-room-x9k2/search/index
 
 ---
 
-### タイムライン
+### タイムライン (Timeline)
 
 #### 外部連携タイムライン取得
 
@@ -3688,7 +3688,7 @@ GET /activitypub/timeline
 Response 200: { "posts": [ ... ] }
 ```
 
-### ユーザー
+### ユーザー (Actors)
 
 #### 外部ユーザー取得
 
@@ -3711,6 +3711,77 @@ Body: { "account": "url" }
 
 ```
 DELETE /activitypub/follows/{id}
+```
+
+#### 外部ユーザーのミュート/ブロック
+
+```
+PATCH /activitypub/actors/{id}/preferences
+
+Content-Type: application/json
+Body:
+{ "isMuted": true }     → ミュート
+{ "isBlocked": true }   → ブロック
+```
+
+#### 外部ユーザーの投稿一覧
+
+```
+GET /activitypub/actors/{id}/posts
+
+Response 200: { "posts": [ ... ], "pagination": { ... } }
+```
+
+### 外部投稿 (Posts)
+
+#### 外部投稿取得
+
+```
+GET /activitypub/posts/{id}
+
+Response 200: { "post": { ... } }
+```
+
+#### 外部投稿の返信一覧取得
+
+```
+GET /activitypub/posts/{id}/replies
+
+Response 200: {"replies":[],"pagination":{"page":1,"limit":20,"total":0,"pages":0}}
+```
+
+#### 外部投稿へのいいね/取り消し
+
+```
+POST   /activitypub/posts/{id}/like → いいねする
+DELETE /activitypub/posts/{id}/like → いいねを取り消す
+```
+
+#### 外部投稿のリカロート/取り消し
+
+```
+POST   /activitypub/posts/{id}/rekarot → リカロートする
+DELETE /activitypub/posts/{id}/rekarot → リカロートを取り消す
+```
+
+#### 外部投稿へのリアクション/取り消し
+
+```
+POST /activitypub/posts/{id}/react
+
+Content-Type: application/json
+Body: {"emoji":"🫳"}
+```
+
+```
+DELETE /activitypub/posts/{id}/react/{encodedEmoji}
+```
+
+#### 外部投稿のブックマーク/取り消し
+
+```
+POST   /activitypub/posts/{id}/bookmark → ブックマークする
+DELETE /activitypub/posts/{id}/bookmark → ブックマークを取り消す
 ```
 
 ---
