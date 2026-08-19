@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計424件 |
+| エンドポイント | 計26カテゴリー / 計426件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -3718,15 +3718,17 @@ Body: { "account": "url" }
 DELETE /activitypub/follows/{id}
 ```
 
-#### 外部ユーザーのミュート/ブロック
+#### 外部ユーザーのミュート・ブロック/解除
 
 ```
 PATCH /activitypub/actors/{id}/preferences
 
 Content-Type: application/json
 Body:
-{ "isMuted": true }     → ミュート
-{ "isBlocked": true }   → ブロック
+{ "isMuted": true }     → ミュートする
+{ "isBlocked": true }   → ブロックする
+{ "isMuted": false }    → ミュート解除
+{ "isBlocked": false }  → ブロック解除
 ```
 
 #### 外部ユーザーの投稿一覧
@@ -3787,6 +3789,24 @@ DELETE /activitypub/posts/{id}/react/{encodedEmoji}
 ```
 POST   /activitypub/posts/{id}/bookmark → ブックマークする
 DELETE /activitypub/posts/{id}/bookmark → ブックマークを取り消す
+```
+
+### その他
+
+#### フォロー中の外部ユーザー一覧取得
+
+```
+GET /activitypub/follows
+
+Response 200: {"follows":[...]}
+```
+
+#### ミュート・ブロック中の外部ユーザー一覧取得
+
+```
+GET /activitypub/preferences
+
+Response 200: {"preferences":[...]}
 ```
 
 ---
