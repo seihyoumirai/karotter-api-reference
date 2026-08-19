@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計422件 |
+| エンドポイント | 計26カテゴリー / 計424件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -3267,6 +3267,7 @@ DELETE /guilds/{guildId}/events/{eventId}
 |--------|--------|------|
 | `dashboard` | ダッシュボード | システム統計 (総ユーザー数、総カロート数、24h活動ユーザー、未対応通報) |
 | `users` | ユーザー管理 | 検索、BAN/解除、フラグ変更、公式マーク付与、アカウント編集、削除 |
+| `activitypub` | 外部ユーザー | ActivityPub経由で取得したユーザーを非表示 |
 | `dm` | DM削除 | 1対1のDMの削除 |
 | `communities` | コミュニティ管理 | コミュニティの削除、更新、制限など |
 | `posts` | カロート管理 | 検索、R18強制、非表示、削除 |
@@ -3484,6 +3485,8 @@ GET    /control-room-x9k2/users/{id}/suspend
 GET    /control-room-x9k2/users/{id}/restrict
 POST   /control-room-x9k2/users/{id}/warn
 DELETE /control-room-x9k2/users/{id}/delete
+GET    /control-room-x9k2/activitypub/actors
+PATCH  /control-room-x9k2/activitypub/actors/{id}
 ```
 
 #### 投稿管理
