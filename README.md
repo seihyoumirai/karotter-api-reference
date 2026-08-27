@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計427件 |
+| エンドポイント | 計26カテゴリー / 計428件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -2132,6 +2132,12 @@ POST   /subscriptions/gifts/checkout
 
 ```
 POST   /subscriptions/gifts/{id}/response
+```
+
+### アナリティクス取得
+
+```
+GET    /subscriptions/analytics
 ```
 
 ---
