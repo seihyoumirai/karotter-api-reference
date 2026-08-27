@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計426件 |
+| エンドポイント | 計26カテゴリー / 計427件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -1000,6 +1000,14 @@ Response 200:
   "usedChanges": 0,
   "remainingChanges": 5
 }
+```
+
+### プロフィールフレームの一覧
+
+```
+GET /profile/frames/available
+
+Response 200: { "frames": [] }
 ```
 
 ### プロフィール更新
