@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計445件 |
+| エンドポイント | 計26カテゴリー / 計448件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -2185,6 +2185,13 @@ DELETE /subscriptions/pro-notifications/filters/{id}
 PATCH  /subscriptions/pro-notifications/settings
 ```
 
+### ブックマーク
+
+```
+GET    /subscriptions/advanced-bookmarks/{id}
+GET    /subscriptions/advanced-bookmarks/export
+```
+
 ---
 
 ## フィード (Feed) エンドポイント
@@ -3900,6 +3907,12 @@ Response 200: {"follows":[...]}
 GET /activitypub/preferences
 
 Response 200: {"preferences":[...]}
+```
+
+#### 外部投稿のブックマーク一覧
+
+```
+GET /activitypub/bookmarks
 ```
 
 ---
