@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計428件 |
+| エンドポイント | 計26カテゴリー / 計433件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -2006,7 +2006,9 @@ Response 200: {"message": "記事を削除しました"}
 
 ---
 
-### サブスクリプション確認
+### サブスクリプション
+
+#### サブスクリプション確認
 
 ```
 GET /subscriptions/me
@@ -2075,13 +2077,13 @@ Response 200:
 }
 ```
 
-### サブスクリプション管理
+#### サブスクリプション管理
 
 ```
 POST   /subscriptions/portal
 ```
 
-### サブスクリプション購入
+#### サブスクリプション購入
 
 ```
 POST   /subscriptions/checkout
@@ -2092,16 +2094,15 @@ Content-Type: application/json
 }
 ```
 
-- 現在はstripeを認証していないと不可
 - productCode: `PLUS`, `PRO`, `BADGE_RED`, `BADGE_GREEN`
 
-### サブスクリプション解約
+#### サブスクリプション解約
 
 ```
 DELETE /subscriptions/checkout
 ```
 
-### Pro装飾保存
+#### Pro装飾保存
 
 ```
 PATCH  /subscriptions/preferences
@@ -2110,34 +2111,68 @@ Content-Type: application/json
 {"premiumBadgeColor":"ORANGE","profileAccentColor":null,"cardAccentColor":null}
 ```
 
-### プラン一覧取得
+#### プラン一覧取得
 
 ```
 GET    /subscriptions/plans
 ```
 
-### 受け取ったギフトを取得
+#### 受け取ったギフトを取得
 
 ```
 GET    /subscriptions/gifts/received
 ```
 
-### ギフト購入
+#### ギフト購入
 
 ```
 POST   /subscriptions/gifts/checkout
 ```
 
-### ギフトの承認
+#### ギフトの承認
 
 ```
 POST   /subscriptions/gifts/{id}/response
 ```
 
-### アナリティクス取得
+#### 無料体験の可能性
+
+```
+GET    /subscriptions/creator-desk
+```
+
+#### 無料体験を贈る
+
+```
+POST   /subscriptions/pro-trial-pass
+```
+
+### アナリティクス
+
+#### アナリティクス取得
 
 ```
 GET    /subscriptions/analytics
+```
+
+### クリエイターデスク
+
+```
+GET    /subscriptions/creator-desk
+```
+
+### テンプレート
+
+#### テンプレートの作成
+
+```
+POST   /subscriptions/creator-desk/templates
+```
+
+#### テンプレートの削除
+
+```
+DELETE /subscriptions/creator-desk/templates/{id}
 ```
 
 ---
