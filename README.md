@@ -4997,6 +4997,8 @@ GET https://karotter.com/oembed?url={url}   → oEmbed形式
 - **画像を弾く**: `-filter:media`
 - **動画のみ**: `filter:videos`
 - **動画を弾く**: `-filter:videos`
+- **音声のみ**: `filter:voice`
+- **音声を弾く**: `-filter:voice`
 
 ### エンゲージメント
 
