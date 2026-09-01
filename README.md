@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計438件 |
+| エンドポイント | 計26カテゴリー / 計444件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -2966,6 +2966,26 @@ Response 101 Switching Protocols
 POST     /channels/{id}/voice/leave
 ```
 
+#### ステージを開始
+
+```
+POST   /channels/{id}/stage
+```
+
+#### ステージ情報の更新
+
+```
+PATCH  /channels/{id}/stage
+PATCH  /channels/{id}/stage/me
+PATCH  /channels/{id}/stage/participants/{member.id}
+```
+
+#### ステージの終了
+
+```
+DELETE /channels/{id}/stage
+```
+
 ### フォーラム
 
 #### 投稿一覧取得
@@ -3030,6 +3050,12 @@ Response 200:
 ```
 POST   /channels/${id}/forum-posts
 Content-Type: application/json; charset=utf-8
+```
+
+#### フォーラム投稿に返信
+
+```
+POST   /channels/${Ps}/forum-posts/${Ra}/replies
 ```
 
 ### メッセージ
