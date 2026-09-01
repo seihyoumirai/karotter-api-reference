@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計433件 |
+| エンドポイント | 計26カテゴリー / 計438件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -2173,6 +2173,16 @@ POST   /subscriptions/creator-desk/templates
 
 ```
 DELETE /subscriptions/creator-desk/templates/{id}
+```
+
+### 通知
+
+```
+GET    /subscriptions/pro-notifications
+POST   /subscriptions/pro-notifications/opened
+POST   /subscriptions/pro-notifications/filters
+DELETE /subscriptions/pro-notifications/filters/{id}
+PATCH  /subscriptions/pro-notifications/settings
 ```
 
 ---
