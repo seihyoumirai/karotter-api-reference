@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計444件 |
+| エンドポイント | 計26カテゴリー / 計445件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -3325,6 +3325,14 @@ Response 200:
 
 ```
 DELETE /guilds/{guildId}/events/{eventId}
+```
+
+### その他
+
+#### VC系
+
+```
+GET    /guilds/{id}/voice-states
 ```
 
 ---
