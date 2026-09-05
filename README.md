@@ -92,7 +92,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計448件 |
+| エンドポイント | 計26カテゴリー / 計449件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -1119,6 +1119,12 @@ POST /profile/header    → ヘッダー画像 (multipart/form-data)
 GET /users/level-ranking
 
 Response 200: { "users": [ ... ] }
+```
+
+### データのエクスポート
+
+```
+GET /users/export
 ```
 
 ---
