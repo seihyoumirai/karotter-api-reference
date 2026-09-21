@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="soda" x1="18" y1="16" x2="106" y2="108" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BBF7D0"/>
+      <stop offset=".5" stop-color="#4ADE80"/>
+      <stop offset="1" stop-color="#15803D"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M16 77A48 48 0 0 1 32 27M104 77a48 48 0 0 0-16-50M27 98a48 48 0 0 0 66 0" stroke="url(#soda)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Keep the surrounding frame full-size while making only the soda motif smaller. -->
+  <g transform="translate(33.12 29.4) scale(.72)">
+    <path d="M79 47 98 14" stroke="#F9A8D4" stroke-width="4" stroke-linecap="round"/>
+    <path d="M76 50h28l-3 43c-1 8-6 12-13 12s-12-4-13-12l-3-43h4Z" fill="url(#soda)" stroke="#166534" stroke-width="2"/>
+    <path d="M74 51c8 4 22 4 30 0" stroke="#ECFDF5" stroke-width="3"/>
+    <path d="M83 63c-3 6 3 6 0 12M94 68c-3 6 3 6 0 12" stroke="#DCFCE7" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M88 48c-5-7 2-13 1-20" stroke="#166534" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="89" cy="21" r="6" fill="#EF4444" stroke="#991B1B" stroke-width="2"/>
+    <path d="M87 16c2-3 6-4 8-2" stroke="#15803D" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <circle cx="25" cy="23" r="3" fill="#DCFCE7"/>
+  <circle cx="20" cy="42" r="2" fill="#BBF7D0"/>
+  <circle cx="98" cy="30" r="2.5" fill="#DCFCE7"/>
+</svg>

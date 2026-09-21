@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs><linearGradient id="honey" x1="16" y1="17" x2="104" y2="103" gradientUnits="userSpaceOnUse"><stop stop-color="#FDE047"/><stop offset="1" stop-color="#F59E0B"/></linearGradient></defs>
+  <path d="M14 62A47 47 0 0 1 31 27M106 62A47 47 0 0 0 89 27M26 94a47 47 0 0 0 68 0" stroke="url(#honey)" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 7"/>
+  <g transform="translate(14 12)"><ellipse cx="17" cy="16" rx="8" ry="6" fill="#FACC15" stroke="#92400E" stroke-width="1.5"/><path d="M14 11v10M20 11v10" stroke="#78350F" stroke-width="2"/><ellipse cx="9" cy="10" rx="6" ry="4" fill="#E0F2FE" stroke="#7DD3FC"/><ellipse cx="25" cy="10" rx="6" ry="4" fill="#E0F2FE" stroke="#7DD3FC"/></g>
+  <g fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"><path d="m91 16 8 5v10l-8 5-8-5V21l8-5Z"/><path d="m102 77 8 5v10l-8 5-8-5V82l8-5Z"/><path d="m18 76 8 5v10l-8 5-8-5V81l8-5Z"/></g>
+</svg>

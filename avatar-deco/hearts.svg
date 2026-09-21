@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs><linearGradient id="love" x1="15" y1="20" x2="105" y2="104" gradientUnits="userSpaceOnUse"><stop stop-color="#FDA4AF"/><stop offset=".55" stop-color="#F472B6"/><stop offset="1" stop-color="#C084FC"/></linearGradient><filter id="loveShadow" x="-20" y="-20" width="160" height="160"><feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#BE185D" flood-opacity=".25"/></filter></defs>
+  <path d="M60 108C42 98 17 84 13 59 10 39 31 26 47 39c6 5 10 12 13 18 3-6 7-13 13-18 16-13 37 0 34 20-4 25-29 39-47 49Z" stroke="url(#love)" stroke-width="4" stroke-linecap="round" filter="url(#loveShadow)"/>
+  <g fill="url(#love)" stroke="#fff" stroke-width="1.5"><path d="M18 27c-8-9-19 3-1 15 18-12 7-24 1-15Z"/><path d="M98 22c-7-8-17 2-1 13 16-11 6-21 1-13Z"/><path d="M102 82c-6-7-15 2-1 12 14-10 6-19 1-12Z"/></g>
+</svg>

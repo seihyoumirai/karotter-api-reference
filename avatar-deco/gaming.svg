@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs><linearGradient id="game" x1="16" y1="18" x2="104" y2="103" gradientUnits="userSpaceOnUse"><stop stop-color="#22D3EE"/><stop offset=".5" stop-color="#8B5CF6"/><stop offset="1" stop-color="#F43F5E"/></linearGradient><filter id="gameGlow" x="-20" y="-20" width="160" height="160"><feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#8B5CF6" flood-opacity=".55"/></filter></defs>
+  <path d="M25 36A46 46 0 0 0 14 65M95 36a46 46 0 0 1 11 29M29 93a46 46 0 0 0 62 0" stroke="url(#game)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M19 16h23v23H19zM78 16h23v23H78z" stroke="url(#game)" stroke-width="3" filter="url(#gameGlow)"/>
+  <path d="M25 27h11M30.5 21.5v11M85 24h4v4h-4zM92 30h4v4h-4z" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="m17 78 6 6-6 6-6-6 6-6Zm86 0 6 6-6 6-6-6 6-6Z" fill="#A78BFA" stroke="#F0ABFC" stroke-width="2"/>
+</svg>
