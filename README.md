@@ -54,8 +54,6 @@ Karotterの非公式APIリファレンスです。
 | [質問箱 (Question Box) エンドポイント](#質問箱) | 質問箱エンドポイントについて |
 | [絵チャ (Draw-chat) エンドポイント](#絵チャ-draw-chat-エンドポイント) | 絵チャエンドポイントについて |
 | [ラジオ / スペース エンドポイント](#ラジオ--スペース-エンドポイント) | ラジオ/スペースエンドポイントについて |
-| [掲示板 (Boards) エンドポイント](#掲示板-boards-エンドポイント) | 掲示板エンドポイントについて |
-| [ニュース (News) エンドポイント](#ニュース-news-エンドポイント) | ニュースエンドポイントについて |
 | [サブスクリプション (Subscriptions) エンドポイント](#サブスクリプション-subscriptions-エンドポイント) | サブスクリプションエンドポイントについて |
 | [コミュニティ (Community) エンドポイント](#コミュニティ-community-エンドポイント) | コミュニティエンドポイントについて |
 | [サーバー (Guilds) エンドポイント](#サーバー-guilds-エンドポイント) | サーバーエンドポイントについて |
@@ -75,6 +73,11 @@ Karotterの非公式APIリファレンスです。
 | [OAuth API エンドポイント](#oauth-api-エンドポイント) | OAuth API エンドポイントについて |
 | [サーバーボット (Guild Bots) エンドポイント](#サーバーボット-guild-bots-エンドポイント) | サーバーボットエンドポイントについて |
 
+### 廃止されたエンドポイント
+| タイトル | 説明 |
+|---------|------|
+| [掲示板 (Boards) エンドポイント](#掲示板-boards-エンドポイント) | 掲示板エンドポイントについて |
+| [ニュース (News) エンドポイント](#ニュース-news-エンドポイント) | ニュースエンドポイントについて |
 
 ### その他
 | タイトル | 説明 |
@@ -1682,329 +1685,6 @@ POST  /radio/{id}/end
 GET   //radio/${id}/realtime-token
 GET   /radio/ice-servers
 ```
-
----
-
-## 掲示板 (Boards) エンドポイント
-
----
-
-### 一覧 / 内容取得
-
-#### 板
-```
-GET /boards
-Response 200:
-{
-  "boards": [ ... ]
-}
-```
-
-#### スレッド
-```
-GET /boards/{slug}
-Response 200:
-{
-  "board": { ... },
-  "threads": [ ... ]
-}
-```
-
-#### レスポンス（コメント）
-```
-GET /boards/{slug}/threads/{ID}
-Response 200:
-{
-  "board": { ... },
-  "replies": { ... },
-  "thread": { ... }
-}
-```
-
-#### その他
-```
-GET /boards/{slug}/stream
-Response 200:
-{
-  "boardSlug": "...",
-  "timestamp": "..."
-}
-```
-
-```
-GET /boards/api
-Response 200:
-{
-  "boards": { ... },
-  "threads": [ ... ]
-}
-```
-
----
-
-### 作成
-
-#### 板の作成
-```
-POST /boards
-Content-Type: application/json
-
-{
-  "title": "...",
-  "slug": "...",
-  "description": "...",
-  "minimumAge": 13
-}
-```
-
-#### スレッドの作成
-```
-POST /threads
-Content-Type: multipart/form-data
-
-title: ...
-content: ...
-```
-
----
-
-### 返信
-
-```
-POST /boards/api/threads/{ID}/replies
-Content-Type: multipart/form-data
-
-content: ...
-```
-
----
-
-### リアクション
-
-```
-POST /boards/api/threads/{ID}/reactions  → スレッドの最初のコメントへのリアクションを行う/取り消す
-Content-Type: application/json
-
-{
-  "emoji": "😃"
-}
-```
-
-```
-POST /boards/api/replies/{ID}/reactions  → 返信へのリアクションを行う/取り消す
-Content-Type: application/json
-
-{
-  "emoji": "😃"
-}
-```
-
-```
-GET /boards/{slug}/threads/{id}/reactions/{encoded-emoji}/users
-   → スレッドの最初のコメントへの特定のリアクションをしたユーザー一覧を見る
-GET /boards/{slug}/replies/{id}/reactions/{encoded-emoji}/users
-   → 返信への特定のリアクションをしたユーザー一覧を見る
-```
-
-- `pro%3A{ローマ字}`でプロ用リアクション
-
----
-
-### お気に入り
-
-```
-POST   /boards/{slug}/follow              → 板をお気に入りに追加
-DELETE /boards/{slug}/follow              → 板をお気に入りから削除
-GET    /boards/following                  → 板のお気に入り一覧
-POST   /boards/{slug}/threads/{id}/follow → スレッドをお気に入りに追加
-DELETE /boards/{slug}/threads/{id}/follow → スレッドをお気に入りから削除
-```
-
----
-
-### 削除
-
-```
-DELETE /boards/api
-   → 板の削除
-DELETE /boards/api/threads/{ID}
-   → スレッドの削除
-```
-
----
-
-**備考**
-- スレッド作成・返信はmultipart/form-data形式（画像添付対応）
-- リアクションは任意の絵文字（Unicode）を使用可能
-- `/boards/api` は内部API互換用エンドポイント（従来のKarotter掲示板互換）
-
----
-
-## ニュース (News) エンドポイント
-
----
-
-### 一覧取得
-
-```
-GET /news?limit=12
-
-Response 200:
-{
-  "articles": [ ... ],
-  "pagination": { ... }
-}
-```
-
-**クエリパラメータ**
-- `?limit={数値}`：取得件数（デフォルト12）
-- `?category={category}`：カテゴリー指定
-- `category`は`general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
-
----
-
-### 内容取得
-
-```
-GET /news/{slug}
-
-Response 200:
-{
-  "article": { ... }
-}
-```
-
-```
-GET /news/me
-
-Response 200:
-{
-  "articles": [ ... ]
-}
-```
-- 自分が作成した記事の一覧を取得
-
----
-
-### コメント取得
-
-```
-GET /news/{ID}/comments
-
-Response 200:
-{
-  "comments": [ ... ],
-  "pagination": { ... }
-}
-```
-
----
-
-### いいね
-
-```
-POST /news/{ID}/like
-
-Response 200: {"message": "いいねしました"}
-```
-
----
-
-### コメント投稿
-
-```
-POST /news/{newsID}/comments
-Content-Type: application/json
-
-{
-  "content": "..."
-}
-```
-
----
-
-### コメント更新
-
-```
-PATCH /news/{newsID}/comments/{commentID}
-Content-Type: application/json
-
-{
-  "content": "..."
-}
-```
-
----
-
-### コメント削除
-
-```
-DELETE /news/{newsID}/comments/{commentID}
-
-Response 200: {"message": "コメントを削除しました"}
-```
-
----
-
-### 記事作成
-
-```
-PUT /news/{slug}
-Content-Type: application/json
-
-{
-  "category": "technology",
-  "title": "...",
-  "slug": "...",
-  "summary": "...",
-  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
-  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
-  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
-  "content": "...",
-  "action": "submit"
-}
-```
-
-### 記事更新
-
-```
-PUT /news/{slug}
-Content-Type: application/json
-
-{
-  "category": "technology",
-  "title": "...",
-  "slug": "...",
-  "summary": "...",
-  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
-  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
-  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
-  "content": "...",
-  "action": "submit"
-}
-```
-
-- `action: "submit"` で公開
-- `category`は`general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
-
----
-
-### 記事削除
-
-```
-DELETE /news/{Num}
-
-Response 200: {"message": "記事を削除しました"}
-```
-
----
-
-**備考**
-- ニュース機能は管理者の承認後に公開される（詳しくは[管理者API](#ニュース記事管理)を参照）
-- 記事作成・更新は `PUT` メソッドを使用
-- コメント・いいねは一般ユーザーも可能
-- 画像関連フィールド（thumbnailUrl, coverImageUrl, ogImageUrl）はフルURLを指定
-- カテゴリー例: `general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
 
 ---
 
@@ -3677,16 +3357,6 @@ GET    /control-room-x9k2/communities
 PATCH  /control-room-x9k2/communities/{id}/age-restriction
 ```
 
-#### ニュース記事管理
-```
-GET    /control-room-x9k2/news
-GET    /control-room-x9k2/news/comments
-PATCH  /control-room-x9k2/news/{articleId}/review
-  Body: { action: "approve" | "reject" | "unpublish", reviewNote: "..." }
-DELETE /control-room-x9k2/news/{articleId}
-DELETE /control-room-x9k2/news/comments/{commentId}
-```
-
 #### お知らせ
 
 ```
@@ -3781,6 +3451,20 @@ GET /control-room-x9k2/trending
 GET /control-room-x9k2/trending/override
 GET /control-room-x9k2/search
 GET /control-room-x9k2/search/index
+```
+
+---
+
+#### 廃止済み
+
+##### ニュース記事管理
+```
+GET    /control-room-x9k2/news
+GET    /control-room-x9k2/news/comments
+PATCH  /control-room-x9k2/news/{articleId}/review
+  Body: { action: "approve" | "reject" | "unpublish", reviewNote: "..." }
+DELETE /control-room-x9k2/news/{articleId}
+DELETE /control-room-x9k2/news/comments/{commentId}
 ```
 
 ---
@@ -4696,6 +4380,333 @@ GET https://karotter.com/embed/{postId}     → 投稿の埋め込みHTML
 GET https://karotter.com/oembed?url={url}   → oEmbed形式
 ```
 - フロントエンドルート（`/api/` 配下ではない）
+
+---
+
+## 掲示板 (Boards) エンドポイント
+
+廃止済みのAPIエンドポイントです。
+
+---
+
+### 一覧 / 内容取得
+
+#### 板
+```
+GET /boards
+Response 200:
+{
+  "boards": [ ... ]
+}
+```
+
+#### スレッド
+```
+GET /boards/{slug}
+Response 200:
+{
+  "board": { ... },
+  "threads": [ ... ]
+}
+```
+
+#### レスポンス（コメント）
+```
+GET /boards/{slug}/threads/{ID}
+Response 200:
+{
+  "board": { ... },
+  "replies": { ... },
+  "thread": { ... }
+}
+```
+
+#### その他
+```
+GET /boards/{slug}/stream
+Response 200:
+{
+  "boardSlug": "...",
+  "timestamp": "..."
+}
+```
+
+```
+GET /boards/api
+Response 200:
+{
+  "boards": { ... },
+  "threads": [ ... ]
+}
+```
+
+---
+
+### 作成
+
+#### 板の作成
+```
+POST /boards
+Content-Type: application/json
+
+{
+  "title": "...",
+  "slug": "...",
+  "description": "...",
+  "minimumAge": 13
+}
+```
+
+#### スレッドの作成
+```
+POST /threads
+Content-Type: multipart/form-data
+
+title: ...
+content: ...
+```
+
+---
+
+### 返信
+
+```
+POST /boards/api/threads/{ID}/replies
+Content-Type: multipart/form-data
+
+content: ...
+```
+
+---
+
+### リアクション
+
+```
+POST /boards/api/threads/{ID}/reactions  → スレッドの最初のコメントへのリアクションを行う/取り消す
+Content-Type: application/json
+
+{
+  "emoji": "😃"
+}
+```
+
+```
+POST /boards/api/replies/{ID}/reactions  → 返信へのリアクションを行う/取り消す
+Content-Type: application/json
+
+{
+  "emoji": "😃"
+}
+```
+
+```
+GET /boards/{slug}/threads/{id}/reactions/{encoded-emoji}/users
+   → スレッドの最初のコメントへの特定のリアクションをしたユーザー一覧を見る
+GET /boards/{slug}/replies/{id}/reactions/{encoded-emoji}/users
+   → 返信への特定のリアクションをしたユーザー一覧を見る
+```
+
+- `pro%3A{ローマ字}`でプロ用リアクション
+
+---
+
+### お気に入り
+
+```
+POST   /boards/{slug}/follow              → 板をお気に入りに追加
+DELETE /boards/{slug}/follow              → 板をお気に入りから削除
+GET    /boards/following                  → 板のお気に入り一覧
+POST   /boards/{slug}/threads/{id}/follow → スレッドをお気に入りに追加
+DELETE /boards/{slug}/threads/{id}/follow → スレッドをお気に入りから削除
+```
+
+---
+
+### 削除
+
+```
+DELETE /boards/api
+   → 板の削除
+DELETE /boards/api/threads/{ID}
+   → スレッドの削除
+```
+
+---
+
+**備考**
+- スレッド作成・返信はmultipart/form-data形式（画像添付対応）
+- リアクションは任意の絵文字（Unicode）を使用可能
+- `/boards/api` は内部API互換用エンドポイント（従来のKarotter掲示板互換）
+
+---
+
+## ニュース (News) エンドポイント
+
+廃止済みのAPIエンドポイントです。
+
+---
+
+### 一覧取得
+
+```
+GET /news?limit=12
+
+Response 200:
+{
+  "articles": [ ... ],
+  "pagination": { ... }
+}
+```
+
+**クエリパラメータ**
+- `?limit={数値}`：取得件数（デフォルト12）
+- `?category={category}`：カテゴリー指定
+- `category`は`general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
+
+---
+
+### 内容取得
+
+```
+GET /news/{slug}
+
+Response 200:
+{
+  "article": { ... }
+}
+```
+
+```
+GET /news/me
+
+Response 200:
+{
+  "articles": [ ... ]
+}
+```
+- 自分が作成した記事の一覧を取得
+
+---
+
+### コメント取得
+
+```
+GET /news/{ID}/comments
+
+Response 200:
+{
+  "comments": [ ... ],
+  "pagination": { ... }
+}
+```
+
+---
+
+### いいね
+
+```
+POST /news/{ID}/like
+
+Response 200: {"message": "いいねしました"}
+```
+
+---
+
+### コメント投稿
+
+```
+POST /news/{newsID}/comments
+Content-Type: application/json
+
+{
+  "content": "..."
+}
+```
+
+---
+
+### コメント更新
+
+```
+PATCH /news/{newsID}/comments/{commentID}
+Content-Type: application/json
+
+{
+  "content": "..."
+}
+```
+
+---
+
+### コメント削除
+
+```
+DELETE /news/{newsID}/comments/{commentID}
+
+Response 200: {"message": "コメントを削除しました"}
+```
+
+---
+
+### 記事作成
+
+```
+PUT /news/{slug}
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+```
+
+### 記事更新
+
+```
+PUT /news/{slug}
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+```
+
+- `action: "submit"` で公開
+- `category`は`general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
+
+---
+
+### 記事削除
+
+```
+DELETE /news/{Num}
+
+Response 200: {"message": "記事を削除しました"}
+```
+
+---
+
+**備考**
+- ニュース機能は管理者の承認後に公開される（詳しくは[管理者API](#ニュース記事管理)を参照）
+- 記事作成・更新は `PUT` メソッドを使用
+- コメント・いいねは一般ユーザーも可能
+- 画像関連フィールド（thumbnailUrl, coverImageUrl, ogImageUrl）はフルURLを指定
+- カテゴリー例: `general`, `society`, `politics`, `economy`, `technology`, `culture`, `entertainment`, `sports`を指定可能
 
 ---
 
