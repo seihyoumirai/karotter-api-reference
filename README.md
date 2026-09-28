@@ -57,6 +57,7 @@ Karotterの非公式APIリファレンスです。
 | [サブスクリプション (Subscriptions) エンドポイント](#サブスクリプション-subscriptions-エンドポイント) | サブスクリプションエンドポイントについて |
 | [コミュニティ (Community) エンドポイント](#コミュニティ-community-エンドポイント) | コミュニティエンドポイントについて |
 | [サーバー (Guilds) エンドポイント](#サーバー-guilds-エンドポイント) | サーバーエンドポイントについて |
+| [バースデー (Birthdays) エンドポイント](#バースデー-birthdays-エンドポイント) | バースデーエンドポイントについて |
 | [管理パネル (Admin) エンドポイント](#管理パネル-admin-エンドポイント) | 管理パネルエンドポイントについて |
 | [外部連携 (Activity Pub) エンドポイント](#外部連携-activity-pub-エンドポイント) | 外部連携のエンドポイントについて |
 | [その他のエンドポイント](#その他のエンドポイント) | その他のエンドポイントについて |
@@ -95,7 +96,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計449件 |
+| エンドポイント | 計26カテゴリー / 計454件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -3026,6 +3027,65 @@ DELETE /guilds/{guildId}/events/{eventId}
 
 ```
 GET    /guilds/{id}/voice-states
+```
+
+---
+
+## バースデー (Birthdays) エンドポイント
+
+---
+
+### バースデー情報取得
+
+```
+GET /birthdays/{username}
+
+Response 200:
+{
+    "recipient": {
+        "id": 1,
+        "username": "UserName",
+        "displayName": "User",
+        "avatarUrl": "/uploads/avatars/avatar_...webp"
+    },
+    "birthday": {
+        "month": 9,
+        "day": 29
+    },
+    "phase": "PREVIEW",
+    "occurrenceYear": 2026,
+    "canSend": true,
+    "isRecipient": false,
+    "cards": [],
+    "ownCard": null,
+    "ownCheerCount": 0,
+    "totalCheerCount": 0,
+    "cardCount": 0
+}
+```
+
+### バースデーカードを送る
+
+```
+POST /birthdays/{id}/cards
+```
+
+### バースデーカードの更新
+
+```
+PATCH /birthdays/cards/{id}
+```
+
+### バースデーカードの削除
+
+```
+DELETE /birthdays/cards/{id}
+```
+
+### リアクション
+
+```
+POST /birthdays/{id}/cheers
 ```
 
 ---
