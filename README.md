@@ -96,7 +96,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計454件 |
+| エンドポイント | 計26カテゴリー / 計455件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -3086,6 +3086,14 @@ DELETE /birthdays/cards/{id}
 
 ```
 POST /birthdays/{id}/cheers
+```
+
+### 誕生日予定
+
+```
+GET /birthdays/upcoming
+
+Response 200: {"birthdays":[]}
 ```
 
 ---
