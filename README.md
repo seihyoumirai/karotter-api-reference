@@ -96,7 +96,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計455件 |
+| エンドポイント | 計26カテゴリー / 計459件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -1524,6 +1524,9 @@ POST   /social/stories/{id}/views     → 閲覧記録 {"message": "閲覧を記
 POST   /social/stories/{id}/like      → ストーリーいいね
 DELETE /social/stories/{id}/like      → ストーリーいいね取消
 POST   /social/stories/{id}/comments  → ストーリーにコメントする
+GET    /social/story-music/tracks     → 音楽トラック
+GET    /social/story-music/playlists  → 音楽リスト
+GET    /social/story-music/history    → 音楽履歴
 ```
 - ストーリーフィールド: `id`, `authorId`, `mediaUrl`, `mediaType`, `caption`, `isR18`, `hideFromMinors`, `visibility`, `expiresAt`, `viewsCount`, `likesCount`, `hasViewed`, `liked`
 
@@ -4002,132 +4005,6 @@ Body: { "content": "..." }
 Response 201: { comment: { id, storyId, authorId, content, createdAt, author } }
 ```
 
-### 掲示板 (Boards)
-
-#### 読み取り
-```
-GET /boards
-
-Response 200: { "boards": [ ... ] }
-```
-
-```
-GET /boards/{slug}
-
-Response 200:
-{
-  "board": { ... },
-  "threads": [ ... ]
-}
-```
-
-```
-GET /boards/{slug}/threads/{id}
-
-Response 200: { thread: Thread, replies: Reply[] }
-```
-
-#### スレッド作成
-
-```
-POST /boards/{slug}/threads
-Content-Type: application/json
-
-Body: { "title": "...", "content": "..." }
-```
-
-#### リプレイ
-
-```
-POST /boards/threads/{id}/replies
-Content-Type: application/json
-
-Body: { "content": "..." }
-```
-
-#### リアクション
-
-```
-POST /boards/threads/{id}/react → スレッドの最初のコメントへのリアクションを行う/取り消す
-Content-Type: application/json
-
-Body: { "emoji": "👍️" }
-```
-
-```
-POST /boards/replies/{id}/react → 返信へのリアクションを行う/取り消す
-Content-Type: application/json
-
-Body: { "emoji": "👍️" }
-```
-
-### ニュース (News)
-
-#### 読み取り
-
-```
-GET /news?limit=12
-
-Response 200: { "articles": [ ... ] }
-```
-
-```
-GET /news/{id}
-```
-
-#### 記事作成
-
-```
-POST /news
-Content-Type: application/json
-
-{
-  "category": "technology",
-  "title": "...",
-  "slug": "...",
-  "summary": "...",
-  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
-  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
-  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
-  "content": "...",
-  "action": "submit"
-}
-```
-
-#### 申請
-
-```
-POST /news/{id}/submit
-```
-
-#### 記事更新
-
-```
-PUT /news/{id}
-Content-Type: application/json
-
-{
-  "category": "technology",
-  "title": "...",
-  "slug": "...",
-  "summary": "...",
-  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
-  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
-  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
-  "content": "...",
-  "action": "submit"
-}
-
-```
-
-#### 画像アップロード
-
-```
-POST /news/uploads
-
-media File[]
-```
-
 ### レスポンススキーマー (Schemas)
 
 ```
@@ -4171,6 +4048,134 @@ Response: { "type": "POST", "time": "2026-04-12T12:34:56.789Z", "itemId": "post-
 - APIキーには権限フィールドあり: `canReadPosts`, `canCreatePosts`, `canReadTimeline`, `canReadFollows`, `canWriteFollows`, `requestsPerMinute`
 - 認証ミドルウェアがルートマッチング前に実行されるため、無効キーでは全パスが `401 {"error": "認証エラー"}` を返す
 - 認証系は現在リライト中の可能性あり
+
+### 廃止済み
+
+#### 掲示板 (Boards)
+
+##### 読み取り
+```
+GET /boards
+
+Response 200: { "boards": [ ... ] }
+```
+
+```
+GET /boards/{slug}
+
+Response 200:
+{
+  "board": { ... },
+  "threads": [ ... ]
+}
+```
+
+```
+GET /boards/{slug}/threads/{id}
+
+Response 200: { thread: Thread, replies: Reply[] }
+```
+
+##### スレッド作成
+
+```
+POST /boards/{slug}/threads
+Content-Type: application/json
+
+Body: { "title": "...", "content": "..." }
+```
+
+##### リプレイ
+
+```
+POST /boards/threads/{id}/replies
+Content-Type: application/json
+
+Body: { "content": "..." }
+```
+
+##### リアクション
+
+```
+POST /boards/threads/{id}/react → スレッドの最初のコメントへのリアクションを行う/取り消す
+Content-Type: application/json
+
+Body: { "emoji": "👍️" }
+```
+
+```
+POST /boards/replies/{id}/react → 返信へのリアクションを行う/取り消す
+Content-Type: application/json
+
+Body: { "emoji": "👍️" }
+```
+
+#### ニュース (News)
+
+##### 読み取り
+
+```
+GET /news?limit=12
+
+Response 200: { "articles": [ ... ] }
+```
+
+```
+GET /news/{id}
+```
+
+##### 記事作成
+
+```
+POST /news
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+```
+
+##### 申請
+
+```
+POST /news/{id}/submit
+```
+
+##### 記事更新
+
+```
+PUT /news/{id}
+Content-Type: application/json
+
+{
+  "category": "technology",
+  "title": "...",
+  "slug": "...",
+  "summary": "...",
+  "thumbnailUrl": "https://www.shichitora.pro/icon.JPG",
+  "coverImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "ogImageUrl": "https://www.shichitora.pro/icon.JPG",
+  "content": "...",
+  "action": "submit"
+}
+
+```
+
+##### 画像アップロード
+
+```
+POST /news/uploads
+
+media File[]
+```
 
 ---
 
@@ -4448,6 +4453,68 @@ GET https://karotter.com/embed/{postId}     → 投稿の埋め込みHTML
 GET https://karotter.com/oembed?url={url}   → oEmbed形式
 ```
 - フロントエンドルート（`/api/` 配下ではない）
+
+---
+
+### ステータス (Status)
+
+```
+GET https://status.karotter.com/api/status
+
+Response 200:
+{
+    "overall": "operational",
+    "checkedAt": "2026-10-16T14:30:45.445Z",
+    "services": [
+        {
+            "id": "web",
+            "name": "Webアプリ",
+            "description": "タイムラインや各ページの表示",
+            "status": "operational",
+            "latencyMs": 20
+        },
+        {
+            "id": "api",
+            "name": "API",
+            "description": "投稿・認証・データの読み書き",
+            "status": "operational",
+            "latencyMs": 80
+        },
+        {
+            "id": "realtime",
+            "name": "リアルタイム通信",
+            "description": "通知・オンライン状態・チャット",
+            "status": "operational",
+            "latencyMs": 15
+        },
+        {
+            "id": "media",
+            "name": "画像・メディア",
+            "description": "画像や動画などの配信",
+            "status": "operational",
+            "latencyMs": 17
+        },
+        {
+            "id": "voice",
+            "name": "通話・スペース",
+            "description": "音声通話とスペース",
+            "status": "operational",
+            "latencyMs": 12
+        },
+        {
+            "id": "translation",
+            "name": "翻訳",
+            "description": "カロートの翻訳",
+            "status": "operational",
+            "latencyMs": 12
+        }
+    ]
+}
+```
+
+---
+
+# 廃止済みAPIエンドポイント
 
 ---
 
