@@ -50,6 +50,7 @@ Karotterの非公式APIリファレンスです。
 | [サークル (Circle) エンドポイント](#サークル) | サークルエンドポイントについて |
 | [リスト (List) エンドポイント](#リスト) | リストエンドポイントについて |
 | [ストーリー (Story) エンドポイント](#ストーリー) | ストーリーエンドポイントについて |
+| [音楽 (Music) エンドポイント](#音楽) | 音楽エンドポイントについて |
 | [リンクプレビュー (Link Preview) エンドポイント](#リンクプレビュー) | リンクプレビューエンドポイントについて |
 | [質問箱 (Question Box) エンドポイント](#質問箱) | 質問箱エンドポイントについて |
 | [絵チャ (Draw-chat) エンドポイント](#絵チャ-draw-chat-エンドポイント) | 絵チャエンドポイントについて |
@@ -96,7 +97,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計459件 |
+| エンドポイント | 計26カテゴリー / 計468件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -1524,11 +1525,24 @@ POST   /social/stories/{id}/views     → 閲覧記録 {"message": "閲覧を記
 POST   /social/stories/{id}/like      → ストーリーいいね
 DELETE /social/stories/{id}/like      → ストーリーいいね取消
 POST   /social/stories/{id}/comments  → ストーリーにコメントする
-GET    /social/story-music/tracks     → 音楽トラック
-GET    /social/story-music/playlists  → 音楽リスト
-GET    /social/story-music/history    → 音楽履歴
 ```
 - ストーリーフィールド: `id`, `authorId`, `mediaUrl`, `mediaType`, `caption`, `isR18`, `hideFromMinors`, `visibility`, `expiresAt`, `viewsCount`, `likesCount`, `hasViewed`, `liked`
+
+### 音楽
+
+```
+GET    /social/story-music/tracks                      → 音楽トラック一覧
+GET    /social/story-music/history                     → 音楽の再生履歴
+POST   /social/story-music/tracks/{id}/play            → 音楽を再生
+GET    /social/story-music/playlists                   → プレイリスト一覧
+POST   /social/story-music/playlists                   → プレイリスト作成
+PATCH  /social/story-music/playlists/{id}              → プレイリスト情報変更
+DELETE /social/story-music/playlists/{id}              → プレイリスト削除
+POST   /social/story-music/playlists/{id}/tracks       → プレイリストに追加
+DELETE /social/story-music/playlists/{id}/tracks/{tId} → プレイリストから削除
+POST   /social/story-music/playlists/{id}/tracks       → お気に入りに追加
+DELETE /social/story-music/playlists/{id}/tracks/{tId} → お気に入りから削除
+```
 
 ### リンクプレビュー
 
@@ -3129,10 +3143,16 @@ Response 200: {"birthdays":[]}
 | `communities` | コミュニティ管理 | コミュニティの削除、更新、制限など |
 | `posts` | カロート管理 | 検索、R18強制、非表示、削除 |
 | `stories` | ストーリー管理 | 検索、R18強制、非表示、削除、有効期限表示 |
-| `news` | ニュース管理 | 記事検索、削除、コメント |
+| `music` | 楽曲審査 | 音楽の審査をする |
 | `recommend` | おすすめ β | おすすめアルゴリズムテスト (userId指定、スコア詳細表示) |
 | `trending` | トレンド β | トレンドアルゴリズムテスト (velocity, uniqueActors, engagementRate) |
 | `survey` | アンケート | おすすめ満足度アンケート結果 (投票数、満足度スコア) |
+
+#### 削除済み
+
+| タブID | ラベル | 説明 |
+|--------|--------|------|
+| `news` | ニュース管理 | 記事検索、削除、コメント |
 | `beta-experiment` | Beta実験 | A/Bテスト結果 (A〜E 5バリアント、userId%5で振り分け) |
 
 ### ダッシュボード統計
@@ -3176,6 +3196,7 @@ Response:
 | `GREEN` | 緑: 認証済みマーク |
 | `ORANGE` | オレンジ: 認証済みマーク |
 | `PINK` | ピンク: 認証済みマーク |
+| `MUSIC` | 音楽: 承認済み音楽クリエイター |
 - 複数マーク同時付与可能（配列で管理）
 
 #### フラグ操作
@@ -3362,6 +3383,12 @@ DELETE /control-room-x9k2/posts/{id}/delete
 ```
 GET    /control-room-x9k2/stories
 PATCH  /control-room-x9k2/stories/{id}/flags
+```
+
+#### 音楽管理
+
+```
+PATCH  /control-room-x9k2/story-music/submissions/{id}
 ```
 
 #### 通報 / モデレーション
@@ -4975,6 +5002,7 @@ Response 200: {"message": "記事を削除しました"}
 | <img src="/badges/badge_purple.PNG" width="32" height="32" > | `PURPLE` | 運営マーク | Karotterの運営者・開発者に付与される |
 | <img src="/badges/badge_blue.PNG" width="32" height="32" > | `BLUE` | 本人マーク | ある程度の影響力のある者などに運営が管理者APIを通じて付与する |
 | <img src="/badges/badge_gray.PNG" width="32" height="32" > | `GRAY` | 政府関係者マーク | 政府関係者からの申請があった場合に運営が管理者APIを通じて付与する |
+| <img src="/badges/badge_music.PNG" width="32" height="32" > | `MUSIC` | 承認済み音楽クリエイター | 承認済みの音楽クリエイターにのみ付与される |
 
 ### 課金要素バッジ
 
