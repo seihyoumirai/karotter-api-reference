@@ -97,7 +97,7 @@ Karotterの非公式APIリファレンスです。
 
 | 形態 | 内容 |
 |-----|-----|
-| エンドポイント | 計26カテゴリー / 計468件 |
+| エンドポイント | 計26カテゴリー / 計472件 |
 | Socket.IO イベント | 計7カテゴリー / 計71件 |
 
 ---
@@ -773,6 +773,7 @@ GET /posts/recommended
 
 ```
 GET    /posts/scheduled/me       → {"scheduledPosts": [...]}
+PUT    /posts/scheduled/{id}     → 予約投稿編集
 DELETE /posts/scheduled/{id}     → 予約投稿削除
 ```
 
@@ -1542,6 +1543,9 @@ POST   /social/story-music/playlists/{id}/tracks       → プレイリストに
 DELETE /social/story-music/playlists/{id}/tracks/{tId} → プレイリストから削除
 POST   /social/story-music/playlists/{id}/tracks       → お気に入りに追加
 DELETE /social/story-music/playlists/{id}/tracks/{tId} → お気に入りから削除
+GET    /social/story-music/submissions/mine            → 自分の楽曲を表示
+POST   /social/story-music/submissions                 → 楽曲を申請
+PATCH  /social/story-music/submissions/{id}/cover      → 楽曲情報の変更
 ```
 
 ### リンクプレビュー
