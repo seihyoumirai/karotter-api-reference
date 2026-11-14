@@ -2,6 +2,8 @@
 
 Karotterの非公式APIリファレンスです。
 
+※2026/11/14以降更新を行っていません。
+
 ## 参考
 - [にぱさんの非公式APIリファレンス](https://github.com/cUDGk/karotter-api)
 - [公式APIリファレンス](https://karotter.com/api-docs)
